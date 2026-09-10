@@ -1,0 +1,491 @@
+Database
+-------------------------------
+
+1. Database Fundamental?
+-----------------------------
+
+Topics
+------------------
+> What is data?
+> What is a database?
+> What is DBMS?
+> What is RDBMS?
+> What is MySQL?
+> SQL vs MYSQL
+> Database vs table
+> Row and Column
+> Constraints
+------------------------------------------------------------------------------------------------
+> What is data?
+------------------------
+Data is a collection of raw facts, values or information that can be stored and processed.
+------------------------------------------------
+
+Example:
+
+Vikash
+25
+Address
+salary
+course
+------------------------------------------------------------------------
+These are individual values are data.
+----------------------------------------------------------------------
+
+"Data is the raw material. Just like raw material is used to manufacture a product. data processed to produce useful information."
+
+x = 5
+x+2  = 7
+
+a+10 = Error
+
+-------------------------------------------------------------------------------------------
+
+2. What is a Database?
+-----------------------------------------------
+A database is an organized collection of data that can be stored, accessed, managed and updated efficiently.
+-----------------------------------------------------------------------------
+College:
+--------------
+students
+teachers
+course
+fees
+exams
+------------------------------------------------------------------------------------------------
+
+### Why do we need databases?
+----------------------------------------------------
+
+Without a database, managing a large amount of data becomes difficult.
+---------------------------------------------------------------------
+
+> Data Organization
+> Fast Searching
+> Data insertion
+> Data Update
+> Data Deletion
+> Data Security
+> Data consistency - 
+> Multiple User Access 
+> Backup and recovery
+------------------------------------------------------------------------------------------
+
+>> What is DBMS?
+
+Database Management System.
+
+Define:
+
+A DBMS is a software that allows user/application to create, store, retrieve, update, and manage data in database.
+
+---------------------------------------------------------------------------
+
+Example:
+
+MySQL
+Postgres
+Oracle 
+Microsoft SQL Server
+SQLite
+Microsoft Access
+
+
+NOte:
+
+A database is where data is store, while a DBMS is the software used to manage the data.
+-----------------------------------------------------------------------------
+
+DataBase
+   |manage
+DBMS
+   |
+User/Application
+
+
+
+-----------------------------------------------------------------------------------
+
+## 4. RDBMS
+-------------------------------------------
+Relational Database Management System.
+-----------------------------------------------------------------
+
+An RDBMS is a type of DBMS that stores data in tables and establish relationships between tables.
+----------------------------------------------------------------------------------------------
+The world Relational is important
+
+Data is generally represented using
+
+Rows + Columns
+-----------------------------------------------------------------------------------------------------
+
+
+What is DBMS and RDBMS?
+-------------------------------------
+DBMS
+-------------
+* Database Management System
+* General database management system
+* Can support different database model depending on the system.
+
+---------------------------------
+RDBMS
+------------
+> Relational Database management system.
+> A type of DBMS
+> Based on relational model
+> Data represented using tables.
+> Relationships between tables are fundamentals
+> Uses key such as primary keys and foreign key
+
+---------------------------------------------------------------------------
+> Types of Databases
+------------------------------
+A database can be classified according to the data model or the way in which data is organized.
+----------
+Important database Models/types:
+
+1. Hierarchical Database
+2. Network database
+3. Relational Database
+4. Object-Oriented Database
+5. Object-Relational Database
+6. NoSQL Database
+
+------------------------------------------------------------------------
+1. Hierarchical Database
+> A hierarchical database organizes data in tree-like structure.
+
+Parent
+   |
+   +----Child
+------------------------------
+
+Hierarchical=Tree Structure
+-------------------------------------------------------------------------
+
+2. Network database
+> A network database organizes data as interconnected records and supports multiple relationship among records.
+
+	Student
+	/    \
+       /      \
+     Course   Teacher
+---------------------------------------------------------------------------------
+Network Database = Interconnected Records
+-------------------------------------------------------------------------------
+
+3. Relational Database
+-----------------------
+A relational database organizes data into tables(relations) consisting rows and columns.
+
+Student_id 	Name 	Age	course_id
+101		Vikash	25	c01
+102		Priya	30	c02
+--------------------------------------------------------------
+
+Key-Features
+> Data stored in tables
+> Rows
+> Columns
+> Primary keys
+> Foreign keys
+> Relationships
+	1. One to one
+	2. One to many
+	3. Many to Many
+> SQL Commonly used for Querying
+------------------------------------------------
+Example of RDBMS:
+> MySQL
+> PogreSQL
+> Oracal Database
+> Microsoft SQL Server
+> SQLite
+------------------------------------------------------------------
+
+Notes:
+
+Relational Database -  Database Model
+RDBMS - Software/system that manages relational database.
+
+----------------------------------------------------------------------------------------
+4. Object-Oriented Database
+-----------------------------------
+An object-oriented database stored data in the form of objects. Similar to object-oriented programming.
+
+Example:
+
+Student Object
+ |
+ +-----name = Vikash
+ +-----age = 25
+ +-----course = B.Tech
+-------------------------------------------------------------------
+class Student:
+	def __init__(self,name,age,course):
+		self.name = name
+		self.age = age
+		self.course = course
+
+obj1 = Student("Vikash",25,"B.Tech")
+------------------------------------------------------------------------------
+Notes:
+
+Object-Oriented Database = Data represented as Objects
+---------------------------------------------------------------------------------------
+
+5. Object-Relational Database
+-----------------------
+An object-relational database combines the relation model with selected object-oriented features.
+
+Content:
+
+Relational Model
+	+
+Object-Oriented Features
+	|
+Object-Relational Database
+---------------------------------------------------------------------
+PostgreSQL supports object-relational features.
+-------------------------------------------------------------------------------------------------
+
+6. NoSQL Database
+-------------------------------------
+
+NoSQL is broad category of database that uses data models other than, or beyond the traditional relational-table model.
+
+Common NoSQL models include:
+1. Key-value
+2. Document based database
+3. Column-Family
+4. Graph
+------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+
+Types 			Basic Structure
+------------------------------------------
+1.Hierarchial		Tree
+2.Network		Interconnected records
+3.Relational		Table(Rows Columns)
+4.Object-Oriented	Objects
+5.Object-Relational	Tables + Objects Feature
+6.NoSQL			Key-values/document/column-family/graph
+--------------------------------------------------------------------------------------------------
+
+Q. What is Database?
+Organized collection of data.
+
+Q. What is DBMS?
+software that manages the database.
+----------------------------------------------------------------
+
+Q. What is DBMS VS RDBMS
+
+-----------------------------------------------------------------------------------------------------
+
+MySQL
+-----------------
+
+MySQL is an open-source relational database management system(RDBMS) that uses SQL to create, manipulate and manage relational database.
+---------------------------------------------------------
+MySQL
+   |
+RBDMS
+   |
+Relational Databases
+   |
+SQL
+--------------------------------------------
+MySQL is:
+	>> Not a programming language
+	>> Not a SQL itself
+	>> RDBMS/Software system
+
+--------------------------------------------------------------------
+
+SQL-
+SQL-Structured Query Language
+
+SQL is a language used to communicate with relational database.
+
+Example:
+SELECT * From Students;
+-------------------------------------------------------------------
+
+MySQL 
+-----------------
+MySQL is an RDBMS that uses SQL
+
+Notes:
+
+SQL - Database language
+MySQL - RDBMS that uses SQL
+------------------------------------------------------------------
+
+SQL			MySQL
+----------------------------------------------
+Language		RDBMS/Software
+used to write Query.	Manages relational database
+Contain SQL command	Execute SQL Statemenets
+------------------------------------------------------------------------------------------------
+
+MySQL - Relational Database
+--------------------------------------
+	Name	Age 	Gender
+1.	Ram	25	Male
+2. 	Salman	35	male
+---------------------------------------------------------------------------------------------
+
+Advantages:
+---------------
+1. Cross platform.
+2. Used with multiple languages (PHP, Node.js, Python, Java)
+3. MySQL is an open source database.
+4. MySQL used SQL+RDBMS
+5. MySQL database server is fast, easy to use.
+--------------------------------------------------------------------------------------------
+
+Popular Websites using MySQL
+------------------------------------
+1. Facebook
+2. X(twitter)
+3. google
+4. Wikipedia
+5. youtube
+6. flickr
+
+
+---------------------------------------------------
+Content Management system 
+
+1. PHPBB
+2. Joomla
+3. Drupal
+4. Magento
+5. Typo3
+
+--------------------------------------------------------------
+> What we will learn in this databae
+
+1. create database
+2. Update data in database
+3. delete data in database
+--------------------------------------------------------------------------------------------------------
+
+Keyword used in database
+-----------------------------------------------
+Database - A collection of organized data
+Table - Stores data in rows and columns
+Row(Record) -  A single entry in table
+Column(Field) - Uniquely identify each records.
+Query - A request to access or modify data.
+
+create database Student;
+----------------------------------------------------------------------------------------------
+	SQL Commands
+-----------------------------------------
+1. DDL - Data Definition Language
+	> Create
+	> DROP
+	> Alter
+	> Truncate
+2. DML- Data Manipulation Language
+	> Insert
+	> Update
+	> Delete
+3. TCL - Transaction Control language
+	> Commit - Permanent data save
+	> Rollback
+	> save point
+4. DQL - Data Query Language
+	> Select
+5. DCL - Data Control Language
+	> Grant 
+	> Revoke
+-----------------------------------------------------------------------------------------------
+
+How to create Database
+-----------------------------------------------
+
+how to open database?
+CMD -  Command Prompt- CUI - Command Line user Interface
+
+Workbench - GUI - Graphical User Interface - Easy
+--------------------------------------------------------------------------------------------------------
+CMD -  Command Prompt- CUI - Command Line user Interface
+
+C:\Users\User>cd..
+
+C:\Users>cd..
+
+C:\>cd "Program Files"
+
+C:\Program Files>cd MySQL
+
+C:\Program Files\MySQL>cd "MySQL Server 8.0"
+
+C:\Program Files\MySQL\MySQL Server 8.0>cd bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
