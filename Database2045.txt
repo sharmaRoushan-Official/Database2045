@@ -448,6 +448,200 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ------------------------------------------------------------------------------------------------
 
+1. Create data
+
+mysql> create database newdatabase;
+Query OK, 1 row affected (0.01 sec)
+
+
+2. 
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demodatabase       |
+| elearningapp       |
+| hexadash_django_db |
+| information_schema |
+| mediplusapp        |
+| mysql              |
+| newdatabase        |
+| newdb              |
+| performance_schema |
+| practiceforeignkey |
+| school             |
+| sys                |
+| test               |
+| uday               |
++--------------------+
+14 rows in set (0.00 sec)
+
+
+----------------------------
+3. 
+
+mysql> use newdatabase;
+Database changed
+-------------------------------------
+
+4.
+
+mysql> show tables;
+Empty set (0.01 sec)
+
+------------------------------------
+
+5. 
+
+mysql> create table student(
+    -> id int,
+    -> name char(50),
+    -> age char(10)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+
+-------------------------------------
+
+6.
+
+mysql> describe student;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| id    | int      | YES  |     | NULL    |       |
+| name  | char(50) | YES  |     | NULL    |       |
+| age   | char(10) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+-------------------------
+
+7.
+
+mysql> insert into student(id,name,age)
+    -> values
+    -> (1,"Trupti Gaikwad",95);
+Query OK, 1 row affected (0.01 sec)
+
+------------------------
+8.
+
+mysql> select * from student;
++------+----------------+------+
+| id   | name           | age  |
++------+----------------+------+
+|    1 | Trupti Gaikwad | 95   |
++------+----------------+------+
+1 row in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+int, char
+
+-----------------------------------------
+
+>> Three type of data in database
+
+------------------------------------------------------------------------------------------------------------
+1. String
+2. Number
+3. Datetime
+---------------------------------------------------------------
+
+1. String
+----------------------------------------------------------------------------------------------------
+
+1. CHAR(size) -- 0 to 255 (character)
+2. VARCHAR(size) ---- 0 to 65535 
+3. BINARY(size) ---- It stores binary value (0 to 255)
+4. VARBINARY(size) ---0 to 65535 (fixed)
+5. TINYTEXT --------- 255 (FIXED)
+6. TEXT(SIZE) -------> 65535 
+7. MEDIUMTEXT -------> 16,777,215 BYTES
+8. LONGTEXT ----------> 4,294,967,295 CHRACTERS
+9. TINYBLOB ----------> 255 BYTES
+10. BLOB(SIZE) -------> 65535 BYTES
+11. MEDIUMBLOB -------> 16,777,215 BYTES
+12. LONGBLOB ---------> 4,294,967,295 BYTES
+13. ENUM(VAL1,VAL2,VAL3.....)
+14. SET(VAL1,VAL2,VAL3.......)
+-----------------------------------------------------------------------------------------------
+
+2. NUMERIC DATA TYPE IN MYSQL
+---------------------------------------------------------------
+
+1. BIT(SIZE) ------ 1 TO 64
+2. TINYINT(SIZE) ----> -128 TO 127
+3. INT -- (-2147483648 TO 2147483647)
+4. INTEGER(SIZE) --- SAME AS INT
+5. SMALLINT(SIZE) --- (-32768 TO 32767)
+6. MEDIUMINT(SIZE) -- (-8388608 TO 8388607)
+7. BIGINT(SIZE) -- (-9223372036854775808 TO 92233720368547758087)
+8. BOOL ------- 0/1 - TRUE/FALSE
+9. BOOLEAN ----- 0/1- TRUE/FALSE
+10. FLOAT(P) ---- 255.568 
+11. DOUBLE(SIZE,D)---- 255.568 SIZE = 60, D = 30
+12. DECIMAL(SIZE,D)---- 255.568 SIZE = 60, D = 30
+13. DEC (SIZE,D) ------ 255.568 SIZE = 60, D = 30
+
+---------------------------------------------------------------------------------------------------
+3. DATE AND TIME IN MYSQL
+------------------------------------------------
+1. DATE - "1000-01-01" - "9999-01-01" , "YYYY-MM-DD"
+2. DATETIME -- "YYYY:MM:DD hh:mm:ss"
+3. TIMESTAMP --  [OLD VERSION] SAME AS ABOVE
+4. TIME --- "HH:MM:SS"
+5. YEAR -- "YYYY"
+----------------------------------------------------------------------------------------------------------------
+
+6. MYSQL CONSTRAINTS
+----------------------------------------------
+SYNTAX:
+
+--------------------
+HOW TO CREATE DATABAE;
+	>> CREATE DATABASE DATABASENAME;
+
+----------------------------------------------
+HOW TO CREATE TABLE [SIMPLE]
+-------------------------------
+	> CREATE TABLE TABLENAME(
+		"COLUMN_NAME" DATATYPE,
+		"COLUMN_NAME" DATATYPE,
+		"COLUMN_NAME" DATATYPE
+		);
+-------------------------------------------------------------------------------
+
+[BEST WQY TO CREATE TABLE]
+---------------------------------------
+USE CONSTRAINTS 
+--------------------------------
+THERE ARE SIX CONSTRAINTS -- [RESTRICTIONS]
+-----------------------------
+1. NOT NULL
+2. UNIQUE
+3. DEFAULT
+4. CHECK
+5. FOREIGN KEY
+6. PRIMARY KEY
+-----------------------------------------------------------------------------------------------------
+SYTAX FOR CREATING TABLE
+---------------------------
+
+CREATE TABLE TABLE_NAME(
+	ID INT NOTNULL UNIQUE,
+	NAME CHAR(80) NOT NULL,
+	AGE INT NOT NULL,
+	GENDER VARCHAR(11) NOT NULL,
+	CITY CHAR(80) DEFAULT "AGRA" 
+	);
+------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
