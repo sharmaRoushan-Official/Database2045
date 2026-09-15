@@ -639,10 +639,115 @@ CREATE TABLE TABLE_NAME(
 	CITY CHAR(80) DEFAULT "AGRA" 
 	);
 ------------------------------------------------------------------------------------------------------------------------
+mysql> create table student(
+    -> id INT NOT NULL UNIQUE,
+    -> name CHAR(50) NOT NULL,
+    -> age INT NOT NULL,
+    -> gender VARCHAR(11) NOT NULL,
+    -> city CHAR(80) DEFAULT "AGRA"
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SHOW TABLES;
++-----------------------+
+| Tables_in_newdatabase |
++-----------------------+
+| student               |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> describe student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | char(50)    | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| gender | varchar(11) | NO   |     | NULL    |       |
+| city   | char(80)    | YES  |     | AGRA    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+-------------------------------------------------------------------------------------------------------
+
+>> MYSQL SELECT WITH WHERE CLAUSE?
+---------------------------------------------------
 
 
 
+mysql> select * from student;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
++----+----------------+-----+--------+----------+
+4 rows in set (0.00 sec)
 
+mysql> SELECT * FROM STUDENT;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
++----+----------------+-----+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT
+    -> WHERE GENDER = "FEMALE";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
++----+----------------+-----+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT
+    -> WHERE GENDER = "MALE";
++----+---------------+-----+--------+---------+
+| id | name          | age | gender | city    |
++----+---------------+-----+--------+---------+
+|  3 | Vikash Sonadi |  10 | male   | manipur |
++----+---------------+-----+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT
+    -> WHERE AGE>50;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
++----+----------------+-----+--------+----------+
+2 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------
+
+WHERE clause used as Relational Operator
+
+-------------------------------------------
+
+operator		description
+-----------------------------------------------------
+<			Less than
+> 			Greater than
+<=			Less than or equal to
+>= 			Greater than or equal to
+==			equal to
+!= | <>			Not equal to
+------------
+LIKE			SEARCH FOR A SAME PATTERN
+
+BETWEEN			BETWEEN A CERTAIN RANGE
+
+IN			TO SPECIFY MULTIPLE POSSIBLE VALUES FOR A COLUMN
+------------------------------------------------------------------------------------------------------
 
 
 
