@@ -749,6 +749,378 @@ BETWEEN			BETWEEN A CERTAIN RANGE
 IN			TO SPECIFY MULTIPLE POSSIBLE VALUES FOR A COLUMN
 ------------------------------------------------------------------------------------------------------
 
+MySQL IN operators
+--------------------------
+Select Data with IN
+--------------------------------------
+syntax:
+
+where columnName IN(value,value,vaue)
+
+------------------------------------------------------------------------------------------------
+mysql> select * from student
+    -> where age IN(20,25);
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 15 | Manish |  25 | Male   | Delhi     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 22 | Swati  |  20 | Female | Jaipur    |
++----+--------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where city IN("Mumbai", "Delhi");
++----+--------+-----+--------+--------+
+| id | name   | age | gender | city   |
++----+--------+-----+--------+--------+
+|  5 | Rahul  |  20 | Male   | Delhi  |
+|  6 | Priya  |  21 | Female | Mumbai |
+| 15 | Manish |  25 | Male   | Delhi  |
+| 18 | Riya   |  22 | Female | Mumbai |
++----+--------+-----+--------+--------+
+4 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------
+mysql> select * from student where age IN(20,21,22)
+    -> ;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+
+IN Operator
+--------------------------------------------------------------------------------------------
+
+OR operator
+----------------------------------------
+
+mysql> select * from student where age IN(20,21,22)
+    -> ;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select * from student
+    -> where age == 20 or age == 21 or age == 22;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== 20 or age == 21 or age == 22' at line 2
+mysql> select * from student
+    -> where age = 20 or age = 21 or age = 22;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select name,age from student
+    -> where gender = "female" and age = 20 or age = 30;
++--------+-----+
+| name   | age |
++--------+-----+
+| Anjali |  20 |
+| Swati  |  20 |
++--------+-----+
+2 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------
+mysql> select * from student where gender NOT IN("female");
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 15 | Manish        |  25 | Male   | Delhi     |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
+| 21 | Deepak        |  26 | Male   | Gaya      |
+| 23 | Vivek         |  23 | Male   | Noida     |
++----+---------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select * from student
+    -> where gender <> "female";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 15 | Manish        |  25 | Male   | Delhi     |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
+| 21 | Deepak        |  26 | Male   | Gaya      |
+| 23 | Vivek         |  23 | Male   | Noida     |
++----+---------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------
+
+>> BETWEEN and NOT BETWEEN Operator
+------------------------------------------------------------------------------------------------------
+> To Give a range in MySQL we use Between operator
+--------------------------------------------------------------------------------------------------------
+mysql> select * from student where age BETWEEN 18 and 50;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+|  8 | Neha    |  19 | Female | Gaya      |
+|  9 | Rohit   |  23 | Male   | Pune      |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 11 | Vikas   |  24 | Male   | Lucknow   |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 14 | Sneha   |  19 | Female | Agra      |
+| 15 | Manish  |  25 | Male   | Delhi     |
+| 16 | Kavita  |  23 | Female | Patna     |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 20 | Nisha   |  24 | Female | Pune      |
+| 21 | Deepak  |  26 | Male   | Gaya      |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 23 | Vivek   |  23 | Male   | Noida     |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+20 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where age>=18 and age<=50;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+|  8 | Neha    |  19 | Female | Gaya      |
+|  9 | Rohit   |  23 | Male   | Pune      |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 11 | Vikas   |  24 | Male   | Lucknow   |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 14 | Sneha   |  19 | Female | Agra      |
+| 15 | Manish  |  25 | Male   | Delhi     |
+| 16 | Kavita  |  23 | Female | Patna     |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 20 | Nisha   |  24 | Female | Pune      |
+| 21 | Deepak  |  26 | Male   | Gaya      |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 23 | Vivek   |  23 | Male   | Noida     |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+20 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where age not between 18 and 50;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
++----+----------------+-----+--------+----------+
+4 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------
+
+LIKE Wild Card :- 
+
+----------------------------------------------------
+MYSQL LIKE OPERATOR WITH WILDCARD
+-----------------------------------------------------------
+SELECT DATA WITH LIKE OPRATORS
+-----------------------------------------------------------------
+
+WILD CARD CHARACTERS
+
+"%" ----> PERCENTAGE SYMBOL --> ZERO,ONE, OR MULITPLE CHARACTERS.
+
+"_" ----> UNDERSCORE SYMBOL ---> REPRESENT A SINGLE CHRACTER.
+
+-----------------------------------------------------------------------------------------------------
+
+PATTERN			| DESCRIPTION
+--------------------------------------------------------------------------------------------
+LIKE "a%" 		| Start with "a"
+--------------------------------------------------
+LIKE "%a"		| Ends with "a"
+---------------------------------------------------------
+LIKE "%am%"		| have "am" in the any position 
+-------------------------------------------------------------------
+LIKE "a%m"		| starts with and ends with m
+----------------------------------------------------------------------
+LIKE "_ _ a%"		| in the third position a.
+-----------------------------------------------------------------------
+LIKE "_a%"		| In the second position a
+---------------------------------------------------------------------------
+LIKE "_OY%"		| In the second and Third O,Y 
+--------------------------------------------------------------------------------------------------------------------
+To filter string
+--------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "P%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  4 | Punam Shrisath |   2 | female | AGRA    |
+|  6 | Priya          |  21 | Female | Mumbai  |
+| 12 | Pooja          |  21 | Female | Kolkata |
++----+----------------+-----+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student
+    -> where name LIKE "%a";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student
+    -> where name LIKE "_r%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  6 | Priya          |  21 | Female | Mumbai    |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
++----+----------------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------
+
+mysql> select * from student where name LIKE "__o%";
++----+-------+-----+--------+---------+
+| id | name  | age | gender | city    |
++----+-------+-----+--------+---------+
+| 12 | Pooja |  21 | Female | Kolkata |
++----+-------+-----+--------+---------+
+1 row in set (0.00 sec)
+
+-----------------------------------------------------------------------------------------------------------
+
+RegEx --- Regular Expression
+------------------------------------------------------------------------------------
+We find out multiple Result using Regular Expression
+
+--------------------------------------------------------------------
+
+$ - Dollar - Matching Last Character
+[]- Bracket - Between
+^ - Caret - starts
+| - PIPE - Multiple Values
+----------------------------------------------------
+
+
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Q1. Dipslay all students whose age is 20?
+
+mysql> select * from student where age=20;
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 22 | Swati  |  20 | Female | Jaipur    |
++----+--------+-----+--------+-----------+
+4 rows in set (0.00 sec)
+
+
+2. 
+
+
 
 
 
