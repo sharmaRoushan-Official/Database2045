@@ -1104,7 +1104,7 @@ $ - Dollar - Matching Last Character
 
 
 
-Q1. Dipslay all students whose age is 20?
+Q1. Display all students whose age is 20?
 
 mysql> select * from student where age=20;
 +----+--------+-----+--------+-----------+
@@ -1118,7 +1118,380 @@ mysql> select * from student where age=20;
 4 rows in set (0.00 sec)
 
 
-2. 
+-----------------------------------------------------------------------------------------------------
+
+
+>> MySQL Regular Expression
+-----------------------------
+
+Select data with Regular Expression
+---------------------------------------------------------
+we found multiple result with regular expression
+---------------------------------------------
+$ - Dollar - Matching Last Character
+[]- Bracket - Between
+^ - Caret - starts
+| - PIPE - Multiple Values
+----------------------------------------------------
+
+|	Sign	| 	pattern	|	Description	|
+---------------------------------------------------------------------
+| ^ caret	|	"^ra"	| Starts from ra	|
+------------------------------------------------------------------------
+|[...]		| 	"[rms]"	| Any character listed between square brackets.
+-------------------------------------------------------------------------------------
+|$		|	"an$"	| an in the last characters.
+------------------------------------------------------------------------------
+|^[...]		| 	"^[rms]"| starts character from r, m, s
+----------------------------------------------------------------------------
+| [a-z]		|	"[a-z]e"| Match with in the range ae,be,ce,de,fe,ge,
+-------------------------------------------------------------------------------------
+|p1|p2|p3|	|	"tom|harry|john"| matches any of the patterns p1,p2,p3
+------------------------------------------------------------------------------------------------------
+
+syntax of RegExp
+---------------------------------------
+select column1, column2, column3,column4.......
+where column_name RegExp pattern;
+--------------------------------------------------------------------------
+mysql> select * from student
+    -> where name like "T%";
++----+----------------+-----+--------+--------+
+| id | name           | age | gender | city   |
++----+----------------+-----+--------+--------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore |
++----+----------------+-----+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from student
+    -> where name Regexp "^T";
++----+----------------+-----+--------+--------+
+| id | name           | age | gender | city   |
++----+----------------+-----+--------+--------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore |
++----+----------------+-----+--------+--------+
+1 row in set (0.01 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Home work
+--------------------------------------
+1. Wildcard
+2. Regexp
+--------------------------------------------------
+
+Select Data with Distinct
+--------------------------------------------------------------------------------------------------
+Distinct -- It will return unique value.
+--------------------------------------------------
+
+syntax:
+---------------------------------------------------
+select distince column1,column2,column3.....
+from table_name;
+
+mysql> select distinct age from student;
++-----+
+| age |
++-----+
+|  85 |
+|  99 |
+|  10 |
+|   2 |
+|  20 |
+|  21 |
+|  22 |
+|  19 |
+|  23 |
+|  24 |
+|  25 |
+|  26 |
++-----+
+12 rows in set (0.00 sec)
+
+mysql> select distinct name from student;
++----------------+
+| name           |
++----------------+
+| Trupti Gaikwad |
+| Gauri Gonte    |
+| Vikash Sonadi  |
+| Punam Shrisath |
+| Rahul          |
+| Priya          |
+| Amit           |
+| Neha           |
+| Rohit          |
+| Anjali         |
+| Vikas          |
+| Pooja          |
+| Sandeep        |
+| Sneha          |
+| Manish         |
+| Kavita         |
+| Arjun          |
+| Riya           |
+| Karan          |
+| Nisha          |
+| Deepak         |
+| Swati          |
+| Vivek          |
+| Komal          |
++----------------+
+24 rows in set (0.00 sec)
+
+mysql> select distinct gender from student;
++--------+
+| gender |
++--------+
+| female |
+| male   |
++--------+
+2 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MySQL Is Null and Not Null 
+---------------------------------------------
+
+select data with is null
+
+where age is null;
+
+mysql> select * from employee
+    -> where address is null;
++----+--------+------+---------+
+| id | name   | age  | address |
++----+--------+------+---------+
+|  1 | Vedika |   95 | NULL    |
+|  2 | Poonam |   15 | NULL    |
+|  3 | Gauri  |    1 | NULL    |
++----+--------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where age is null;
++----+----------+------+---------+
+| id | name     | age  | address |
++----+----------+------+---------+
+|  4 | Trupti   | NULL | Puri    |
+|  5 | Sharadha | NULL | Macca   |
+|  6 | Vikahs   | NULL | Assam   |
++----+----------+------+---------+
+3 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------
+mysql> select * from employee where age is not null;
++----+--------+------+---------+
+| id | name   | age  | address |
++----+--------+------+---------+
+|  1 | Vedika |   95 | NULL    |
+|  2 | Poonam |   15 | NULL    |
+|  3 | Gauri  |    1 | NULL    |
++----+--------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where address is not null;
++----+----------+------+---------+
+| id | name     | age  | address |
++----+----------+------+---------+
+|  4 | Trupti   | NULL | Puri    |
+|  5 | Sharadha | NULL | Macca   |
+|  6 | Vikahs   | NULL | Assam   |
++----+----------+------+---------+
+3 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+>> MYSQL LIMIT AND OFFSET 
+----------------------------------------------------------------------
+SELECT DATA WITH LIMIT AND OFFSET
+--------------------------------------------------------------------------------
+
+
+SYNTAX:
+
+SELECT COLUMN1,COLUMN2,COLUMN3........
+FROM TABLE_NAME
+WHERE CONDITION
+LIMIT NUMBER;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+mysql> SELECT * FROM STUDENT
+    -> LIMIT 5;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
++----+----------------+-----+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT WHERE AGE>=18;
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT
+    -> WHERE AGE>=18
+    -> LIMIT 10;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+|  9 | Rohit          |  23 | Male   | Pune     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 11 | Vikas          |  24 | Male   | Lucknow  |
+| 12 | Pooja          |  21 | Female | Kolkata  |
++----+----------------+-----+--------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT WHERE GENDER = "FEMALE";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT WHERE GENDER = "FEMALE" LIMIT 10;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
++----+----------------+-----+--------+----------+
+10 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+mysql> SELECT * FROM STUDENT
+    -> LIMIT 10,5;
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+| 11 | Vikas   |  24 | Male   | Lucknow |
+| 12 | Pooja   |  21 | Female | Kolkata |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 14 | Sneha   |  19 | Female | Agra    |
+| 15 | Manish  |  25 | Male   | Delhi   |
++----+---------+-----+--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT WHERE GENDER = "MALE";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 15 | Manish        |  25 | Male   | Delhi     |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
+| 21 | Deepak        |  26 | Male   | Gaya      |
+| 23 | Vivek         |  23 | Male   | Noida     |
++----+---------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENT WHERE GENDER = "MALE" LIMIT 5,5;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 15 | Manish  |  25 | Male   | Delhi     |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 21 | Deepak  |  26 | Male   | Gaya      |
++----+---------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+>> MYSQL AGGRIGATE FUNCTION
+--------------------------------------------------
+COUNT
+SUM
+MIN
+MAX
+AVERAGE
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
