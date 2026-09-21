@@ -1468,34 +1468,48 @@ MAX
 AVERAGE
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Count(column_name): Count the total numbers of records
+
+MAX(column_name): Return the maximum value of the column.
+
+MIN(column_name): Return the minimum value of the column.
+
+SUM(column_name): Return the total sum of the value.
+
+Average(column_name): Return the average of the table or column.
 
 
+---------------------------------------------------------------------------------------------------------
+>> MySQL Update
+----------------------------------------
 
+Syntax:
+--------------------
 
+>> Update table_name 
+>> SET column_name = value
+>> where condition;
+------------------------------------------------------------
 
+mysql> UPDATE newemployee
+    -> SET gender = "Female"
+    -> where id = 15;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
+mysql> UPDATE newemployee
+    -> SET name = "Radhika",
+    -> age = 25,
+    -> gender = "Female",
+    -> salary = 25000
+    -> where id = 19;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
+---------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+MySQL Commit and Rollback
+----------------------------------------------------
 
 
 
