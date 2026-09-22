@@ -1511,6 +1511,282 @@ Rows matched: 1  Changed: 1  Warnings: 0
 MySQL Commit and Rollback
 ----------------------------------------------------
 
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------
+MySQL Constraints:
+-------------------------------------------------------
+1). Not Null
+2). Unique
+3). Check
+4). Default
+5). Primary key -- only one primary in the table ---> Number  ---> ID Unique --> No duplicat allowed
+6). Foreign key 
+7). Auto_increment --> 
+-------------------------------------------------------------------------------------------
+
+mysql> create table person(
+    -> id int not null unique auto_increment,
+    -> name char(50) not null,
+    -> age int check(age>=18)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe person;
++-------+----------+------+-----+---------+----------------+
+| Field | Type     | Null | Key | Default | Extra          |
++-------+----------+------+-----+---------+----------------+
+| id    | int      | NO   | PRI | NULL    | auto_increment |
+| name  | char(50) | NO   |     | NULL    |                |
+| age   | int      | YES  |     | NULL    |                |
++-------+----------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into person(name,age)
+    -> values
+    -> ("Tarun",21);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person;
++----+-------+------+
+| id | name  | age  |
++----+-------+------+
+|  1 | Tarun |   21 |
++----+-------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into person(name,age)
+    -> values
+    -> ("Taruni",17);
+ERROR 3819 (HY000): Check constraint 'person_chk_1' is violated.
+mysql> insert into person(name,age)
+    -> values
+    -> ("Taruni",18);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person;
++----+--------+------+
+| id | name   | age  |
++----+--------+------+
+|  1 | Tarun  |   21 |
+|  2 | Taruni |   18 |
++----+--------+------+
+2 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------
+There are two methods to create primary key
+
+Method 1
+------------------------
+
+Primary
+
+not null unique ---> Primary key
+
+primary key ----> Primary key
+
+
+method -1
+
+syntax:
+
+create table person2(
+id int not null unique auto_increment,
+name char(50) not null,
+age int not null check(age>=18)
+);
+-------------------------------------------------------
+
+Method -2
+-------------------
+
+create table person2(
+id int primary key auto_increment,
+name char(60) not null,
+age int not null
+);
+------------------------------------------------------
+
+
+mysql> create table person2(
+    -> id int primary key auto_increment,
+    -> name char(50) not null,
+    -> age int not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> describe person2;
++-------+----------+------+-----+---------+----------------+
+| Field | Type     | Null | Key | Default | Extra          |
++-------+----------+------+-----+---------+----------------+
+| id    | int      | NO   | PRI | NULL    | auto_increment |
+| name  | char(50) | NO   |     | NULL    |                |
+| age   | int      | NO   |     | NULL    |                |
++-------+----------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------
+
+mysql> show tables;
++-----------------------+
+| Tables_in_newdatabase |
++-----------------------+
+| employee              |
+| newemployee           |
+| person                |
+| student               |
++-----------------------+
+4 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------
+
+5. Primary key
+---------------------
+> Primary key always has unique.
+> Primary key can't store duplicate value.
+> Unique can apply multiple column but primary key is only once column in any table and can be applied only on numerical value.
+> A primary key cannot have null value. 
+> A table can contains only one primary key constrains.
+---------------------------------------------------------------------
+
+mysql> create table person2(
+    -> id int primary key,
+    -> name char(50) not null,
+    -> age int not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> describe person2;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| id    | int      | NO   | PRI | NULL    |       |
+| name  | char(50) | NO   |     | NULL    |       |
+| age   | int      | NO   |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------
+
+
+FOREIGN KEY
+--------------------------------------------------------------------------------------	
+>> A Foreign key is a key used to link two tables together.
+>> A Foreign key in one table are used to primary key in other table.
+
+
+mysql> create table city(
+    -> cid int primary key auto_increment,
+    -> cityname char(50) not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO city (cityname) VALUES
+    -> ('Mumbai'),
+    -> ('Delhi'),
+    -> ('Pune'),
+    -> ('Bangalore'),
+    -> ('Hyderabad'),
+    -> ('Chennai'),
+    -> ('Kolkata'),
+    -> ('Ahmedabad'),
+    -> ('Jaipur'),
+    -> ('Lucknow'),
+    -> ('Patna'),
+    -> ('Gaya'),
+    -> ('Ranchi'),
+    -> ('Bhopal'),
+    -> ('Indore'),
+    -> ('Nagpur'),
+    -> ('Surat'),
+    -> ('Kanpur'),
+    -> ('Varanasi'),
+    -> ('Chandigarh');
+Query OK, 20 rows affected (0.01 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+mysql> select * from city;
++-----+------------+
+| cid | cityname   |
++-----+------------+
+|   1 | Mumbai     |
+|   2 | Delhi      |
+|   3 | Pune       |
+|   4 | Bangalore  |
+|   5 | Hyderabad  |
+|   6 | Chennai    |
+|   7 | Kolkata    |
+|   8 | Ahmedabad  |
+|   9 | Jaipur     |
+|  10 | Lucknow    |
+|  11 | Patna      |
+|  12 | Gaya       |
+|  13 | Ranchi     |
+|  14 | Bhopal     |
+|  15 | Indore     |
+|  16 | Nagpur     |
+|  17 | Surat      |
+|  18 | Kanpur     |
+|  19 | Varanasi   |
+|  20 | Chandigarh |
++-----+------------+
+20 rows in set (0.00 sec)
+
+mysql> create table student(
+    -> id int not null unique auto_increment,
+    -> name char(55) not null,
+    -> age int not null,
+    -> city int not null,
+    -> foreign key(city) references city(cid)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe student;
++-------+----------+------+-----+---------+----------------+
+| Field | Type     | Null | Key | Default | Extra          |
++-------+----------+------+-----+---------+----------------+
+| id    | int      | NO   | PRI | NULL    | auto_increment |
+| name  | char(55) | NO   |     | NULL    |                |
+| age   | int      | NO   |     | NULL    |                |
+| city  | int      | NO   | MUL | NULL    |                |
++-------+----------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+-------+-----+------+
+| id | name  | age | city |
++----+-------+-----+------+
+|  1 | Tarun |  45 |    8 |
+|  2 | Pooja |  56 |   17 |
++----+-------+-----+------+
+2 rows in set (0.00 sec)
+
+
+mysql> select * from student
+    -> inner join city
+    -> on student.city = city.cid;
++----+-------+-----+------+-----+-----------+
+| id | name  | age | city | cid | cityname  |
++----+-------+-----+------+-----+-----------+
+|  1 | Tarun |  45 |    8 |   8 | Ahmedabad |
+|  2 | Pooja |  56 |   17 |  17 | Surat     |
++----+-------+-----+------+-----+-----------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
 
 
 
