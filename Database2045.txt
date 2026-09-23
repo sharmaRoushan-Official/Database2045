@@ -1779,6 +1779,109 @@ mysql> select * from student
 2 rows in set (0.00 sec)
 
 
+----------------------------------------------------------------------------------
+Practice 1
+------------------
+mysql> create table r1(
+    -> Stud_Id int not null unique,
+    -> Name char(50) not null,
+    -> Course Char(20) not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe r1;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| Stud_Id | int      | NO   | PRI | NULL    |       |
+| Name    | char(50) | NO   |     | NULL    |       |
+| Course  | char(20) | NO   |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into r1(Stud_Id, Name, Course)
+    -> values
+    -> (101,"John","Computer"),
+    -> (105,"Merry","AI"),
+    -> (107,"Sheero","Biology"),
+    -> (108,"Bisle","Maths");
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from r1;
++---------+--------+----------+
+| Stud_Id | Name   | Course   |
++---------+--------+----------+
+|     101 | John   | Computer |
+|     105 | Merry  | AI       |
+|     107 | Sheero | Biology  |
+|     108 | Bisle  | Maths    |
++---------+--------+----------+
+4 rows in set (0.00 sec)
+
+
+
+
+mysql> create table r2(
+    -> Dept_name varchar(50) not null,
+    -> Stud_id int,
+    -> Foreign key(Stud_id) References r1(Stud_Id)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into r2(Dept_name,Stud_Id)
+    -> values
+    -> ("CS_Department",105),
+    -> ("CS_Department",101),
+    -> ("Science_Department",101),
+    -> ("Maths_Department",108);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from r2;
++--------------------+---------+
+| Dept_name          | Stud_id |
++--------------------+---------+
+| CS_Department      |     105 |
+| CS_Department      |     101 |
+| Science_Department |     101 |
+| Maths_Department   |     108 |
++--------------------+---------+
+4 rows in set (0.00 sec)
+---
+
+mysql> select * from r1
+    -> inner join r2
+    -> on r1.Stud_Id = r2.Stud_id;
++---------+-------+----------+--------------------+---------+
+| Stud_Id | Name  | Course   | Dept_name          | Stud_id |
++---------+-------+----------+--------------------+---------+
+|     101 | John  | Computer | CS_Department      |     101 |
+|     101 | John  | Computer | Science_Department |     101 |
+|     105 | Merry | AI       | CS_Department      |     105 |
+|     108 | Bisle | Maths    | Maths_Department   |     108 |
++---------+-------+----------+--------------------+---------+
+4 rows in set (0.00 sec)
+
+
+mysql> select s.Stud_Id, s.Name,s.Course,d.Dept_name from r1 s
+    -> inner join r2 d
+    -> on s.Stud_id = d.Stud_id;
++---------+-------+----------+--------------------+
+| Stud_Id | Name  | Course   | Dept_name          |
++---------+-------+----------+--------------------+
+|     101 | John  | Computer | CS_Department      |
+|     101 | John  | Computer | Science_Department |
+|     105 | Merry | AI       | CS_Department      |
+|     108 | Bisle | Maths    | Maths_Department   |
++---------+-------+----------+--------------------+
+4 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
