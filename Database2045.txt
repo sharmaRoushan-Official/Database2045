@@ -1879,7 +1879,97 @@ mysql> select s.Stud_Id, s.Name,s.Course,d.Dept_name from r1 s
 ------------------------------------------------------------------------------------------------------------------------------------
 
 
+Practce -1
+----------------
+mysql> create table e1(
+    -> DepNo int primary key,
+    -> DName char(50) not null,
+    -> Location char(50) not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
 
+mysql> insert into e1(DepNo,DName,Location)
+    -> values
+    -> (101,"HR","Delhi"),
+    -> (102,"Sales","Bangalore"),
+    -> (103,"Marketig Executive","Hydrabad"),
+    -> (104,"Technical Engineer","Chennai");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from e1;
++-------+--------------------+-----------+
+| DepNo | DName              | Location  |
++-------+--------------------+-----------+
+|   101 | HR                 | Delhi     |
+|   102 | Sales              | Bangalore |
+|   103 | Marketig Executive | Hydrabad  |
+|   104 | Technical Engineer | Chennai   |
++-------+--------------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table d1(
+    -> EmpNo int primary key,
+    -> EmpName char(50) not null,
+    -> DepNo int,
+    -> Foreign key(DepNo) References e1(DepNo)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe d1;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| EmpNo   | int      | NO   | PRI | NULL    |       |
+| EmpName | char(50) | NO   |     | NULL    |       |
+| DepNo   | int      | YES  | MUL | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into d1(EmpNO, EmpName,DepNo)
+    -> values
+    -> (1001,"Sahil",101),
+    -> (1004,"Kavish",102),
+    -> (1006,"aditya",103),
+    -> (1005,"Atul",104);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from d1;
++-------+---------+-------+
+| EmpNo | EmpName | DepNo |
++-------+---------+-------+
+|  1001 | Sahil   |   101 |
+|  1004 | Kavish  |   102 |
+|  1005 | Atul    |   104 |
+|  1006 | aditya  |   103 |
++-------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from d1 inner join e1
+    -> on d1(DepNo) = e1(DepNo);
+ERROR 1305 (42000): FUNCTION newdatabase.d1 does not exist
+mysql> select d.EmpNo, d.EmpName,e.DepNo from d1 as d
+    -> inner join e1 as e
+    -> on d.d1 = e.e1;
+ERROR 1054 (42S22): Unknown column 'd.d1' in 'on clause'
+mysql> SELECT d.EmpNo, d.EmpName, e.DepNo
+    -> FROM d1 AS d
+    -> INNER JOIN e1 AS e
+    -> ON d.DepNo = e.DepNo;
++-------+---------+-------+
+| EmpNo | EmpName | DepNo |
++-------+---------+-------+
+|  1001 | Sahil   |   101 |
+|  1004 | Kavish  |   102 |
+|  1005 | Atul    |   104 |
+|  1006 | aditya  |   103 |
++-------+---------+-------+
+4 rows in set (0.00 sec)
+-----------------------------------------------
+Practice-2
+--------------------
+table
 
 
 
