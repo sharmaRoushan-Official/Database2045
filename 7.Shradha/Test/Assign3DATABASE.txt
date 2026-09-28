@@ -1,0 +1,987 @@
+1.
+mysql> create table r1(
+    -> stud_id int not null unique,
+    -> name char (40) not null,
+    -> course char (30) not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe r1;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| stud_id | int      | NO   | PRI | NULL    |       |
+| name    | char(40) | NO   |     | NULL    |       |
+| course  | char(30) | NO   |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into r1(stud_id,name,course)
+    -> values
+    -> (101,"John","Computer"),
+    -> (105,"Merry","AI"),
+    -> (107,"Sheero","Biology"),
+    -> (108,"Bisle","Maths");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from r1;
++---------+--------+----------+
+| stud_id | name   | course   |
++---------+--------+----------+
+|     101 | John   | Computer |
+|     105 | Merry  | AI       |
+|     107 | Sheero | Biology  |
+|     108 | Bisle  | Maths    |
++---------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from r2;
++---------------------+---------+
+| dept_name           | stud_id |
++---------------------+---------+
+| CS_Department       |     105 |
+| CS_Department       |     101 |
+| Sciences_Department |     101 |
+| Maths_Department    |     108 |
++---------------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select P.stud_id, P.name, P.course, Q.dept_name from r1 as P
+    -> inner join r2 Q
+    -> on P.stud_id = Q.stud_id;
++---------+-------+----------+---------------------+
+| stud_id | name  | course   | dept_name           |
++---------+-------+----------+---------------------+
+|     105 | merry | AI       | CS_Department       |
+|     101 | John  | Computer | CS_Department       |
+|     101 | John  | Computer | Sciences_Department |
+|     108 | Bislo | Maths    | Maths_Department    |
++---------+-------+----------+---------------------+
+4 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------
+2.
+
+
+CREATE TABLE PRIMARY_TABLE(
+    -> ProductId INT PRIMARY KEY,
+    -> ProductName CHAR(50) NOT NULL,
+    -> CountryOfOrigin CHAR(40) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe PRIMARY_TABLE;
++-----------------+----------+------+-----+---------+-------+
+| Field           | Type     | Null | Key | Default | Extra |
++-----------------+----------+------+-----+---------+-------+
+| ProductId       | int      | NO   | PRI | NULL    |       |
+| ProductName     | char(50) | NO   |     | NULL    |       |
+| CountryOfOrigin | char(40) | NO   |     | NULL    |       |
++-----------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO PRIMARY_TABLE(ProductId,ProductName,CountryOfOrigin)
+    -> values
+    -> (1,"Olive","Greece"),
+    -> (2,"Grape","Spain"),
+    -> (3,"Mango","India");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from PRIMARY_TABLE;
++-----------+-------------+-----------------+
+| ProductId | ProductName | CountryOfOrigin |
++-----------+-------------+-----------------+
+|         1 | Olive       | Greece          |
+|         2 | Grape       | Spain           |
+|         3 | Mango       | India           |
++-----------+-------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE FOREIGN_TABLE(
+    -> ProductId INT NOT NULL,
+    -> QuantityAvailable INT NOT NULL,
+    -> foreign key(ProductId) References PRIMARY_TABLE (ProductId)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> describe FOREIGN_TABLE;
++-------------------+------+------+-----+---------+-------+
+| Field             | Type | Null | Key | Default | Extra |
++-------------------+------+------+-----+---------+-------+
+| ProductId         | int  | NO   | MUL | NULL    |       |
+| QuantityAvailable | int  | NO   |     | NULL    |       |
++-------------------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO FOREIGN_TABLE(ProductId,QuantityAvailable)
+    -> values
+    -> (1,10000),
+    -> (2,7500),
+    -> (3,6000);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from FOREIGN_TABLE;
++-----------+-------------------+
+| ProductId | QuantityAvailable |
++-----------+-------------------+
+|         1 |             10000 |
+|         2 |              7500 |
+|         3 |              6000 |
++-----------+-------------------+
+3 rows in set (0.00 sec)
+
+
+mysql> select A.ProductId, A.ProductName, A.CountryOfOrigin, B.QuantityAvailable from PRIMARY_TABLE A
+    -> inner join FOREIGN_TABLE B
+    -> on A.ProductId = B.ProductId;
++-----------+-------------+-----------------+-------------------+
+| ProductId | ProductName | CountryOfOrigin | QuantityAvailable |
++-----------+-------------+-----------------+-------------------+
+|         1 | Olive       | Greece          |             10000 |
+|         2 | Grape       | Spain           |              7500 |
+|         3 | Mango       | India           |              6000 |
++-----------+-------------+-----------------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+-----------------------------------------------------------------------------------------------------------
+
+3.
+
+ CREATE TABLE Department(
+    -> DepNo INT PRIMARY KEY,
+    -> DName char(50) NOT NULL,
+    -> Location CHAR(45)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe Department;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| DepNo    | int      | NO   | PRI | NULL    |       |
+| DName    | char(50) | NO   |     | NULL    |       |
+| Location | char(45) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO Department(DepNo,DName,Location)
+    -> values
+    -> (101,"HR","Delhi"),
+    -> (102,"Sales","Bangalore"),
+    -> (103,"Marketing Executive","Hyderabad"),
+    -> (104,"Technical Engineer","Chennai");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Department;
++-------+---------------------+-----------+
+| DepNo | DName               | Location  |
++-------+---------------------+-----------+
+|   101 | HR                  | Delhi     |
+|   102 | Sales               | Bangalore |
+|   103 | Marketing Executive | Hyderabad |
+|   104 | Technical Engineer  | Chennai   |
++-------+---------------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Employee(
+    -> EmpNo INT NOT NULL,
+    -> EmpName CHAR(60) NOT NULL,
+    -> DepNo INT NOT NULL,
+    -> FOREIGN KEY(DepNO) REFERENCES Department(DepNo)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> describe Employee;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| EmpNo   | int      | NO   |     | NULL    |       |
+| EmpName | char(60) | NO   |     | NULL    |       |
+| DepNo   | int      | NO   | MUL | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO Employee(EmpNo,EmpName,DepNo)
+    -> values
+    -> (101,"Srishti",101),
+    -> (104,"Ritesh",102),
+    -> (106,"Pragya",103),
+    -> (105,"Rahul",104);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employee;
++-------+---------+-------+
+| EmpNo | EmpName | DepNo |
++-------+---------+-------+
+|   101 | Srishti |   101 |
+|   104 | Ritesh  |   102 |
+|   106 | Pragya  |   103 |
+|   105 | Rahul   |   104 |
++-------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select P.DepNo, P.DName, P.Location, Q.empName, Q.DepNo from Department P
+    -> inner join Employee Q
+    -> on P.DepNo = Q.DepNo;
++-------+---------------------+-----------+---------+-------+
+| DepNo | DName               | Location  | empName | DepNo |
++-------+---------------------+-----------+---------+-------+
+|   101 | HR                  | Delhi     | Srishti |   101 |
+|   102 | Sales               | Bangalore | Ritesh  |   102 |
+|   103 | Marketing Executive | Hyderabad | Pragya  |   103 |
+|   104 | Technical Engineer  | Chennai   | Rahul   |   104 |
++-------+---------------------+-----------+---------+-------+
+4 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.
+
+mysql> CREATE TABLE Student_Details(
+    -> ID INT PRIMARY KEY,
+    -> Name CHAR(50) NOT NULL,
+    -> Course CHAR(45) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Student_Details(ID,Name,Course)
+    -> values
+    -> (2041,"Tom","Java"),
+    -> (2204,"John","C++"),
+    -> (2043,"Alice","Python"),
+    -> (2032,"Bob","Oracle");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student_Details;
++------+-------+--------+
+| ID   | Name  | Course |
++------+-------+--------+
+| 2032 | Bob   | Oracle |
+| 2041 | Tom   | Java   |
+| 2043 | Alice | Python |
+| 2204 | John  | C++    |
++------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Student_Marks(
+    -> ID INT NOT NULL,
+    -> Marks INT NOT NULL,
+    -> FOREIGN KEY(ID) REFERENCES Student_Details(ID)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Student_Marks(ID,Marks)
+    -> values
+    -> (2041,65),
+    -> (2204,55),
+    -> (2043,73),
+    -> (2032,62);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student_Marks;
++------+-------+
+| ID   | Marks |
++------+-------+
+| 2041 |    65 |
+| 2204 |    55 |
+| 2043 |    73 |
+| 2032 |    62 |
++------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select M.ID, M.Name, M.Course, N.Marks FROM Student_Details M
+    -> inner join Student_Marks N
+    -> on M.ID = N.ID;
++------+-------+--------+-------+
+| ID   | Name  | Course | Marks |
++------+-------+--------+-------+
+| 2032 | Bob   | Oracle |    62 |
+| 2041 | Tom   | Java   |    65 |
+| 2043 | Alice | Python |    73 |
+| 2204 | John  | C++    |    55 |
++------+-------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+5.
+
+mysql> CREATE TABLE department_info(
+    -> dept_ID INT PRIMARY KEY,
+    -> dept_name CHAR(40) NOT NULL,
+    -> dept_location VARCHAR(50) NOT NULL,
+    -> dept_budget INT NOT NULL
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+ INSERT INTO department_info(dept_ID, dept_name,dept_location,dept_budget)
+    -> values
+    -> (101,"IT","FC-89",500000),
+    -> (102,"Eectronics","FC-54",400000),
+    -> (103,"Admin","TY-56",350000),
+    -> (104,"Accounts","TY-43",250000);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM DEPARTMENT_INFO;
++---------+------------+---------------+-------------+
+| dept_ID | dept_name  | dept_location | dept_budget |
++---------+------------+---------------+-------------+
+|     101 | IT         | FC-89         |      500000 |
+|     102 | Eectronics | FC-54         |      400000 |
+|     103 | Admin      | TY-56         |      350000 |
+|     104 | Accounts   | TY-43         |      250000 |
++---------+------------+---------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE employee_info(
+    -> emp_ID VARCHAR (20) PRIMARY KEY,
+    -> emp_name CHAR(40) NOT NULL,
+    -> emp_dob VARCHAR(45) NOT NULL,
+    -> emp_city CHAR(20) NOT NULL,
+    -> dept_id INT,
+    -> FOREIGN KEY(dept_id) REFERENCES department_info(dept_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+INSERT INTO employee_info(emp_ID,emp_name,emp_dob,emp_city,dept_id)
+    -> values
+    -> ("SL21","Sana","30-Apr-1978","Delhi",101),
+    -> ("SG45","Ram","08-Jan-1987","Prayagraj",102),
+    -> ("PL67","Ayush","01-Mar-1992","Delhi",101),
+    -> ("HG56","Dawid","25-Jul-1990","Kanpur",103),
+    -> ("NF78","Nishank","19-Nov-1996","Prayagraj",104),
+    -> ("FR32","John","03-Aug-1989","Delhi",104);
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_info;
++--------+----------+-------------+-----------+---------+
+| emp_ID | emp_name | emp_dob     | emp_city  | dept_id |
++--------+----------+-------------+-----------+---------+
+| FR32   | John     | 03-Aug-1989 | Delhi     |     104 |
+| HG56   | Dawid    | 25-Jul-1990 | Kanpur    |     103 |
+| NF78   | Nishank  | 19-Nov-1996 | Prayagraj |     104 |
+| PL67   | Ayush    | 01-Mar-1992 | Delhi     |     101 |
+| SG45   | Ram      | 08-Jan-1987 | Prayagraj |     102 |
+| SL21   | Sana     | 30-Apr-1978 | Delhi     |     101 |
++--------+----------+-------------+-----------+---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT A.dept_ID, A.dept_name, A.dept_location, A.dept_budget, B.emp_ID, B.emp_name, B.emp_dob, B.emp_city from department_info A
+    -> inner join employee_info B
+    -> on A.dept_id = B.dept_id;
++---------+------------+---------------+-------------+--------+----------+-------------+-----------+
+| dept_ID | dept_name  | dept_location | dept_budget | emp_ID | emp_name | emp_dob     | emp_city  |
++---------+------------+---------------+-------------+--------+----------+-------------+-----------+
+|     101 | IT         | FC-89         |      500000 | PL67   | Ayush    | 01-Mar-1992 | Delhi     |
+|     101 | IT         | FC-89         |      500000 | SL21   | Sana     | 30-Apr-1978 | Delhi     |
+|     102 | Eectronics | FC-54         |      400000 | SG45   | Ram      | 08-Jan-1987 | Prayagraj |
+|     103 | Admin      | TY-56         |      350000 | HG56   | Dawid    | 25-Jul-1990 | Kanpur    |
+|     104 | Accounts   | TY-43         |      250000 | FR32   | John     | 03-Aug-1989 | Delhi     |
+|     104 | Accounts   | TY-43         |      250000 | NF78   | Nishank  | 19-Nov-1996 | Prayagraj |
++---------+------------+---------------+-------------+--------+----------+-------------+-----------+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+6.
+
+
+mysql> CREATE TABLE Customers(
+    -> id INT PRIMARY KEY,
+    -> first_name CHAR(40) NOT NULL,
+    -> last_name CHAR (40) NOT NULL,
+    -> age INT NOT NULL,
+    -> country CHAR(15) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO Customers(id,first_name,last_name,age,country)
+    -> values
+    -> (1,"John","Doe",31,"USA"),
+    -> (2,"Robert","Luna",22,"USA"),
+    -> (3,"David","Robinson",22,"UK"),
+    -> (4,"John","Reinhardt",25,"UK"),
+    -> (5,"Betty","Doe",28,"UAE");
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from Customers;
++----+------------+-----------+-----+---------+
+| id | first_name | last_name | age | country |
++----+------------+-----------+-----+---------+
+|  1 | John       | Doe       |  31 | USA     |
+|  2 | Robert     | Luna      |  22 | USA     |
+|  3 | David      | Robinson  |  22 | UK      |
+|  4 | John       | Reinhardt |  25 | UK      |
+|  5 | Betty      | Doe       |  28 | UAE     |
++----+------------+-----------+-----+---------+
+5 rows in set (0.00 sec)
+
+ CREATE TABLE Orders(
+    ->  order_id INT PRIMARY KEY,
+    -> Product CHAR(20) NOT NULL,
+    ->  total INT NOT NULL,
+    -> customer_id INT not null,
+    -> FOREIGN KEY(Customer_id) REFERENCES Customers(id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Orders(order_id,Product, total,customer_id)
+    -> values
+    -> (1,"Paper",500,5),
+    -> (2,"Pen",10,2),
+    ->  (3,"Marker",120,3),
+    -> (4,"Books",1000,1),
+    ->  (5,"Erasers",20,4);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from orders;
++----------+---------+-------+-------------+
+| order_id | Product | total | customer_id |
++----------+---------+-------+-------------+
+|        1 | Paper   |   500 |           5 |
+|        2 | Pen     |    10 |           2 |
+|        3 | Marker  |   120 |           3 |
+|        4 | Books   |  1000 |           1 |
+|        5 | Erasers |    20 |           4 |
++----------+---------+-------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select X.id, X.first_name, X.last_name, X.age, X.Country, Y.order_id, Y. Product, Y.total, y.customer_id from customers X
+    -> inner join Orders Y
+    -> on X.id = Y.customer_id;
++----+------------+-----------+-----+---------+----------+---------+-------+-------------+
+| id | first_name | last_name | age | Country | order_id | Product | total | customer_id |
++----+------------+-----------+-----+---------+----------+---------+-------+-------------+
+|  1 | John       | Doe       |  31 | USA     |        4 | Books   |  1000 |           1 |
+|  2 | Robert     | Luna      |  22 | USA     |        2 | Pen     |    10 |           2 |
+|  3 | David      | Robinson  |  22 | UK      |        3 | Marker  |   120 |           3 |
+|  4 | John       | Reinhardt |  25 | UK      |        5 | Erasers |    20 |           4 |
+|  5 | Betty      | Doe       |  28 | UAE     |        1 | Paper   |   500 |           5 |
++----+------------+-----------+-----+---------+----------+---------+-------+-------------+
+5 rows in set (0.00 sec)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+7.
+
+mysql> CREATE TABLE EmployeeL(
+    -> depNo INT PRIMARY KEY,
+    -> DName CHAR(40) NOT NULL,
+    -> Location VARCHAR(20) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO EmployeeL(depNo,DName,Location)
+    -> values
+    -> (101,"HR","Delhi"),
+    -> (102,"Sales","Bangalore"),
+    -> (103,"Marketing Executive","Hyderabad"),
+    -> (104,"Technical Engineer","Chnnai");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employeel;
++-------+---------------------+-----------+
+| depNo | DName               | Location  |
++-------+---------------------+-----------+
+|   101 | HR                  | Delhi     |
+|   102 | Sales               | Bangalore |
+|   103 | Marketing Executive | Hyderabad |
+|   104 | Technical Engineer  | Chnnai    |
++-------+---------------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE DepartmentL(
+    -> EmpNo INT NOT NULL,
+    -> EmpName CHAR (40) NOT NULL,
+    -> DepNo INT NOT NULL,
+    -> FOREIGN KEY(DepNo) REFERENCES EmployeeL(DepNo)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO DepartmentL(EmpNo,EmpName, DepNo)
+    -> values
+    -> (1001,"Sahil",101),
+    -> (1004,"Kavish",102),
+    -> (1006,"Aditya",103),
+    -> (1005,"Atul",104);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from DepartmentL;
++-------+---------+-------+
+| EmpNo | EmpName | DepNo |
++-------+---------+-------+
+|  1001 | Sahil   |   101 |
+|  1004 | Kavish  |   102 |
+|  1006 | Aditya  |   103 |
+|  1005 | Atul    |   104 |
++-------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select A.EmpNo, A.EmpName, A.DepNo, B.DName, B.Location from DepartmentL A
+    -> inner join EmployeeL B
+    -> on A.DepNo = B.DepNo;
++-------+---------+-------+---------------------+-----------+
+| EmpNo | EmpName | DepNo | DName               | Location  |
++-------+---------+-------+---------------------+-----------+
+|  1001 | Sahil   |   101 | HR                  | Delhi     |
+|  1004 | Kavish  |   102 | Sales               | Bangalore |
+|  1006 | Aditya  |   103 | Marketing Executive | Hyderabad |
+|  1005 | Atul    |   104 | Technical Engineer  | Chnnai    |
++-------+---------+-------+---------------------+-----------+
+4 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+7.
+
+mysql> CREATE TABLE Customer1(
+    -> customer_id INT PRIMARY KEY auto_increment,
+    -> Customer_Name CHAR(40) NOT NULL,
+    -> Phone_Number VARCHAR (10) NOT NULL
+    -> );
+
+mysql> INSERT INTO  Customer1( Customer_Name,Phone_Number)
+    -> values
+    -> ('ABC','1100011257'),
+    -> ('PQR','8544624896'),
+    -> ('XYZ','9686627716');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM CUSTOMER1;
++-------------+---------------+--------------+
+| customer_id | Customer_Name | Phone_Number |
++-------------+---------------+--------------+
+|           1 | ABC           | 1100011257   |
+|           2 | PQR           | 8544624896   |
+|           3 | XYZ           | 9686627716   |
++-------------+---------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Pizza1(
+    -> Pizza_OrderNo INT NOT NULL,
+    -> Pizza_Type CHAR(40) NOT NULL,
+    -> customer_id INT NOT NULL,
+    -> FOREIGN KEY(customer_id) REFERENCES Customer1(customer_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Pizza1( Pizza_OrderNo,Pizza_Type)
+    -> values
+    -> ^C
+mysql> INSERT INTO Pizza1( Pizza_OrderNo,Pizza_Type,customer_id)
+    -> values
+    -> (1001,"mexican",2),
+    -> (1002,"Thin Crust",2),
+    -> (1003,"Loaded",3);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Pizza1;
++---------------+------------+-------------+
+| Pizza_OrderNo | Pizza_Type | customer_id |
++---------------+------------+-------------+
+|          1001 | mexican    |           2 |
+|          1002 | Thin Crust |           2 |
+|          1003 | Loaded     |           3 |
++---------------+------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select A.customer_id, A.Customer_Name, A. Phone_Number, B.Pizza_OrderNo,B.Pizza_Type from Customer1 A
+    -> inner join Pizza1 B
+    -> on A.customer_id = B.customer_id;
++-------------+---------------+--------------+---------------+------------+
+| customer_id | Customer_Name | Phone_Number | Pizza_OrderNo | Pizza_Type |
++-------------+---------------+--------------+---------------+------------+
+|           2 | PQR           | 8544624896   |          1001 | mexican    |
+|           2 | PQR           | 8544624896   |          1002 | Thin Crust |
+|           3 | XYZ           | 9686627716   |          1003 | Loaded     |
++-------------+---------------+--------------+---------------+------------+
+3 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+8.
+
+mysql> CREATE TABLE Customers2(
+    -> CUST_ID INT PRIMARY KEY auto_increment,
+    -> NAME CHAR(40) NOT NULL,
+    -> CITY VARCHAR(50) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO Customers2(NAME,CITY)
+    -> values
+    -> ("SMITH","CHICAGO"),
+    -> ("JONES","OAKLAND"),
+    -> ("WONG","ATLANTA");
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from customers2;
++---------+-------+---------+
+| CUST_ID | NAME  | CITY    |
++---------+-------+---------+
+|       1 | SMITH | CHICAGO |
+|       2 | JONES | OAKLAND |
+|       3 | WONG  | ATLANTA |
++---------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Accounts2(
+    -> ACCT_ID INT PRIMARY KEY,
+    -> BALANCE DECIMAL(10,2),
+    -> CUST_ID INT,
+    -> FOREIGN KEY(CUST_ID) REFERENCES Customers2(CUST_ID)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Accounts2(ACCT_ID,BALANCE,CUST_ID)
+    -> values
+    -> (100,100.00,1),
+    -> (101,347.00,2),
+    -> (102,224.19,3),
+    -> (103,224.19,1);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Accounts2;
++---------+---------+---------+
+| ACCT_ID | BALANCE | CUST_ID |
++---------+---------+---------+
+|     100 |  100.00 |       1 |
+|     101 |  347.00 |       2 |
+|     102 |  224.19 |       3 |
+|     103 |  224.19 |       1 |
++---------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select A.CUST_ID,A.NAME,A.CITY,B.ACCT_ID,B.BALANCE FROM Customers2 A
+    -> inner join Accounts2 B
+    -> on A.CUST_ID = B.CUST_ID;
++---------+-------+---------+---------+---------+
+| CUST_ID | NAME  | CITY    | ACCT_ID | BALANCE |
++---------+-------+---------+---------+---------+
+|       1 | SMITH | CHICAGO |     100 |  100.00 |
+|       1 | SMITH | CHICAGO |     103 |  224.19 |
+|       2 | JONES | OAKLAND |     101 |  347.00 |
+|       3 | WONG  | ATLANTA |     102 |  224.19 |
++---------+-------+---------+---------+---------+
+4 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+9.
+
+mysql> CREATE TABLE Customers3(
+    -> customer_id INT PRIMARY KEY auto_increment,
+    -> forename CHAR(40) NOT NULL,
+    -> surname CHAR(40) NOT NULL,
+    -> phone VARCHAR(20) NOT NULL,
+    -> country CHAR(20) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO Customers3(forename,surname, phone,country)
+    -> values
+    -> ("John","Smith","07373929122","UK"),
+    -> ("Iram","Iravani","07234543422","Iraq"),
+    -> ("Wu","Zhang","04563523427","China"),
+    -> ("Anne","James","09378482894","USA"),
+    -> ("Khalid","Shirvani","02343536522","France");
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from Customers3;
++-------------+----------+----------+-------------+---------+
+| customer_id | forename | surname  | phone       | country |
++-------------+----------+----------+-------------+---------+
+|           1 | John     | Smith    | 07373929122 | UK      |
+|           2 | Iram     | Iravani  | 07234543422 | Iraq    |
+|           3 | Wu       | Zhang    | 04563523427 | China   |
+|           4 | Anne     | James    | 09378482894 | USA     |
+|           5 | Khalid   | Shirvani | 02343536522 | France  |
++-------------+----------+----------+-------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Orders3(
+    -> Order_id INT PRIMARY KEY,
+    -> product CHAR(40) NOT NULL,
+    -> total INT NOT NULL,
+    -> Customer_id INT NOT NULL,
+    -> FOREIGN KEY(Customer_id) REFERENCES Customers3(Customer_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Orders3( Order_id, product, total INT NOT NULL,
+    -> INSERT INTO Orders3( Order_id, product, total INT NOT NULL,^C
+mysql> INSERT INTO Orders3( Order_id,product,total, Customer_id)
+    -> values
+    -> (1,"Paper",500,5),
+    -> (2,"Pen",10,2),
+    -> (3,"Marker",120,3),
+    -> (4,"Ruler",1000,1),
+    -> (5,"Erasers",20,4);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from Orders3;
++----------+---------+-------+-------------+
+| Order_id | product | total | Customer_id |
++----------+---------+-------+-------------+
+|        1 | Paper   |   500 |           5 |
+|        2 | Pen     |    10 |           2 |
+|        3 | Marker  |   120 |           3 |
+|        4 | Ruler   |  1000 |           1 |
+|        5 | Erasers |    20 |           4 |
++----------+---------+-------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select A.customer_id,A.forename,A.surname,A.phone,A.country,B.Order_id,B.product,B.total FROM Customers3 A
+    -> inner join Orders3 B
+    -> on A.customer_id = B.customer_id;
++-------------+----------+----------+-------------+---------+----------+---------+-------+
+| customer_id | forename | surname  | phone       | country | Order_id | product | total |
++-------------+----------+----------+-------------+---------+----------+---------+-------+
+|           1 | John     | Smith    | 07373929122 | UK      |        4 | Ruler   |  1000 |
+|           2 | Iram     | Iravani  | 07234543422 | Iraq    |        2 | Pen     |    10 |
+|           3 | Wu       | Zhang    | 04563523427 | China   |        3 | Marker  |   120 |
+|           4 | Anne     | James    | 09378482894 | USA     |        5 | Erasers |    20 |
+|           5 | Khalid   | Shirvani | 02343536522 | France  |        1 | Paper   |   500 |
++-------------+----------+----------+-------------+---------+----------+---------+-------+
+5 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------------------------------------------------
+
+9.
+
+mysql> CREATE TABLE Student_Primary(
+    -> id INT PRIMARY KEY,
+    -> Name CHAR(40) NOT NULL,
+    -> Course CHAR(40) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO Student_Primary(id,Name,Course)
+    -> values
+    -> (11,"AB","AI"),
+    -> (12,"AC","DBMS"),
+    -> (13,"AD","CS"),
+    -> (14,"AE","DS");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student_Primary;
++----+------+--------+
+| id | Name | Course |
++----+------+--------+
+| 11 | AB   | AI     |
+| 12 | AC   | DBMS   |
+| 13 | AD   | CS     |
+| 14 | AE   | DS     |
++----+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Department_foreign(
+    -> dept CHAR(40) NOT NULL,
+    -> id INT NOT NULL,
+    -> FOREIGN KEY(id) REFERENCES Student_Primary(id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Department_foreign(dept,id)
+    -> values
+    -> ("AI_dept",11),
+    -> ("DBMS_dept",12),
+    -> ("CS_dept",13),
+    -> ("DS_dept",14);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Department_foreign;
++-----------+----+
+| dept      | id |
++-----------+----+
+| AI_dept   | 11 |
+| DBMS_dept | 12 |
+| CS_dept   | 13 |
+| DS_dept   | 14 |
++-----------+----+
+4 rows in set (0.00 sec)
+
+mysql> select A.id,A.Name,A.Course,B.dept FROM Student_Primary A
+    -> inner join Department_foreign B
+    -> on A.id =B.id;
++----+------+--------+-----------+
+| id | Name | Course | dept      |
++----+------+--------+-----------+
+| 11 | AB   | AI     | AI_dept   |
+| 12 | AC   | DBMS   | DBMS_dept |
+| 13 | AD   | CS     | CS_dept   |
+| 14 | AE   | DS     | DS_dept   |
++----+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------
+
+10.
+
+mysql> CREATE TABLE Clients(
+    -> Client_id INT PRIMARY KEY,
+    -> Client_Name CHAR(50) NOT NULL,
+    -> Client_Contact CHAR(50) NOT NULL
+    -> );
+
+mysql> INSERT INTO Clients( Client_id,Client_Name,Client_Contact)
+    -> values
+    -> (101,"Strategic Innovations Consulting","Anthony T.Mann"),
+    -> (102,"XYZ Corporation","Walt Walters"),
+    -> (103,"ABC Indusries","Matt Matson");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Clients;
++-----------+----------------------------------+----------------+
+| Client_id | Client_Name                      | Client_Contact |
++-----------+----------------------------------+----------------+
+|       101 | Strategic Innovations Consulting | Anthony T.Mann |
+|       102 | XYZ Corporation                  | Walt Walters   |
+|       103 | ABC Indusries                    | Matt Matson    |
++-----------+----------------------------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Tasks(
+    -> Task_ID INT PRIMARY KEY,
+    -> Client_ID INT,
+    -> Task_Name CHAR(50),
+    -> FOREIGN KEY(Client_ID) REFERENCES Clients(Client_ID)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Tasks( Task_ID,Client_ID, Task_Name)
+    -> values
+    -> (1,101,"Identify Requirements"),
+    -> (2,102,"Develop Application"),
+    -> (3,103,"Unit Test"),
+    -> (4,101,"Integration, Test"),
+    -> (5,101,"System Test");
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from Tasks;
++---------+-----------+-----------------------+
+| Task_ID | Client_ID | Task_Name             |
++---------+-----------+-----------------------+
+|       1 |       101 | Identify Requirements |
+|       2 |       102 | Develop Application   |
+|       3 |       103 | Unit Test             |
+|       4 |       101 | Integration, Test     |
+|       5 |       101 | System Test           |
++---------+-----------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> select A.Client_id, A.Client_Name, A.Client_Contact, B.Task_ID, B.Task_Name FROM Clients A
+    -> inner join Tasks B
+    -> on A.Client_id = B.client_id;
++-----------+----------------------------------+----------------+---------+-----------------------+
+| Client_id | Client_Name                      | Client_Contact | Task_ID | Task_Name             |
++-----------+----------------------------------+----------------+---------+-----------------------+
+|       101 | Strategic Innovations Consulting | Anthony T.Mann |       1 | Identify Requirements |
+|       101 | Strategic Innovations Consulting | Anthony T.Mann |       4 | Integration, Test     |
+|       101 | Strategic Innovations Consulting | Anthony T.Mann |       5 | System Test           |
+|       102 | XYZ Corporation                  | Walt Walters   |       2 | Develop Application   |
+|       103 | ABC Indusries                    | Matt Matson    |       3 | Unit Test             |
++-----------+----------------------------------+----------------+---------+-----------------------+
+5 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------
+
+11.
+
+mysql> CREATE TABLE Student_Details2(
+    -> Roll_No INT PRIMARY KEY,
+    -> Name CHAR(40) NOT NULL,
+    -> Course_ID VARCHAR(20) UNIQUE
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Student_Details2(Roll_No,Name, Course_ID)
+    -> values
+    -> (1,"Arya","IT_101"),
+    -> (2,"Bran","IT_102"),
+    -> (3,"John","IT_103");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student_Details2;
++---------+------+-----------+
+| Roll_No | Name | Course_ID |
++---------+------+-----------+
+|       1 | Arya | IT_101    |
+|       2 | Bran | IT_102    |
+|       3 | John | IT_103    |
++---------+------+-----------+
+3 rows in set (0.00 sec)
+
+    -> FOREIGN KEY (Course_ID) REFERENCES ^C
+mysql> CREATE TABLE Student_Marks2(
+    -> Course_Id VARCHAR(20) NOT NULL,
+    -> Marks INT NOT NULL,
+    -> FOREIGN KEY(Course_ID) REFERENCES Student_Details2(Course_ID)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO  Student_Marks2(Course_Id,Marks)
+    -> values
+    -> ("IT_101",100),
+    -> ("IT_102",99),
+    -> ("IT_103",93);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Student_marks2;
++-----------+-------+
+| Course_Id | Marks |
++-----------+-------+
+| IT_101    |   100 |
+| IT_102    |    99 |
+| IT_103    |    93 |
++-----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select A.Roll_No, A.Name, A.Course_ID, B.Marks FROM Student_Details2 A
+    -> inner join Student_Marks2 B
+    -> on A.Course_ID = B.Course_id;
++---------+------+-----------+-------+
+| Roll_No | Name | Course_ID | Marks |
++---------+------+-----------+-------+
+|       1 | Arya | IT_101    |   100 |
+|       2 | Bran | IT_102    |    99 |
+|       3 | John | IT_103    |    93 |
++---------+------+-----------+-------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
