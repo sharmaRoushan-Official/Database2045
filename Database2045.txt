@@ -1971,6 +1971,43 @@ Practice-2
 --------------------
 table
 
+---------------------------------------------------------------------------------------------
+>> JOINS in Database
+------------------------------------------
+1. What is JOIN?
+
+A JOIN in MySQL is used to combine data from two or more tables based on a related column between those tables.
+
+--------------------------------------------------------------------------------
+>> Types of JOIN
+
+1. INNER JOIN
+2. LEFT JOIN
+3. RIGHT JOIN
+4. FULL OUTER JOIN
+5. CROSS JOIN
+
+----------------------------------------------------------------------------
+1. INNER JOIN
+---------------------
+INNER JOIN RETURNS ONLY THOSE RECORDS WHERE THERE IS A MATCHING VALUE IN BOTH TABLES.
+
+
+SELECT S.STUDENT_NAME, C.COURSE_NAME,C.FEES FROM STUDENTS S 
+INNER JOIN COURSES C 
+ON S.COURSE_ID = C.COURSE_ID;
+
+
+STUDENT_NAME,COURSE_NAME,FEES
+Ravi,Python,15000
+Neha,Python,15000
+Amit,Java,18000
+Priya,MySQL,12000
+
+----------------------------------------------------------------------------------------------
+
+
+
 
 
 
