@@ -1,0 +1,99 @@
+Practice 1
+
+ create table d1(
+    -> id int primary key,
+    -> name char(30) not null,
+    -> course char(30) not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe d1;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| id     | int      | NO   | PRI | NULL    |       |
+| name   | char(30) | NO   |     | NULL    |       |
+| course | char(30) | NO   |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| d1                 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into d1(id,name,course)
+    -> values
+    -> (2041,"Tom","Java")
+    -> ^C
+mysql> insert into d1(id,name,course)
+    -> values
+    -> (2041,"Tom","Java"),
+    -> (2204,"John","C++"),
+    -> (2043,"Alice","Python"),
+    -> (2032,"Bob","Oracle");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from d1;
++------+-------+--------+
+| id   | name  | course |
++------+-------+--------+
+| 2032 | Bob   | Oracle |
+| 2041 | Tom   | Java   |
+| 2043 | Alice | Python |
+| 2204 | John  | C++    |
++------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> create table d3(
+    -> id int not null,
+    -> marks int not null,
+    -> Foreign key (id) references d1(id)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe d3;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| id    | int  | NO   | MUL | NULL    |       |
+| marks | int  | NO   |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into d3(id,marks)
+    -> values
+    -> (2041,65),
+    -> (2204,55),
+    -> (2043,73),
+    -> (2032,62);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from d3;
++------+-------+
+| id   | marks |
++------+-------+
+| 2041 |    65 |
+| 2204 |    55 |
+| 2043 |    73 |
+| 2032 |    62 |
++------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select d1.id,d1.name,d1.course,d3.marks
+    -> from d1
+    -> inner join d3 on d1.id=d3.id;
++------+-------+--------+-------+
+| id   | name  | course | marks |
++------+-------+--------+-------+
+| 2032 | Bob   | Oracle |    62 |
+| 2041 | Tom   | Java   |    65 |
+| 2043 | Alice | Python |    73 |
+| 2204 | John  | C++    |    55 |
++------+-------+--------+-------+
+4 rows in set (0.00 sec)
