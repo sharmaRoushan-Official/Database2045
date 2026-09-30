@@ -1993,44 +1993,278 @@ A JOIN in MySQL is used to combine data from two or more tables based on a relat
 INNER JOIN RETURNS ONLY THOSE RECORDS WHERE THERE IS A MATCHING VALUE IN BOTH TABLES.
 
 
-SELECT S.STUDENT_NAME, C.COURSE_NAME,C.FEES FROM STUDENTS S 
-INNER JOIN COURSES C 
-ON S.COURSE_ID = C.COURSE_ID;
-
-
-STUDENT_NAME,COURSE_NAME,FEES
-Ravi,Python,15000
-Neha,Python,15000
-Amit,Java,18000
-Priya,MySQL,12000
+mysql> select students.student_id,students.student_name,students.city,students.course_id,courses.course_name,courses.fees
+    -> from students
+    -> inner join courses
+    -> on students.course_id = courses.course_id;
++------------+--------------+-------------+-----------+-------------+-------+
+| student_id | student_name | city        | course_id | course_name | fees  |
++------------+--------------+-------------+-----------+-------------+-------+
+|          1 | Ravi         | Ashok Nagar |       101 | Python      | 15000 |
+|          3 | Neha         | Dehradun    |       101 | Python      | 15000 |
+|          2 | Amit         | Delhi       |       102 | Java        | 18000 |
+|          4 | Priya        | NOIDA       |       103 | MySQL       | 12000 |
++------------+--------------+-------------+-----------+-------------+-------+
+4 rows in set (0.00 sec)
 
 ----------------------------------------------------------------------------------------------
+2. LEFT JOIN
+-----------------------------------------------------
+Retunes all records from the left table and matching records from the right table.
+
+-------------------------------------------------------------------------------------
+
+mysql> select s.student_name,c.course_name,c.fees from students s
+    -> left join courses c
+    -> on s.course_id = c.course_id;
++--------------+-------------+-------+
+| student_name | course_name | fees  |
++--------------+-------------+-------+
+| Ravi         | Python      | 15000 |
+| Amit         | Java        | 18000 |
+| Neha         | Python      | 15000 |
+| Priya        | MySQL       | 12000 |
+| Rahul        | NULL        |  NULL |
++--------------+-------------+-------+
+5 rows in set (0.00 sec)
+
+Here, Rahul is included because students is the left table.
+-------------------------------------------------------------------------------------------------------
+Remember:
+-----------------
+LEFT JOIN
+	|
+ALL RECORDS FROM LEFT TABLE
+	|
+MATCHING RECORDS FROM RIGHT TABLE.
+----------------------------------------------------------------------------------------------
+
+3. RIGHT JOIN
+--------------------------------------
+RETURNS ALL RECORDS FROM THE RIGHT TABLE AND MATCHING RECORDS FROM THE LEFT TABLE.
+---------------------------------------------------------------------------------------------------
+mysql> select s.student_name,c.course_name,c.fees from students s
+    -> RIGHT join courses c
+    ->  on s.course_id = c.course_id;
++--------------+-------------+-------+
+| student_name | course_name | fees  |
++--------------+-------------+-------+
+| Ravi         | Python      | 15000 |
+| Neha         | Python      | 15000 |
+| Amit         | Java        | 18000 |
+| Priya        | MySQL       | 12000 |
+| NULL         | Django      | 20000 |
++--------------+-------------+-------+
+5 rows in set (0.00 sec)
+
+DJANGO IS INCLUDED BECAUSE COURSES IS THE RIGHT TABLE.
+-----------------------------------------------------------------------------------------------------------
 
 
+4. FULL OUTER JOIN
+-----------------------------------------------------------------------
+MYSQL DOEST NOT DIRECTLY SUPPORT FULL OUTER JOIN
+
+It can be achieved using LEFT JOIN + RIGHT JOIN + UNION
+
+--------------------------------------------------------------
+mysql> SELECT S.STUDENT_NAME,C.COURSE_NAME FROM STUDENTS S
+    -> LEFT JOIN COURSES C
+    -> ON S.COURSE_ID = C.COURSE_ID
+    -> UNION
+    -> SELECT S.STUDENT_NAME,C.COURSE_NAME FROM STUDENTS S
+    -> RIGHT JOIN COURSES C
+    -> ON S.COURSE_ID = C.COURSE_ID;
++--------------+-------------+
+| STUDENT_NAME | COURSE_NAME |
++--------------+-------------+
+| Ravi         | Python      |
+| Amit         | Java        |
+| Neha         | Python      |
+| Priya        | MySQL       |
+| Rahul        | NULL        |
+| NULL         | Django      |
++--------------+-------------+
+6 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------
+HERE,
+
+THIS RETURNS:
+* ALL STUDENTS
+* ALL COURSES
+* MATCHING RECORDS WHERE AVAILABLE.
+--------------------------------------------------------------------------------------------------
+
+5. CROSS JOIN
+-------------------------------------------------------------
+RETURNS EVERY POSSIBLE COMBINATIONS OF ROWS FROM BOTH TABLES.
+----------------------------------------------------------------------------------------------------------------
+mysql> SELECT S.STUDENT_NAME,C.COURSE_NAME FROM STUDENTS S
+    -> CROSS JOIN COURSES C;
++--------------+-------------+
+| STUDENT_NAME | COURSE_NAME |
++--------------+-------------+
+| Ravi         | Django      |
+| Ravi         | MySQL       |
+| Ravi         | Java        |
+| Ravi         | Python      |
+| Amit         | Django      |
+| Amit         | MySQL       |
+| Amit         | Java        |
+| Amit         | Python      |
+| Neha         | Django      |
+| Neha         | MySQL       |
+| Neha         | Java        |
+| Neha         | Python      |
+| Priya        | Django      |
+| Priya        | MySQL       |
+| Priya        | Java        |
+| Priya        | Python      |
+| Rahul        | Django      |
+| Rahul        | MySQL       |
+| Rahul        | Java        |
+| Rahul        | Python      |
++--------------+-------------+
+20 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------
+>> MYSQL ORDER BY WITH HAVING CLAUSE
+---------------------------------------------------------------------
+1. ORDER BY
+---------------
+ORDER BY IS USED TO SORT THE RESULT IN ASCENDING OR DESCENDING ORDER.
+---------------------------------------------------------------------------------
+SYNTAX:
+-----
+SELECT COLUMN1,COLUMN2, AGGRATE_FUNCTION(COLUMN_NAME) 
+FROM TABLE_NAME
+GROUP BY COLUMN_NAME
+ORDER BY COLUMN_NAME;
+-------------------------------------------------------------
+
+SELECT COLUMN1,COLUMN2, AGGRATE_FUNCTION(COLUMN_NAME) 
+FROM TABLE_NAME
+GROUP BY COLUMN_NAME
+ORDER BY COLUMN_NAME ASC;
+--------------------------------------------
 
 
+SELECT COLUMN1,COLUMN2, AGGRATE_FUNCTION(COLUMN_NAME) 
+FROM TABLE_NAME
+GROUP BY COLUMN_NAME
+ORDER BY COLUMN_NAME DESC;
+---------------------------------------------------------------------------------------------
+mysql> SELECT COURSE_ID, COUNT(*) AS TOTAL_STUDENTS
+    -> FROM STUDENTS
+    -> GROUP BY COURSE_ID
+    -> ORDER BY TOTAL_STUDENTS DESC;
++-----------+----------------+
+| COURSE_ID | TOTAL_STUDENTS |
++-----------+----------------+
+|       101 |              2 |
+|      NULL |              1 |
+|       102 |              1 |
+|       103 |              1 |
++-----------+----------------+
+4 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------
+2. HAVING CLAUSE
+---------------------------------------------------------------------------------------------------------
+HAVING IS USED TO FILTER GROUPD RECORDS AFTER GROUP BY.
+
+IT IS COMMONLY USED WITH AGGRATE FUNCTION SUCH AS:
+
+1). COUNT()
+2. SUM()
+3. AVG()
+4. MIN()
+5. MAX()
+----------------------------------------------------------------------------------------
+Q. SHOW ONLY THOSE COURSE_ID HAVING MORE THAN 1 STUDENT.
+-----------------------------------------------
+mysql> SELECT COURSE_ID, COUNT(*) AS TOTAL_STUDENTS
+    -> FROM STUDENTS
+    -> GROUP BY COURSE_ID
+    -> HAVING COUNT(*)>1;
++-----------+----------------+
+| COURSE_ID | TOTAL_STUDENTS |
++-----------+----------------+
+|       101 |              2 |
++-----------+----------------+
+1 row in set (0.00 sec)
+
+--------------------------------------------------------------------------------------
+
+3. HAVING + ORDER BY 
+-------------------------------------------------------------
+WE CAN USE BOTH TOGETER
+-------------------------------------------------------------------------------------------------
+
+mysql> SELECT COURSE_ID, COUNT(*) AS TOTAL_STUDENTS
+    -> FROM STUDENTS
+    -> GROUP BY COURSE_ID
+    -> HAVING COUNT(*)>1
+    -> ORDER BY TOTAL_STUDENTS;
++-----------+----------------+
+| COURSE_ID | TOTAL_STUDENTS |
++-----------+----------------+
+|       101 |              2 |
++-----------+----------------+
+1 row in set (0.00 sec)
+
+--------------------------------------------------------------
+>> EXECUTION ORDER
+----------------------------------------------------
+	FROM
+	  |
+	GROUP BY
+	  |
+	HAVING
+	  |
+	ORDER BY
+----------------------------------------------------------------------------------------------------------------------
+HAVING FILTERS THE GROUPD DATA, WHILE
+ORDER BY SHORTS THE FINAL RESULT
+--------------------------------------------------------------------------------------------------------------------
+
+NOTES
+---------------------
+1. JOIN -- COMBINES STUDENTS AND COURSES
+2. GROUP BY -- GROUPS STUDENTS ACCORDING TO COURSES
+3. HAVING ---> KEEPS COURSES HAVING AT LEAST 1 STUDENT
+4. ORDER BY --> SORTS COURSES BY STUDENTS COUNT FROM HIGHEST TO LOWEST 
+---------------------------------------------------------------------------------------------------------------------
+
+WHERE VS HAVING
+
+WHERE 			| 	HAVING
+---------------------------------------------------------------
+FILTER INDIVIDUAL ROWS	|	FILTER GROUPS
+------------------------------------------------------------------------
+USED BEFORE GROUP BY	| USED AFTER GROUP BY
+----------------------------------------------------------------------------------
+WHERE CITY == "NOIDA"	| HAVING COUNT(*) > 1;
+----------------------------------------------------------------------------------
 
 
+COMPLETE SYNTAX
 
+SELECT COLUMN,
+AGGRIGATE_FUCTION(COLUMN)
+FROM TABLE
+WHERE CONDITION
+GROUP BY COLUMN
+HAVING AGGRIGATE_CONDITION
+ORDER BY COLUMN ASC/DESC;
+------------------------------------------------------------------------------------------------------------------------------
 
+WHERE --> FILTER ROWS
+GROUP BY --> CREATE GROUPS
+HAVING ---> FILTER GRUPS
+ORDER BY ---> SORT RESULT
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+>> SUBQUERY WITH EXISTS AND NOT EXITS 
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
