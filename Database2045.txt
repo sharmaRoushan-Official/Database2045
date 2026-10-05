@@ -2266,12 +2266,325 @@ ORDER BY ---> SORT RESULT
 >> SUBQUERY WITH EXISTS AND NOT EXITS 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
+1. WHAT IS A SUBQUERY?
+--------------------------------------------------
+A SUBQUERY IS A QUERY WRITTEN INSISE ANOTHER SQL QUERY. THE INNERY QUERY IS CALLED SUBQUERY/CHILD QUERY, AND THE OUTER QUERY IS THE MAIN/PARENT QUERY.
+
+---------------------------------------------
+BASIC STRUCTURE:
+-----------------------------
+SELECT COLUMN
+FROM TABLE1
+WHERE COLUMN IN(
+	SELECT COLUMN2
+	FROM TABLE 2
+);
+-----------------------------------------------------------------------------------------------
+2. EXISTS
+--------------------
+EXISTS IS USED TO CHECK WHERE A SUBQUERY RETURNS AT LEAST ONE ROW.
+
+> IF THE SUBQUERY RETURN ONE OR MORE ROWS ---> EXISTS IS TRUE.
+
+> IF THE SUBQUERY RETURNS ZERO ROWS --> EXISTS IS FALSE.
+
+-----------------------------------------------------------------------------
+SYNTAX:
+
+SELECT COLUMNS
+FROM TABLE 1
+WHERE EXISTS(
+	SELECT 1
+	FROM TABLE2
+	WHERE CONDITION
+);
+----------------------------------------------------------------------------
+
+SELECT 1 IS COMMONLY USED BECAUSE WE ONLY NEED TO CHECK WHETHER A MACHING ROW EXISTS.
+
+
+mysql> select course_id,course_name from courses1 c
+    -> where exists(select 1 from students s where s.course_id = c.course_id);
++-----------+-------------+
+| course_id | course_name |
++-----------+-------------+
+|       101 | Python      |
+|       102 | Java        |
+|       103 | MySQL       |
++-----------+-------------+
+3 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------
+
+3. NOT EXISTS
+----------------------------------------
+
+NOT EXISTS IS USED TO CHECK WHEATHER A SUBQUERY DOES NOT RETURN ANY ROW.
+
+MATCHING COLUMN ---> NOT EXISTS = FALSE
+
+NOT MACHTING COLUMN --> NOT EXISTS = TRUE
+-----------------------------------------------------------------------------------------
+
+
+Q. FIND COURSE IN WHICH NO SUTDENT IS ENROLLED.
+
+mysql> SELECT * FROM COURSES1 C
+    -> WHERE NOT EXISTS( SELECT 1 FROM STUDENTS S WHERE S.COURSE_ID = C.COURSE_ID);
++-----------+-------------+-------+
+| COURSE_ID | COURSE_NAME | FEES  |
++-----------+-------------+-------+
+|       104 | JavaScript  | 14000 |
++-----------+-------------+-------+
+1 row in set (0.00 sec)
+------------------------------------------------------------------------------------------------
+6. EXISTS VS NOT EXISTS
+-------------------------------------------------
+
+|EXITS				| 	NOT EXITS
+------------------------------------------------------------------------------
+1). CHECK WHEATHER A ROW EXISTS	|CHECK WHEATER A ROW DO NTO EXISTS.
+-----------------------------------------------------------------------------------
+2). RETURN TRUE IF MATCH EXISTS	|RETURN TURE IF MATCH DO NOT EXITS
+-----------------------------------------------------------------------
+3). USED TO FIND RELATED RECORDS|USED TO FIND UNRELATED/MISRECORDS
+------------------------------------------------------------------------
+4). COURSES WITH STUDENTS	|COURSES WITHOUT STUDENT
+--------------------------------------------------------------------------------------------------
+
+>> MYSQL UNION AND UNION ALL
+-----------------------------------------------------------------------------------------------
+
+>> 1. WHAT IS UNION?
+
+UNION IS USED TO COMBINE THE RESULT OF TWO OR MORE SELECT QUERIES INTO A SINGLE RESULT AND REMOVE DUPLICATE ROWS.
+-----------------------------------------------------------------------------------------------------
+
+SYNTAX:
+
+SELECT COLUMN1, COLUMN2 FROM TABLE 1
+UNION
+SELECT COLUMN1, COLUMN2 FROM TABLE2
+--------------------------------------------------------------------------------------------
+IMPORTANT RULES
+
+FOR UNION ONLY:
+1. BOTH SELECT STATEMENETS MUST HAVE SAME NUMBER OF COLUMNS.
+2. CORRESPONGIND COLUMNS SHOULD HAVE COMPITABLE DATA TYPES.
+3. THE COLUMN NAME IN THE FINAL RESULT COME FROM THE FIRST SELECT.
+4. DUPLICATE ROWS ARE AUTOMATCALLY REMOVED.
+--------------------------------------------------------------------------------------------------------
+ysql> CREATE TABLE STUDENTS(
+    -> STUDENT_ID INT,
+    -> STUDENT_NAME VARCHAR(50),
+    -> CITY VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESCRIBE STUDENTS;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| STUDENT_ID   | int         | YES  |     | NULL    |       |
+| STUDENT_NAME | varchar(50) | YES  |     | NULL    |       |
+| CITY         | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE TEACHERS(
+    -> TEACHER_ID INT,
+    -> TEACHER_NAME VARCHAR(50),
+    -> CITY VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DESCRIBE TEACHERS;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| TEACHER_ID   | int         | YES  |     | NULL    |       |
+| TEACHER_NAME | varchar(50) | YES  |     | NULL    |       |
+| CITY         | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO STUDENTS(STUDENT_ID, STUDENT_NAME, CITY)
+    -> VALUES
+    -> (1,"RAVI","BANARAS"),
+    -> (2,"AMIT","DELHI"),
+    -> (3,"NEHA","MUMBAI");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO TEACHERS(TEACHER_ID,TEACHER_NAME,CITY)
+    -> VALUES
+    -> (101,"RAVI","PATNA"),
+    -> (102,"PRIYA","PUNE"),
+    -> (103,"AMIT","DELHI");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENTS;
++------------+--------------+---------+
+| STUDENT_ID | STUDENT_NAME | CITY    |
++------------+--------------+---------+
+|          1 | RAVI         | BANARAS |
+|          2 | AMIT         | DELHI   |
+|          3 | NEHA         | MUMBAI  |
++------------+--------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM TEACHERS;
++------------+--------------+-------+
+| TEACHER_ID | TEACHER_NAME | CITY  |
++------------+--------------+-------+
+|        101 | RAVI         | PATNA |
+|        102 | PRIYA        | PUNE  |
+|        103 | AMIT         | DELHI |
++------------+--------------+-------+
+3 rows in set (0.00 sec)
+
+
+------------------------------------------------------------------------------------------
+
+3. EXAMPLE
+
+mysql> SELECT STUDENT_NAME AS NAME,CITY FROM STUDENTS
+    -> UNION
+    -> SELECT TEACHER_NAME AS NAME, CITY FROM TEACHERS;
++-------+---------+
+| NAME  | CITY    |
++-------+---------+
+| RAVI  | BANARAS |
+| AMIT  | DELHI   |
+| NEHA  | MUMBAI  |
+| RAVI  | PATNA   |
+| PRIYA | PUNE    |
++-------+---------+
+5 rows in set (0.00 sec)
+
+
+
+NOTE:
+
+AMIT + DELHI ---> DUPLICATE  REMOVED
+------------------------------------------------------------------------------------------------------------
+
+4. WHAT IS UNION ALL?
+--------------------------------------------------------------
+UNION ALL COMBINES THE RESULT OF TWO OR MORE SELECT QUERIES WITHOUT REMOVING DUPLICATES VALUE.
+----------------------------------------------------------------------------------------------------------------------
+
+
+EXAMPLE:
+-------------------------------------
+mysql> SELECT STUDENT_NAME AS NAME,CITY FROM STUDENTS
+    -> UNION ALL
+    -> SELECT TEACHER_NAME AS NAME, CITY FROM TEACHERS;
++-------+---------+
+| NAME  | CITY    |
++-------+---------+
+| RAVI  | BANARAS |
+| AMIT  | DELHI   |
+| NEHA  | MUMBAI  |
+| RAVI  | PATNA   |
+| PRIYA | PUNE    |
+| AMIT  | DELHI   |
++-------+---------+
+6 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------
+
+IF() IS A MYSQL FUNCTION THAT CHECK A CONDITION AND RETURNS ONE VALUE IS THE CONDITION IS TRUE AND ANOTHER VALUE IF IT IS FALSE.
+
+----------------------------------------------------------------------------------------------------------------
+SYNTAX:
+
+IF(CONDITION, VALUE_IF_TRUE,VALE_IF_FALSE)
+--------------------------------------------------------------------------------------------------------
+
+EXAMPLE:
+
+SELECT IF(10>5,"YES","NO") AS RESULT;
+
+
+------------------------------------------------------------------------------------------------------
+
+mysql> SELECT EMP_NAME, SALARY,
+    -> IF (SALARY>=25000,"HIGH SALARY","LOW SALARY") AS SALARY_STATUS
+    -> FROM EMPLOYEE;
++------------+--------+---------------+
+| EMP_NAME   | SALARY | SALARY_STATUS |
++------------+--------+---------------+
+| RAVI       |  25000 | HIGH SALARY   |
+| AMIT       |  45000 | HIGH SALARY   |
+| NEHA       |  60000 | HIGH SALARY   |
+| PRIYA      |  35000 | HIGH SALARY   |
+| RAHUL      | 810000 | HIGH SALARY   |
+| SURESH     |  32000 | HIGH SALARY   |
+| ANITA      |  55000 | HIGH SALARY   |
+| VIKAS      |  42000 | HIGH SALARY   |
+| POOJA      |  38000 | HIGH SALARY   |
+| RAJ        |  47000 | HIGH SALARY   |
+| KIRAN      |  29000 | HIGH SALARY   |
+| MANISH     |  65000 | HIGH SALARY   |
+| SIMRAN     |  52000 | HIGH SALARY   |
+| DEEPAK     |  36000 | HIGH SALARY   |
+| NISHA      |  48000 | HIGH SALARY   |
+| ARUN       |  75000 | HIGH SALARY   |
+| KAVITA     |  41000 | HIGH SALARY   |
+| ROHIT      |  58000 | HIGH SALARY   |
+| SONAM      |  33000 | HIGH SALARY   |
+| AKASH      |  62000 | HIGH SALARY   |
+| RAVI KUMAR |  45000 | HIGH SALARY   |
+| MEENA      |  39000 | HIGH SALARY   |
+| SANDEEP    |  70000 | HIGH SALARY   |
+| TANYA      |  56000 | HIGH SALARY   |
+| MOHIT      |  31000 | HIGH SALARY   |
++------------+--------+---------------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT EMP_NAME, SALARY,
+    -> IF (SALARY>=50000,"HIGH SALARY","LOW SALARY") AS SALARY_STATUS
+    -> FROM EMPLOYEE;
++------------+--------+---------------+
+| EMP_NAME   | SALARY | SALARY_STATUS |
++------------+--------+---------------+
+| RAVI       |  25000 | LOW SALARY    |
+| AMIT       |  45000 | LOW SALARY    |
+| NEHA       |  60000 | HIGH SALARY   |
+| PRIYA      |  35000 | LOW SALARY    |
+| RAHUL      | 810000 | HIGH SALARY   |
+| SURESH     |  32000 | LOW SALARY    |
+| ANITA      |  55000 | HIGH SALARY   |
+| VIKAS      |  42000 | LOW SALARY    |
+| POOJA      |  38000 | LOW SALARY    |
+| RAJ        |  47000 | LOW SALARY    |
+| KIRAN      |  29000 | LOW SALARY    |
+| MANISH     |  65000 | HIGH SALARY   |
+| SIMRAN     |  52000 | HIGH SALARY   |
+| DEEPAK     |  36000 | LOW SALARY    |
+| NISHA      |  48000 | LOW SALARY    |
+| ARUN       |  75000 | HIGH SALARY   |
+| KAVITA     |  41000 | LOW SALARY    |
+| ROHIT      |  58000 | HIGH SALARY   |
+| SONAM      |  33000 | LOW SALARY    |
+| AKASH      |  62000 | HIGH SALARY   |
+| RAVI KUMAR |  45000 | LOW SALARY    |
+| MEENA      |  39000 | LOW SALARY    |
+| SANDEEP    |  70000 | HIGH SALARY   |
+| TANYA      |  56000 | HIGH SALARY   |
+| MOHIT      |  31000 | LOW SALARY    |
++------------+--------+---------------+
+25 rows in set (0.00 sec)
+
+
+-------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
- 
 
 
 
