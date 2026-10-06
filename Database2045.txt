@@ -2580,6 +2580,315 @@ mysql> SELECT EMP_NAME, SALARY,
 
 
 -------------------------------------------------------------------------------------------------------------------
+>> MYSQL IF AND CASE - 
+----------------------------------------------
+BOTH IF() ND CAS ARE USED TO APPLY CONDITIONAL LOGIC IN MYSQL
+-------------------------------------------------------------------------------------
+
+1. IF() IN MYSQL
+----------------------------
+IF() IS A MYSQL FUNCTION THAT CHECKS A CONDITION AND RETURNS ONE VALUE IF THE CONDITION IS TRUE AND ANOTHER VALUE IF IT IS FALSE.
+
+--------------------------------------------
+SYNTAX:
+------------------
+IF(CONDITION, VALUE_IF_TRUE,VALUE_IF_FALSE)
+
+-----------------------------------------------------------------------------------------------
+
+
+
+4.Nested IF()
+-------------------------------------------------------------------------------------------------------------------
+
+We can also use one IF() inside another if()
+------------------------------------------------
+mysql> select emp_name, salary,
+    -> if(salary>=70000,"Excellent",if(salary>=50000,"Good","Average"))
+    -> As Performance
+    -> from employee;
++------------+--------+-------------+
+| emp_name   | salary | Performance |
++------------+--------+-------------+
+| RAVI       |  25000 | Average     |
+| AMIT       |  45000 | Average     |
+| NEHA       |  60000 | Good        |
+| PRIYA      |  35000 | Average     |
+| RAHUL      | 810000 | Excellent   |
+| SURESH     |  32000 | Average     |
+| ANITA      |  55000 | Good        |
+| VIKAS      |  42000 | Average     |
+| POOJA      |  38000 | Average     |
+| RAJ        |  47000 | Average     |
+| KIRAN      |  29000 | Average     |
+| MANISH     |  65000 | Good        |
+| SIMRAN     |  52000 | Good        |
+| DEEPAK     |  36000 | Average     |
+| NISHA      |  48000 | Average     |
+| ARUN       |  75000 | Excellent   |
+| KAVITA     |  41000 | Average     |
+| ROHIT      |  58000 | Good        |
+| SONAM      |  33000 | Average     |
+| AKASH      |  62000 | Good        |
+| RAVI KUMAR |  45000 | Average     |
+| MEENA      |  39000 | Average     |
+| SANDEEP    |  70000 | Excellent   |
+| TANYA      |  56000 | Good        |
+| MOHIT      |  31000 | Average     |
++------------+--------+-------------+
+25 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------
+
+>> CASE in MySQL
+---------------------------------------------
+CASE is used to implement multiple conditions and return different values depending on which condition is true.
+
+-------------------------------------------------------------------------------------------------------
+
+if 
+elif
+else
+---------------------------------------------------------------------
+syntax:
+
+CASE 
+	WHEN condition1 THEN result1
+	WHEN condition2 THEN result2
+	ELSE result
+END
+------------------------------------------------------------------------------------
+
+CASE Example
+--------------------
+
+mysql> SELECT emp_name,salary,
+    -> CASE
+    -> WHEN salary>=70000 THEN "Excellent"
+    -> WHEN SALARY>=50000 THEN "Good"
+    -> WHEN salary>=30000 THEN "Average"
+    -> ELSE "Low"
+    -> END as salary_status
+    -> from employee;
++------------+--------+---------------+
+| emp_name   | salary | salary_status |
++------------+--------+---------------+
+| RAVI       |  25000 | Low           |
+| AMIT       |  45000 | Average       |
+| NEHA       |  60000 | Good          |
+| PRIYA      |  35000 | Average       |
+| RAHUL      | 810000 | Excellent     |
+| SURESH     |  32000 | Average       |
+| ANITA      |  55000 | Good          |
+| VIKAS      |  42000 | Average       |
+| POOJA      |  38000 | Average       |
+| RAJ        |  47000 | Average       |
+| KIRAN      |  29000 | Low           |
+| MANISH     |  65000 | Good          |
+| SIMRAN     |  52000 | Good          |
+| DEEPAK     |  36000 | Average       |
+| NISHA      |  48000 | Average       |
+| ARUN       |  75000 | Excellent     |
+| KAVITA     |  41000 | Average       |
+| ROHIT      |  58000 | Good          |
+| SONAM      |  33000 | Average       |
+| AKASH      |  62000 | Good          |
+| RAVI KUMAR |  45000 | Average       |
+| MEENA      |  39000 | Average       |
+| SANDEEP    |  70000 | Excellent     |
+| TANYA      |  56000 | Good          |
+| MOHIT      |  31000 | Average       |
++------------+--------+---------------+
+25 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+CASE WITH MULTIPLE CONDITIONS
+------------------------------------------------------------
+We can use AND, OR, NOT, IN, BETWEEN etc.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+mysql> SELECT emp_name, salary, city,
+    -> CASE
+    -> WHEN SALARY>=50000 AND city = "Mumbai" THEN "Mumbai High Earner"
+    -> WHEN salary>=50000 THEN "High Earner"
+    -> ELSE "Regular Employee"
+    -> END AS salary_category
+    -> FROM EMPLOYEE;
++------------+--------+------------+--------------------+
+| emp_name   | salary | city       | salary_category    |
++------------+--------+------------+--------------------+
+| RAVI       |  25000 | PATNA      | Regular Employee   |
+| AMIT       |  45000 | DELHI      | Regular Employee   |
+| NEHA       |  60000 | MUMBAI     | Mumbai High Earner |
+| PRIYA      |  35000 | PUNE       | Regular Employee   |
+| RAHUL      | 810000 | ORISSA     | High Earner        |
+| SURESH     |  32000 | PATNA      | Regular Employee   |
+| ANITA      |  55000 | DELHI      | High Earner        |
+| VIKAS      |  42000 | MUMBAI     | Regular Employee   |
+| POOJA      |  38000 | PUNE       | Regular Employee   |
+| RAJ        |  47000 | KOLKATA    | Regular Employee   |
+| KIRAN      |  29000 | RANCHI     | Regular Employee   |
+| MANISH     |  65000 | BANGALORE  | High Earner        |
+| SIMRAN     |  52000 | HYDERABAD  | High Earner        |
+| DEEPAK     |  36000 | CHENNAI    | Regular Employee   |
+| NISHA      |  48000 | JAIPUR     | Regular Employee   |
+| ARUN       |  75000 | DELHI      | High Earner        |
+| KAVITA     |  41000 | PATNA      | Regular Employee   |
+| ROHIT      |  58000 | MUMBAI     | Mumbai High Earner |
+| SONAM      |  33000 | PUNE       | Regular Employee   |
+| AKASH      |  62000 | KOLKATA    | High Earner        |
+| RAVI KUMAR |  45000 | LUCKNOW    | Regular Employee   |
+| MEENA      |  39000 | BHOPAL     | Regular Employee   |
+| SANDEEP    |  70000 | NOIDA      | High Earner        |
+| TANYA      |  56000 | GURGAON    | High Earner        |
+| MOHIT      |  31000 | CHANDIGARH | Regular Employee   |
++------------+--------+------------+--------------------+
+25 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. Simple CASE
+----------------------------------------------------
+THERE ARE TWO COMMON FORMS OF CASE
+
+1. SIMPLE CASE
+2. SEARCHED CASE
+-----------------------------------------------------------
+1. SIMPLE CASE
+
+SYNTAX:
+
+CASE COLUMN_NAME
+	WHEN VALUE1 THEN RESULT1
+	WHEN VALUE2 THEN RESULT2
+	ELSE RESULT3
+	END AS COLUMN_NAME
+	FROM TABLE_BALE;
+
+--------------------------------
+
+COMPARE ONE EXPRESSISON WITH DIFFERET VALUES.
+
+------------------------------------------------------------------
+mysql> SELECT EMP_NAME, CITY,
+    -> CASE CITY
+    -> WHEN "PATNA" THEN "BIHAR"
+    -> WHEN "DELHI" THEN "DELHI"
+    -> WHEN "PUNE" THEN "MAHARASHTRA"
+    -> WHEN "CHANDIGARH" THEN "PUNJAB"
+    -> WHEN "JAIPUR" THEN "RAJASTHAN"
+    -> ELSE "OTHER"
+    -> END AS STATE
+    -> FROM EMPLOYEE;
++------------+------------+-------------+
+| EMP_NAME   | CITY       | STATE       |
++------------+------------+-------------+
+| RAVI       | PATNA      | BIHAR       |
+| AMIT       | DELHI      | DELHI       |
+| NEHA       | MUMBAI     | OTHER       |
+| PRIYA      | PUNE       | MAHARASHTRA |
+| RAHUL      | ORISSA     | OTHER       |
+| SURESH     | PATNA      | BIHAR       |
+| ANITA      | DELHI      | DELHI       |
+| VIKAS      | MUMBAI     | OTHER       |
+| POOJA      | PUNE       | MAHARASHTRA |
+| RAJ        | KOLKATA    | OTHER       |
+| KIRAN      | RANCHI     | OTHER       |
+| MANISH     | BANGALORE  | OTHER       |
+| SIMRAN     | HYDERABAD  | OTHER       |
+| DEEPAK     | CHENNAI    | OTHER       |
+| NISHA      | JAIPUR     | RAJASTHAN   |
+| ARUN       | DELHI      | DELHI       |
+| KAVITA     | PATNA      | BIHAR       |
+| ROHIT      | MUMBAI     | OTHER       |
+| SONAM      | PUNE       | MAHARASHTRA |
+| AKASH      | KOLKATA    | OTHER       |
+| RAVI KUMAR | LUCKNOW    | OTHER       |
+| MEENA      | BHOPAL     | OTHER       |
+| SANDEEP    | NOIDA      | OTHER       |
+| TANYA      | GURGAON    | OTHER       |
+| MOHIT      | CHANDIGARH | PUNJAB      |
++------------+------------+-------------+
+25 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------
+
+2. SEARCHED CASE
+
+SYNTAX:
+
+CASE 
+	WHEN CONDITION1 THEN RESULT1
+	WHEN CONDITION2 THEN RESULT2
+	WHEN CONDITION3 THEN RESULT3
+	ELSE RESULT4
+	END AS COLUMN_NAME
+	FROM TABLE_NAME;
+
+----------------------------------------------------------
+mysql> SELECT EMP_NAME,SALARY,
+    -> CASE
+    -> WHEN SALARY>=70000 THEN "A"
+    -> WHEN SALARY>=50000 THEN "B"
+    -> WHEN SALARY>=30000 THEN "C"
+    -> ELSE "D"
+    -> END AS GRADE
+    -> FROM EMPLOYEE;
++------------+--------+-------+
+| EMP_NAME   | SALARY | GRADE |
++------------+--------+-------+
+| RAVI       |  25000 | D     |
+| AMIT       |  45000 | C     |
+| NEHA       |  60000 | B     |
+| PRIYA      |  35000 | C     |
+| RAHUL      | 810000 | A     |
+| SURESH     |  32000 | C     |
+| ANITA      |  55000 | B     |
+| VIKAS      |  42000 | C     |
+| POOJA      |  38000 | C     |
+| RAJ        |  47000 | C     |
+| KIRAN      |  29000 | D     |
+| MANISH     |  65000 | B     |
+| SIMRAN     |  52000 | B     |
+| DEEPAK     |  36000 | C     |
+| NISHA      |  48000 | C     |
+| ARUN       |  75000 | A     |
+| KAVITA     |  41000 | C     |
+| ROHIT      |  58000 | B     |
+| SONAM      |  33000 | C     |
+| AKASH      |  62000 | B     |
+| RAVI KUMAR |  45000 | C     |
+| MEENA      |  39000 | C     |
+| SANDEEP    |  70000 | A     |
+| TANYA      |  56000 | B     |
+| MOHIT      |  31000 | C     |
++------------+--------+-------+
+25 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+DIFFERENTIATE BETWEEN IF AND CASE
+--------------------------------------------------------------------------
+
+
+IF()			|	CASE
+------------------------------------------------------------------------------
+MYSQL FUNCTION		| CONDITIONAL EXPRESSION
+-------------------------------------------------------------------------------
+BEST FOR SIMPLE CONDITION|	BEST FOR MULTIPLE CONDITION
+------------------------------------------------------------------------------------
+HAS TRUE/FALSE RESULT	| CAN HAVE MULTIPLE WHEN AND CONDITIONS
+----------------------------------------------------------------------
+IF(CONDITION, TRUE,FALSE)| CASE WHEN ...... THEN ....... ELSE ...... END ......
+------------------------------------------------------------------------------------------------------------
+NESTED IF CAN BECOME DIFIICULT TO READ.	| USUALLY EASIER TO READ 
+---------------------------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
