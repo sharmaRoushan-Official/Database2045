@@ -181,3 +181,41 @@ mysql> select name,salary,
 +------------+--------+---------------+
 25 rows in set (0.00 sec)
 
+mysql> select city,
+    ->  case city
+    -> when "PATNA" THEN "BIHAR"
+    -> when "CHANDIGARH" THEN "PUNJAB"
+    ->  when "JAIPUR" THEN "RAJASTHAN"
+    ->   else "OTHER"
+    -> end as state
+    -> from employee;
++------------+-----------+
+| city       | state     |
++------------+-----------+
+| PATNA      | BIHAR     |
+| DELHI      | OTHER     |
+| MUMBAI     | OTHER     |
+| PUNE       | OTHER     |
+| ORISSA     | OTHER     |
+| PATNA      | BIHAR     |
+| DELHI      | OTHER     |
+| MUMBAI     | OTHER     |
+| PUNE       | OTHER     |
+| KOLKATA    | OTHER     |
+| RANCHI     | OTHER     |
+| BANGALORE  | OTHER     |
+| HYDERABAD  | OTHER     |
+| CHENNAI    | OTHER     |
+| JAIPUR     | RAJASTHAN |
+| DELHI      | OTHER     |
+| PATNA      | BIHAR     |
+| MUMBAI     | OTHER     |
+| PUNE       | OTHER     |
+| KOLKATA    | OTHER     |
+| LUCKNOW    | OTHER     |
+| BHOPAL     | OTHER     |
+| NOIDA      | OTHER     |
+| GURGAON    | OTHER     |
+| CHANDIGARH | PUNJAB    |
++------------+-----------+
+25 rows in set (0.00 sec)
