@@ -97,3 +97,87 @@ mysql> select d1.id,d1.name,d1.course,d3.marks
 | 2204 | John  | C++    |    55 |
 +------+-------+--------+-------+
 4 rows in set (0.00 sec)
+
+
+Next Practice 
+
+mysql> describe employee;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(30) | NO   |     | NULL    |                |
+| salary | int         | NO   |     | NULL    |                |
+| city   | varchar(30) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+------------+--------+------------+
+| id | name       | salary | city       |
++----+------------+--------+------------+
+|  1 | RAVI       |  25000 | PATNA      |
+|  2 | AMIT       |  45000 | DELHI      |
+|  3 | NEHA       |  60000 | MUMBAI     |
+|  4 | PRIYA      |  35000 | PUNE       |
+|  5 | RAHUL      |  81000 | ORISSA     |
+|  6 | SURESH     |  32000 | PATNA      |
+|  7 | ANITA      |  55000 | DELHI      |
+|  8 | VIKAS      |  42000 | MUMBAI     |
+|  9 | POOJA      |  38000 | PUNE       |
+| 10 | RAJ        |  47000 | KOLKATA    |
+| 11 | KIRAN      |  29000 | RANCHI     |
+| 12 | MANISH     |  65000 | BANGALORE  |
+| 13 | SIMRAN     |  52000 | HYDERABAD  |
+| 14 | DEEPAK     |  36000 | CHENNAI    |
+| 15 | NISHA      |  48000 | JAIPUR     |
+| 16 | ARUN       |  75000 | DELHI      |
+| 17 | KAVITA     |  41000 | PATNA      |
+| 18 | ROHIT      |  58000 | MUMBAI     |
+| 19 | SONAM      |  33000 | PUNE       |
+| 20 | AKASH      |  62000 | KOLKATA    |
+| 21 | RAVI KUMAR |  45000 | LUCKNOW    |
+| 22 | MEENA      |  39000 | BHOPAL     |
+| 23 | SANDEEP    |  70000 | NOIDA      |
+| 24 | TANYA      |  56000 | GURGAON    |
+| 25 | MOHIT      |  31000 | CHANDIGARH |
++----+------------+--------+------------+
+25 rows in set (0.00 sec)
+
+mysql> select name,salary,
+    -> case
+    -> when salary >=50000 then "High"
+    -> else "Low"
+    -> end as salary_status
+    -> from employee;
++------------+--------+---------------+
+| name       | salary | salary_status |
++------------+--------+---------------+
+| RAVI       |  25000 | Low           |
+| AMIT       |  45000 | Low           |
+| NEHA       |  60000 | High          |
+| PRIYA      |  35000 | Low           |
+| RAHUL      |  81000 | High          |
+| SURESH     |  32000 | Low           |
+| ANITA      |  55000 | High          |
+| VIKAS      |  42000 | Low           |
+| POOJA      |  38000 | Low           |
+| RAJ        |  47000 | Low           |
+| KIRAN      |  29000 | Low           |
+| MANISH     |  65000 | High          |
+| SIMRAN     |  52000 | High          |
+| DEEPAK     |  36000 | Low           |
+| NISHA      |  48000 | Low           |
+| ARUN       |  75000 | High          |
+| KAVITA     |  41000 | Low           |
+| ROHIT      |  58000 | High          |
+| SONAM      |  33000 | Low           |
+| AKASH      |  62000 | High          |
+| RAVI KUMAR |  45000 | Low           |
+| MEENA      |  39000 | Low           |
+| SANDEEP    |  70000 | High          |
+| TANYA      |  56000 | High          |
+| MOHIT      |  31000 | Low           |
++------------+--------+---------------+
+25 rows in set (0.00 sec)
+
