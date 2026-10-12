@@ -1046,6 +1046,9 @@ mysql> select * from student
 +----+----------------+-----+--------+-----------+
 3 rows in set (0.00 sec)
 
+mysql> select * from student
+	-> where name LIKE "Priya | Arjun";
+
 --------------------------------------------------------------------------------------------------------------
 
 mysql> select * from student where name LIKE "__o%";
@@ -3250,18 +3253,952 @@ mysql> SELECT SIGN(100);
 8. WRITE SQL QUERY TO FETCH WORKERS WHOSE FIRST_NAME ENDS WITH 'h' AND HAS 6 LETTERS.
 9. WRITE SQL QUERY TO SHOW WORKER INFO WHOSE SALARY IS BETWEEN 100000 & 500000.
 10. WIRTE SQL QUERY TO DISPLAY WORKERS WHO JOINED IN FEB 2021.
+-----------------------------------------------------------------------------------------------------------------
+
+Sin|cos|tan|cot|cosec|sec
+--------------------------------------
+
+SIN(X) 	| RETURN THE SIGN OF AN ANGLE
+----------------------------------------
+COS(X)	| RETURN THE COSINE OF AN ANGLE
+--------------------------------------------------
+TAN(X)	| RETURN THE TANGENT OF AN ANGLE
+---------------
+COT(X)	| RETUN THE COTANGENT OF AN ANGLE
+-------------------------------------------------
+ASIGN(X)| REUTRN THE INVERSE OF TANGLE
+--------------
+ACOS(X)	| RETURN THE INVERSE OF COSINE
+-----------------------------------------
+ATAN(X)	| RETURN THE INVERSE OF TANGENT
+-------------------------------------------------------
+ATAN2(X,Y)| RETURN RHE ANGLE FROM TWO CO9ORDINATE
+--------------------------------------------
+PI(X) 	|  RETURN THE VALUE OF PI
+---------------------------------------------------------
+RADIAN(X)	| CONVERTS DEGREE INTO RADIANS
+-------------------------------------------------------
+DEGREES(X)	| CONVERTS RADIANS INTO DEGREE
+---------------------------------------------------------------
+
+sin|cos|tan
+-------
+P|B|P
+-------
+H|H|B
+------------
+sec|cosec|cot
+
+--------------------------------------------------------------------
+
+### MySQL String Functions
+---------------------------------------------------------------------
+
+
+1. UPPER()/UCASE()
+2. LOWER()/LCASE()
+3. LENGTH()
+4. CHAR_LENGTH()
+5. CONCAT()
+6. CONCAT_WS()
+7. LTRIM()
+8. RTRIM()
+9. POSITION()
+10. LOCATE()
+11. SUBSTRING()/SUBSTR()
+12. MID()
+13. SUBSTRING_INDEX()
+14. LEFT()
+15. RIGHT()
+16. RPAD()
+17. SPACE()
+18. REVERSE()
+19. REPEAT()
+20. REPLACE()
+21. STRCMP()
+22. FIELD()
+23. FIND_IN_SET()
+24. FORMAT()
+25. HEX()
+------------------------------------------------------------------------------
+syntax:
+
+concat_ws(separator,sting1,string2,string3.....);
+
+
+mysql> select concat_ws("_","2026","11","10");
++---------------------------------+
+| concat_ws("_","2026","11","10") |
++---------------------------------+
+| 2026_11_10                      |
++---------------------------------+
+1 row in set (0.00 sec)
+
+
+--------------------------------------------
+
+
+
+MID:
+
+MID() is another way to extract part of a string;
+
+
+substring() Extract a portion of string
+
+sytanx
+
+(string, start, number of chraracter)
+
+("Hello world", 2,6)
+
+output
+
+ello w
+------------------------------------------
+substring_index
+--------------------------
+
+this is especially useful for extracting text before or after a delimeter.
+
+--------------------------------------------------------------
+
+
+mysql> select substring_index("rangeela@gmai.com","@",1);
++--------------------------------------------+
+| substring_index("rangeela@gmai.com","@",1) |
++--------------------------------------------+
+| rangeela                                   |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+-----------------------------------------------------------
+
+
+
+16. RPAD()
+-------------
+adds character to the right until the string reaches the specified length.
+
+
+------------------------------
+syntax
+lpad(string, length, pad_string);
+
+------------------------------------------
+
+example:
+
+select lpad("123",5,"0")
+
+------------------------
+00123
+
+
+---------------------------------------
+0 ---> STRING EQUAL
+<0 ---> FIRST STRING IS LESS THAN SECOND
+>0 ---> FIRST STRING IS GREATER THAN SECOND
+------------------------------------------------------------------------------------------------------------------
 
 
 
 
+-1,0,1"
+-------------------------------------------------------------------
+
+
+format()
+
+format(number,decimal_places)
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Microsoft Windows [Version 10.0.26300.9457]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\User>CD..
+
+C:\Users>CD..
+
+C:\>CD "Program Files"
+
+C:\Program Files>cd MySQL
+
+C:\Program Files\MySQL>cd "MySQL Server 8.0"
+
+C:\Program Files\MySQL\MySQL Server 8.0>cd bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select pi() as pi_value;
++----------+
+| pi_value |
++----------+
+| 3.141593 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select 3*pi();
++----------+
+| 3*pi()   |
++----------+
+| 9.424778 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select radians(30) as angle_30;
++--------------------+
+| angle_30           |
++--------------------+
+| 0.5235987755982988 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select sin(0) as result;
++--------+
+| result |
++--------+
+|      0 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select cos(0);
++--------+
+| cos(0) |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select cot(0);
+ERROR 1690 (22003): DOUBLE value is out of range in 'cot(0)'
+mysql> select cot(0);
+ERROR 1690 (22003): DOUBLE value is out of range in 'cot(0)'
+mysql> select cosec(0);
+ERROR 1046 (3D000): No database selected
+mysql> select tan(90);
++--------------------+
+| tan(90)            |
++--------------------+
+| -1.995200412208242 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select tan(45);
++--------------------+
+| tan(45)            |
++--------------------+
+| 1.6197751905438615 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select tan(radian(45));
+ERROR 1046 (3D000): No database selected
+mysql> select tan(radians(45));
++--------------------+
+| tan(radians(45))   |
++--------------------+
+| 0.9999999999999999 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT UCASE("hello world");
++----------------------+
+| UCASE("hello world") |
++----------------------+
+| HELLO WORLD          |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select upper("hello");
++----------------+
+| upper("hello") |
++----------------+
+| HELLO          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select lcase("hello");
++----------------+
+| lcase("hello") |
++----------------+
+| hello          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select lcase("HELLO");
++----------------+
+| lcase("HELLO") |
++----------------+
+| hello          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select lower("HELLO");
++----------------+
+| lower("HELLO") |
++----------------+
+| hello          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select length("HELLO");
++-----------------+
+| length("HELLO") |
++-----------------+
+|               5 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select length("HELLO");
++-----------------+
+| length("HELLO") |
++-----------------+
+|               5 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length("hello");
++----------------------+
+| char_length("hello") |
++----------------------+
+|                    5 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select length("10");
++--------------+
+| length("10") |
++--------------+
+|            2 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select length("ab");
++--------------+
+| length("ab") |
++--------------+
+|            2 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select length("भारत");
++----------------+
+| length("????") |
++----------------+
+|              4 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length("भारत");
++---------------------+
+| char_length("????") |
++---------------------+
+|                   4 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length("Hello world");
++----------------------------+
+| char_length("Hello world") |
++----------------------------+
+|                         11 |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select length("Hello world");
++-----------------------+
+| length("Hello world") |
++-----------------------+
+|                    11 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select CHAR_LENGTH('€')
+    -> ;
++------------------+
+| CHAR_LENGTH('?') |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select LENGTH('€');
++-------------+
+| LENGTH('?') |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select CHAR_LENGTH('😂');
++------------------+
+| CHAR_LENGTH('?') |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select LENGTH('😂');
++-------------+
+| LENGTH('?') |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select concate("Hello", "world");
+ERROR 1046 (3D000): No database selected
+mysql> select concat("Hello", "world");
++--------------------------+
+| concat("Hello", "world") |
++--------------------------+
+| Helloworld               |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select concat("Hello", " ","world");
++------------------------------+
+| concat("Hello", " ","world") |
++------------------------------+
+| Hello world                  |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select concate_ws("_","2026","11","10");
+ERROR 1046 (3D000): No database selected
+mysql> select concat_ws("_","2026","11","10");
++---------------------------------+
+| concat_ws("_","2026","11","10") |
++---------------------------------+
+| 2026_11_10                      |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim("          Hello world             ");
++--------------------------------------------+
+| trim("          Hello world             ") |
++--------------------------------------------+
+| Hello world                                |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select rtrim("          Hello world             ");
++---------------------------------------------+
+| rtrim("          Hello world             ") |
++---------------------------------------------+
+|           Hello world                       |
++---------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select rtrim("          Hello world             ") as text;
++-----------------------+
+| text                  |
++-----------------------+
+|           Hello world |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select ltrim("          Hello world             ") as text;
++--------------------------+
+| text                     |
++--------------------------+
+| Hello world              |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select position("sql" in "mysql");
++----------------------------+
+| position("sql" in "mysql") |
++----------------------------+
+|                          3 |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select locate("sql","mysql");
++-----------------------+
+| locate("sql","mysql") |
++-----------------------+
+|                     3 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select location("Tambe","Yash Sandeep Tambe");
+ERROR 1046 (3D000): No database selected
+mysql> select position("Tambe","Yash Sandeep Tambe");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',"Yash Sandeep Tambe")' at line 1
+mysql> select position("Tambe" in "Yash Sandeep Tambe");
++-------------------------------------------+
+| position("Tambe" in "Yash Sandeep Tambe") |
++-------------------------------------------+
+|                                        14 |
++-------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select locate("Tambe","Yash Sandeep Tambe");
++--------------------------------------+
+| locate("Tambe","Yash Sandeep Tambe") |
++--------------------------------------+
+|                                   14 |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring("computer",1,4);
++---------------------------+
+| substring("computer",1,4) |
++---------------------------+
+| comp                      |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring("computer scienct",10,7);
++------------------------------------+
+| substring("computer scienct",10,7) |
++------------------------------------+
+| scienct                            |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring("computer scienc",10,7);
++-----------------------------------+
+| substring("computer scienc",10,7) |
++-----------------------------------+
+| scienc                            |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring("computer",2,4);
++---------------------------+
+| substring("computer",2,4) |
++---------------------------+
+| ompu                      |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select mid("computer",1,4);
++---------------------+
+| mid("computer",1,4) |
++---------------------+
+| comp                |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring("Hello world",2,6);
++------------------------------+
+| substring("Hello world",2,6) |
++------------------------------+
+| ello w                       |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select mid("Hello world",2,6);
++------------------------+
+| mid("Hello world",2,6) |
++------------------------+
+| ello w                 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring_index("rangeela@gmai.com","@",1);
++--------------------------------------------+
+| substring_index("rangeela@gmai.com","@",1) |
++--------------------------------------------+
+| rangeela                                   |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring_index("rangeela@gmai.com","@",-1);
++---------------------------------------------+
+| substring_index("rangeela@gmai.com","@",-1) |
++---------------------------------------------+
+| gmai.com                                    |
++---------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring_index("rangeela@gmai.com","@",1);
++--------------------------------------------+
+| substring_index("rangeela@gmai.com","@",1) |
++--------------------------------------------+
+| rangeela                                   |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substring_index("rangeela@gmai.com","@",-1);
++---------------------------------------------+
+| substring_index("rangeela@gmai.com","@",-1) |
++---------------------------------------------+
+| gmai.com                                    |
++---------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select left("computer",8);
++--------------------+
+| left("computer",8) |
++--------------------+
+| computer           |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select left("computer",5);
++--------------------+
+| left("computer",5) |
++--------------------+
+| compu              |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select right("computer",5);
++---------------------+
+| right("computer",5) |
++---------------------+
+| puter               |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select right("computer",2);
++---------------------+
+| right("computer",2) |
++---------------------+
+| er                  |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select left("computer",2);
++--------------------+
+| left("computer",2) |
++--------------------+
+| co                 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select pad("poonam",5,"-");
+ERROR 1046 (3D000): No database selected
+mysql> select pad("poonam",5,"0");
+ERROR 1046 (3D000): No database selected
+mysql> select lpad("poonam",5,"0");
++----------------------+
+| lpad("poonam",5,"0") |
++----------------------+
+| poona                |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select lpad("poonam",5,"-");
++----------------------+
+| lpad("poonam",5,"-") |
++----------------------+
+| poona                |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select lpad("computer",10,"P");
++-------------------------+
+| lpad("computer",10,"P") |
++-------------------------+
+| PPcomputer              |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select rpad("computer",15,"P");
++-------------------------+
+| rpad("computer",15,"P") |
++-------------------------+
+| computerPPPPPPP         |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select space(10);
++------------+
+| space(10)  |
++------------+
+|            |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select concat("Hello",space(5),"Tambe");
++----------------------------------+
+| concat("Hello",space(5),"Tambe") |
++----------------------------------+
+| Hello     Tambe                  |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select reverse("Tambe");
++------------------+
+| reverse("Tambe") |
++------------------+
+| ebmaT            |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demodatabase       |
+| elearningapp       |
+| hexadash_django_db |
+| information_schema |
+| mediplusapp        |
+| mysql              |
+| newdatabase        |
+| newdb              |
+| performance_schema |
+| practiceforeignkey |
+| school             |
+| subquery           |
+| sys                |
+| test               |
+| uday               |
++--------------------+
+15 rows in set (0.01 sec)
+
+mysql> use newdb;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_newdb |
++-----------------+
+| article         |
+| citydata        |
+| department      |
+| employee        |
+| locations       |
+| studentdata     |
+| studentdata2    |
+| students        |
+| studentview     |
++-----------------+
+9 rows in set (0.01 sec)
+
+mysql> select * from employee;
+Empty set (0.02 sec)
+
+mysql> select * from article;
+Empty set (0.02 sec)
+
+mysql> select * from students;
++----+--------------+------+------------------+-----------+
+| ID | NAME         | AGE  | EMAIL            | MOBILE_NO |
++----+--------------+------+------------------+-----------+
+|  1 | Ajay Bhosale |   25 | NULL             | NULL      |
+|  2 | Siddharth    |   26 | NULL             | NULL      |
+|  3 | Prajakta     |   27 | NULL             | NULL      |
+|  4 | Aditya       |   28 | NULL             | NULL      |
+|  5 | Unknown      |   45 | NULL             | NULL      |
+|  6 | Divya        |   25 | divya@gmail.com  | 123456789 |
+|  7 | Muskan       |   36 | muskan@gmail.com | 012345678 |
+|  8 | Rohan        |   45 | rohan@gmail.com  | 112345678 |
+|  9 | Sohan        |   15 | sohan@gmail.com  | 122345678 |
++----+--------------+------+------------------+-----------+
+9 rows in set (0.01 sec)
+
+mysql> select reverse(name) from students;
++---------------+
+| reverse(name) |
++---------------+
+| aytidA        |
+| elasohB yajA  |
+| ayviD         |
+| naksuM        |
+| atkajarP      |
+| nahoR         |
+| htrahddiS     |
+| nahoS         |
+| nwonknU       |
++---------------+
+9 rows in set (0.00 sec)
+
+mysql> select replace("I like Java","java","Tambe");
++---------------------------------------+
+| replace("I like Java","java","Tambe") |
++---------------------------------------+
+| I like Java                           |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace("I like Java","Java","Tambe");
++---------------------------------------+
+| replace("I like Java","Java","Tambe") |
++---------------------------------------+
+| I like Tambe                          |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace("I like Tambe","like","Hate");
++---------------------------------------+
+| replace("I like Tambe","like","Hate") |
++---------------------------------------+
+| I Hate Tambe                          |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select strcmp("ABC","ABC");
++---------------------+
+| strcmp("ABC","ABC") |
++---------------------+
+|                   0 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select strcmp("ABC","aBC");
++---------------------+
+| strcmp("ABC","aBC") |
++---------------------+
+|                   0 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select strcmp("ABC","aBCd");
++----------------------+
+| strcmp("ABC","aBCd") |
++----------------------+
+|                   -1 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select strcmp("ABCD","ABC");
++----------------------+
+| strcmp("ABCD","ABC") |
++----------------------+
+|                    1 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FIELD("B","A","B","C");
++------------------------+
+| FIELD("B","A","B","C") |
++------------------------+
+|                      2 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT FIELD("A","A","B","C");
++------------------------+
+| FIELD("A","A","B","C") |
++------------------------+
+|                      1 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FIELD("C","A","B","C");
++------------------------+
+| FIELD("C","A","B","C") |
++------------------------+
+|                      3 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FIELD("D","A","B","C");
++------------------------+
+| FIELD("D","A","B","C") |
++------------------------+
+|                      0 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select find_in_set("B","A,B,C");
++--------------------------+
+| find_in_set("B","A,B,C") |
++--------------------------+
+|                        2 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select format(123456789.891,2);
++-------------------------+
+| format(123456789.891,2) |
++-------------------------+
+| 123,456,789.89          |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select format(123456789.89100000,2);
++------------------------------+
+| format(123456789.89100000,2) |
++------------------------------+
+| 123,456,789.89               |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select format(123456789.89100000,4);
++------------------------------+
+| format(123456789.89100000,4) |
++------------------------------+
+| 123,456,789.8910             |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select format(123456789.89100000,-4);
++-------------------------------+
+| format(123456789.89100000,-4) |
++-------------------------------+
+| 123,456,790                   |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select format(123456789.89100000,-10);
++--------------------------------+
+| format(123456789.89100000,-10) |
++--------------------------------+
+| 123,456,790                    |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select format(123456789.89100000,-100);
++---------------------------------+
+| format(123456789.89100000,-100) |
++---------------------------------+
+| 123,456,790                     |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select hex("ABC");
++------------+
+| hex("ABC") |
++------------+
+| 414243     |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select hex("A");
++----------+
+| hex("A") |
++----------+
+| 41       |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select hex("B");
++----------+
+| hex("B") |
++----------+
+| 42       |
++----------+
+1 row in set (0.00 sec)
+
+mysql> exit;
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
 
 
 
-
-
-
-
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
