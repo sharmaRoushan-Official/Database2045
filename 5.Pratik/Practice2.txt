@@ -1,0 +1,153 @@
+10. WRITE SQL QUERY TO COMBINE FIRST_NAME AND LAST_NAME INTO COMPLETE_NAME;
+
+
+mysql>  select concat(first_name," ",last_name) as complete_name from worker;
++-----------------+
+| complete_name   |
++-----------------+
+| Monika Arora    |
+| Niharika Verma  |
+| Vishal Singhal  |
+| Amitabh Singh   |
+| Vivek Bhati     |
+| Vipul Daman     |
+| Satish Kumar    |
+| Geetika Chauhan |
++-----------------+
+8 rows in set (0.00 sec)
+
+11. WRITE SQL QUERY TO PRINT WORKER DETAILS ORDERED BY FIRST_NAME ASCENDING AND DEPARTMENT DESCENDING.
+
+mysql> select * from worker order by first_name asc, department desc;
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
+|         1 | Monika     | Arora     | 100000 | 2021-06-11 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         7 | Satish     | Kumar     |  75000 | 2021-06-20 09:00:00 | Account    |
+|         6 | Vipul      | Daman     | 500000 | 2021-06-20 09:00:00 | Account    |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+12.WRITE SQL QUERY TO PRINT WORKER DETAILS ORDERED BY FIRST_NAME ASCENDING AND DEPARTMENT DESCENDING.
+
+mysql> select * from worker order by first_name asc, department desc;
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
+|         1 | Monika     | Arora     | 100000 | 2021-06-11 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         7 | Satish     | Kumar     |  75000 | 2021-06-20 09:00:00 | Account    |
+|         6 | Vipul      | Daman     | 500000 | 2021-06-20 09:00:00 | Account    |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+13.WRITE SQL QUERY TO PRINT WORKER DETAILS WITH FIRST_NAME "Vipul" AND "Satish";
+
+mysql> select * from worker where first_name in("Vipul","Satish");
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         6 | Vipul      | Daman     | 500000 | 2021-06-20 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2021-06-20 09:00:00 | Account    |
++-----------+------------+-----------+--------+---------------------+------------+
+2 rows in set (0.00 sec)
+
+14.WRITE SQL QUERY TO PRINT WORKER DETAILS EXCLUDING FIRST NAMES "Vipul" AND "Satish";
+
+mysql> select * from worker where first_name not in("Vipul","Satish");
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-06-11 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+6 rows in set (0.00 sec)
+
+
+15. WRITE SQL QUERY TO PRINT WORKER DETAILS WITH DEPARTMENT NAME AS "Admin".
+
+mysql> select * from worker where department="Admin";
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+4 rows in set (0.00 sec)
+
+
+16. WRITE SQL QUERY TO PRINT WORKER DETAILS WHOSE FIRST_NAME CONTAINS "a";
+
+mysql> select * from worker where first_name like "%a%";
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-06-11 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         7 | Satish     | Kumar     |  75000 | 2021-06-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+6 rows in set (0.01 sec)
+
+17.WRITE SQL QUERY TO LIST WORKER INFO WHOSE FIRST_NAME ENDS WITH 'a'.
+
+mysql> select * from worker where first_name like "%a";
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-06-11 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+3 rows in set (0.00 sec)
+
+18.WRITE SQL QUERY TO FETCH WORKERS WHOSE FIRST_NAME ENDS WITH 'h' AND HAS 6 LETTERS.
+
+mysql> select * from worker where first_name like "%h" and length(first_name)=6;
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         7 | Satish     | Kumar     |  75000 | 2021-06-20 09:00:00 | Account    |
++-----------+------------+-----------+--------+---------------------+------------+
+1 row in set (0.01 sec)
+
+19. WRITE SQL QUERY TO SHOW WORKER INFO WHOSE SALARY IS BETWEEN 100000 & 500000.
+
+mysql> select * from worker where salary between 100000 and 500000;
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-06-11 09:00:00 | HR         |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Daman     | 500000 | 2021-06-20 09:00:00 | Account    |
++-----------+------------+-----------+--------+---------------------+------------+
+5 rows in set (0.00 sec)
+
+20.WRITE SQL QUERY TO DISPLAY WORKERS WHO JOINED IN FEB 2021.
+
+ mysql> select * from worker where joining_date between "2021-02-01" and "2021-02-28";
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
++-----------+------------+-----------+--------+---------------------+------------+
+1 row in set (0.00 sec)
