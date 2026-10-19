@@ -4200,6 +4200,1424 @@ C:\Program Files\MySQL\MySQL Server 8.0\bin>
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+MySQL DATE FUNCTION
+--------------------------------------------------------------------------------------------------
+
+LIST OF DATE FUNCTIONS IN MYSQL
+-----------------------------
+1.CURDATE
+2.CURRENT_DATE
+3.SYSDATE
+4.NOW
+5.LAST_DAY
+6.DAY
+7.DAYNAME
+8.DAYOFMONTH
+9.DAYOFWEEK
+10.DAYOFYEAR
+11.WEEK
+12.WEEKOFYEAR
+13.YEAR
+14.WEEKDAY
+15.YEARWEEK
+16. EXTRACT
+	syntax:
+	Extract(unit from date_value)
+
+17.DATE_ADD
+18.ADDDATE
+19.MAKEDATE
+	>> makedate(year,day_of_year)
+20.DATE_SUB
+	>> date_sub(date,interval value);
+
+21. SUBDATE
+22. DATEDIFF
+	DateDiff = First date- second date
+23. TO_DAYS
+24. FROM_DAYS
+25. PERIOD_ADD
+	>> adds a number of months to a perid represets as "yymm", "yyyymm"
+26. DATE_FORMAT
+	>> date_format(date_value,format_string)
+27. STR_TO_DATE
+
+	>> select str_to_date("15-10-2026","%d-%m-%y")
+-----------------------------------------------------------------------------------------------------------
+
+usful formatting specifiers:
+
+---------------------------------------------------
+format		meaning			Example
+-------------------------------------------------------------
+%Y		four-digit year		2026
+---------
+%y		two-digit year		26
+------------
+%m		month number		10
+------------------
+%M		Full month name		October
+-----------------
+%d		Day, two digits		19
+--------------------
+%W		Full weekday name	Monday
+------------------------
+%H		Hours, 00-23		13:25 
+-------------------------
+%i		Minutes - 00-60		25
+------------------------------------------
+%s		second- 00-60		35
+--------------------------------------------------------------------------
+%p		AM,PM
+--------------------------------------------------------------------------------------------
+		
+
+Microsoft Windows [Version 10.0.26300.9711]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\User>cd..
+
+C:\Users>cd..
+
+C:\>cd "Program Files"
+
+C:\Program Files>cd MySQL
+
+C:\Program Files\MySQL>cd "MySQL Server 8.0"
+
+C:\Program Files\MySQL\MySQL Server 8.0>cd bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2026-10-19 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select currentdate();
+ERROR 1046 (3D000): No database selected
+mysql> select current_date();
++----------------+
+| current_date() |
++----------------+
+| 2026-10-19     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 12:31:20 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 12:31:26 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 12:31:28 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2026-10-19 12:31:40 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select lastday(now());
+ERROR 1046 (3D000): No database selected
+mysql> select lastday(sysdate());
+ERROR 1046 (3D000): No database selected
+mysql> select last_day(now());
++-----------------+
+| last_day(now()) |
++-----------------+
+| 2026-10-31      |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select last_day(now());
++-----------------+
+| last_day(now()) |
++-----------------+
+| 2026-10-31      |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select day(now());
++------------+
+| day(now()) |
++------------+
+|         19 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select dayname(now());
++----------------+
+| dayname(now()) |
++----------------+
+| Monday         |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofmonth(now());
++-------------------+
+| dayofmonth(now()) |
++-------------------+
+|                19 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofweek(now());
++------------------+
+| dayofweek(now()) |
++------------------+
+|                2 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofyear(now());
++------------------+
+| dayofyear(now()) |
++------------------+
+|              292 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select week(now());
++-------------+
+| week(now()) |
++-------------+
+|          42 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday(now());
++----------------+
+| weekday(now()) |
++----------------+
+|              0 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-20");
++-----------------------+
+| weekday("2026-10-20") |
++-----------------------+
+|                     1 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-21");
++-----------------------+
+| weekday("2026-10-21") |
++-----------------------+
+|                     2 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-25");
++-----------------------+
+| weekday("2026-10-25") |
++-----------------------+
+|                     6 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-26");
++-----------------------+
+| weekday("2026-10-26") |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekofyear(now());
++-------------------+
+| weekofyear(now()) |
++-------------------+
+|                43 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select year(now());
++-------------+
+| year(now()) |
++-------------+
+|        2026 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select yearweek(now());
++-----------------+
+| yearweek(now()) |
++-----------------+
+|          202642 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(year from now());
++--------------------------+
+| extract(year from now()) |
++--------------------------+
+|                     2026 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(month from now());
++---------------------------+
+| extract(month from now()) |
++---------------------------+
+|                        10 |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(week from now());
++--------------------------+
+| extract(week from now()) |
++--------------------------+
+|                       42 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(day from now());
++-------------------------+
+| extract(day from now()) |
++-------------------------+
+|                      19 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(dayname from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dayname from now())' at line 1
+mysql> select extract(weekofyear from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'weekofyear from now())' at line 1
+mysql> select extract(weekofyear from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'weekofyear from now())' at line 1
+mysql> select extract(dayofmonth from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dayofmonth from now())' at line 1
+mysql> select date_add("2025-10-19",interval 20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date_add("2025-10-19",interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date_add('2025-10-19',interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select day(now());
++------------+
+| day(now()) |
++------------+
+|         19 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(),interval 10 day);
++---------------------------------+
+| date_add(now(),interval 10 day) |
++---------------------------------+
+| 2026-10-29 12:51:09             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add('2025-10-19',interval 10 day);
++----------------------------------------+
+| date_add('2025-10-19',interval 10 day) |
++----------------------------------------+
+| 2025-10-29                             |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(),interval 2 month);
++----------------------------------+
+| date_add(now(),interval 2 month) |
++----------------------------------+
+| 2026-12-19 12:51:45              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 2 month);
++---------------------------------+
+| adddate(now(),interval 2 month) |
++---------------------------------+
+| 2026-12-19 12:52:07             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select adddate(now(),10);
++---------------------+
+| adddate(now(),10)   |
++---------------------+
+| 2026-10-29 12:52:28 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(), interval 3 month);
++-----------------------------------+
+| date_add(now(), interval 3 month) |
++-----------------------------------+
+| 2027-01-19 12:53:23               |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),10);
++---------------------+
+| adddate(now(),10)   |
++---------------------+
+| 2026-10-29 12:53:39 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),90);
++---------------------+
+| adddate(now(),90)   |
++---------------------+
+| 2027-01-17 12:53:52 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 3 month);
++---------------------------------+
+| adddate(now(),interval 3 month) |
++---------------------------------+
+| 2027-01-19 12:54:47             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 1 week);
++--------------------------------+
+| adddate(now(),interval 1 week) |
++--------------------------------+
+| 2026-10-26 12:54:59            |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),7);
++---------------------+
+| adddate(now(),7)    |
++---------------------+
+| 2026-10-26 12:55:22 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select makedate(2026,100);
++--------------------+
+| makedate(2026,100) |
++--------------------+
+| 2026-04-10         |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select makedate(2026,292);
++--------------------+
+| makedate(2026,292) |
++--------------------+
+| 2026-10-19         |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 10 day);
++----------------------------------+
+| date_sub(now(), interval 10 day) |
++----------------------------------+
+| 2026-10-09 13:01:04              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 2 month);
++-----------------------------------+
+| date_sub(now(), interval 2 month) |
++-----------------------------------+
+| 2026-08-19 13:01:20               |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date_sub(now(), interval 2 month);
++-----------------------------------+
+| date_sub(now(), interval 2 month) |
++-----------------------------------+
+| 2026-08-19 13:01:52               |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 10 month);
++------------------------------------+
+| date_sub(now(), interval 10 month) |
++------------------------------------+
+| 2025-12-19 13:02:01                |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select subdate(now(),60);
++---------------------+
+| subdate(now(),60)   |
++---------------------+
+| 2026-08-20 13:02:49 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select subdate(now(),60);
++---------------------+
+| subdate(now(),60)   |
++---------------------+
+| 2026-08-20 13:03:41 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff("2026-01-01",now());
++------------------------------+
+| datediff("2026-01-01",now()) |
++------------------------------+
+|                         -291 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff("2005-12-4",now());
++-----------------------------+
+| datediff("2005-12-4",now()) |
++-----------------------------+
+|                       -7624 |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff("1869-10-02",now());
++------------------------------+
+| datediff("1869-10-02",now()) |
++------------------------------+
+|                       -57360 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select to_days("2025-10-25");
++-----------------------+
+| to_days("2025-10-25") |
++-----------------------+
+|                739914 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select to_days(now());
++----------------+
+| to_days(now()) |
++----------------+
+|         740273 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select to_days("2027-10-19");
++-----------------------+
+| to_days("2027-10-19") |
++-----------------------+
+|                740638 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_days(739914)
+    -> ;
++-------------------+
+| from_days(739914) |
++-------------------+
+| 2025-10-25        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_days(740638);
++-------------------+
+| from_days(740638) |
++-------------------+
+| 2027-10-19        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_days(740273);
++-------------------+
+| from_days(740273) |
++-------------------+
+| 2026-10-19        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(now());
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'period_add'
+mysql> select period_add(202619);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'period_add'
+mysql> select period_add(201910);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'period_add'
+mysql> select period_add(201910,10);
++-----------------------+
+| period_add(201910,10) |
++-----------------------+
+|                202008 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(now(),10);
+ERROR 1210 (HY000): Incorrect arguments to period_add
+mysql> select period_add(201902,10);
++-----------------------+
+| period_add(201902,10) |
++-----------------------+
+|                201912 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(202610,10);
++-----------------------+
+| period_add(202610,10) |
++-----------------------+
+|                202708 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(202610,10);
++-----------------------+
+| period_add(202610,10) |
++-----------------------+
+|                202708 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 13:21:45 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 13:28:02 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d,%M,%Y");
++------------------------------------+
+| date_format(sysdate(), "%d,%M,%Y") |
++------------------------------------+
+| 19,October,2026                    |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d-%M-%Y");
++------------------------------------+
+| date_format(sysdate(), "%d-%M-%Y") |
++------------------------------------+
+| 19-October-2026                    |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d-%M-%Y %H:%i:%s");
++---------------------------------------------+
+| date_format(sysdate(), "%d-%M-%Y %H:%i:%s") |
++---------------------------------------------+
+| 19-October-2026 13:29:20                    |
++---------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d-%M-%Y %H:%i:%s %p");
++------------------------------------------------+
+| date_format(sysdate(), "%d-%M-%Y %H:%i:%s %p") |
++------------------------------------------------+
+| 19-October-2026 13:29:26 PM                    |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format("2026-10-10 10:10:25", "%d-%M-%Y %H:%i:%s %p");
++------------------------------------------------------------+
+| date_format("2026-10-10 10:10:25", "%d-%M-%Y %H:%i:%s %p") |
++------------------------------------------------------------+
+| 10-October-2026 10:10:25 AM                                |
++------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select str_to_date("2029-10-26","%d-%m-%y");
++--------------------------------------+
+| str_to_date("2029-10-26","%d-%m-%y") |
++--------------------------------------+
+| NULL                                 |
++--------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026","%d-%m-%y");
++--------------------------------------+
+| str_to_date("26-10-2026","%d-%m-%y") |
++--------------------------------------+
+| 2020-10-26                           |
++--------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026","%d-%m-%y %H:%i:%s");
++-----------------------------------------------+
+| str_to_date("26-10-2026","%d-%m-%y %H:%i:%s") |
++-----------------------------------------------+
+| NULL                                          |
++-----------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 09:34:21","%d-%m-%Y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 09:34:21","%d-%m-%Y %H:%i:%s") |
++--------------------------------------------------------+
+| 2026-10-26 09:34:21                                    |
++--------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-26 09:34:21","%d-%m-%y %H:%i:%s");
++------------------------------------------------------+
+| str_to_date("26-10-26 09:34:21","%d-%m-%y %H:%i:%s") |
++------------------------------------------------------+
+| 2026-10-26 09:34:21                                  |
++------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+-------------------------------------------------------------------------------------------------
+
+Microsoft Windows [Version 10.0.26300.9711]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\User>cd..
+
+C:\Users>cd..
+
+C:\>cd "Program Files"
+
+C:\Program Files>cd MySQL
+
+C:\Program Files\MySQL>cd "MySQL Server 8.0"
+
+C:\Program Files\MySQL\MySQL Server 8.0>cd bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2026-10-19 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select currentdate();
+ERROR 1046 (3D000): No database selected
+mysql> select current_date();
++----------------+
+| current_date() |
++----------------+
+| 2026-10-19     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 12:31:20 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 12:31:26 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 12:31:28 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2026-10-19 12:31:40 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select lastday(now());
+ERROR 1046 (3D000): No database selected
+mysql> select lastday(sysdate());
+ERROR 1046 (3D000): No database selected
+mysql> select last_day(now());
++-----------------+
+| last_day(now()) |
++-----------------+
+| 2026-10-31      |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select last_day(now());
++-----------------+
+| last_day(now()) |
++-----------------+
+| 2026-10-31      |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select day(now());
++------------+
+| day(now()) |
++------------+
+|         19 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select dayname(now());
++----------------+
+| dayname(now()) |
++----------------+
+| Monday         |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofmonth(now());
++-------------------+
+| dayofmonth(now()) |
++-------------------+
+|                19 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofweek(now());
++------------------+
+| dayofweek(now()) |
++------------------+
+|                2 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofyear(now());
++------------------+
+| dayofyear(now()) |
++------------------+
+|              292 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select week(now());
++-------------+
+| week(now()) |
++-------------+
+|          42 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday(now());
++----------------+
+| weekday(now()) |
++----------------+
+|              0 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-20");
++-----------------------+
+| weekday("2026-10-20") |
++-----------------------+
+|                     1 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-21");
++-----------------------+
+| weekday("2026-10-21") |
++-----------------------+
+|                     2 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-25");
++-----------------------+
+| weekday("2026-10-25") |
++-----------------------+
+|                     6 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday("2026-10-26");
++-----------------------+
+| weekday("2026-10-26") |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekofyear(now());
++-------------------+
+| weekofyear(now()) |
++-------------------+
+|                43 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select year(now());
++-------------+
+| year(now()) |
++-------------+
+|        2026 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select yearweek(now());
++-----------------+
+| yearweek(now()) |
++-----------------+
+|          202642 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(year from now());
++--------------------------+
+| extract(year from now()) |
++--------------------------+
+|                     2026 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(month from now());
++---------------------------+
+| extract(month from now()) |
++---------------------------+
+|                        10 |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(week from now());
++--------------------------+
+| extract(week from now()) |
++--------------------------+
+|                       42 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(day from now());
++-------------------------+
+| extract(day from now()) |
++-------------------------+
+|                      19 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(dayname from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dayname from now())' at line 1
+mysql> select extract(weekofyear from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'weekofyear from now())' at line 1
+mysql> select extract(weekofyear from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'weekofyear from now())' at line 1
+mysql> select extract(dayofmonth from now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dayofmonth from now())' at line 1
+mysql> select date_add("2025-10-19",interval 20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date_add("2025-10-19",interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date_add('2025-10-19',interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select day(now());
++------------+
+| day(now()) |
++------------+
+|         19 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(),interval 10 day);
++---------------------------------+
+| date_add(now(),interval 10 day) |
++---------------------------------+
+| 2026-10-29 12:51:09             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add('2025-10-19',interval 10 day);
++----------------------------------------+
+| date_add('2025-10-19',interval 10 day) |
++----------------------------------------+
+| 2025-10-29                             |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(),interval 2 month);
++----------------------------------+
+| date_add(now(),interval 2 month) |
++----------------------------------+
+| 2026-12-19 12:51:45              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 2 month);
++---------------------------------+
+| adddate(now(),interval 2 month) |
++---------------------------------+
+| 2026-12-19 12:52:07             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select adddate(now(),10);
++---------------------+
+| adddate(now(),10)   |
++---------------------+
+| 2026-10-29 12:52:28 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(), interval 3 month);
++-----------------------------------+
+| date_add(now(), interval 3 month) |
++-----------------------------------+
+| 2027-01-19 12:53:23               |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),10);
++---------------------+
+| adddate(now(),10)   |
++---------------------+
+| 2026-10-29 12:53:39 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),90);
++---------------------+
+| adddate(now(),90)   |
++---------------------+
+| 2027-01-17 12:53:52 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 3 month);
++---------------------------------+
+| adddate(now(),interval 3 month) |
++---------------------------------+
+| 2027-01-19 12:54:47             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),interval 1 week);
++--------------------------------+
+| adddate(now(),interval 1 week) |
++--------------------------------+
+| 2026-10-26 12:54:59            |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select adddate(now(),7);
++---------------------+
+| adddate(now(),7)    |
++---------------------+
+| 2026-10-26 12:55:22 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select makedate(2026,100);
++--------------------+
+| makedate(2026,100) |
++--------------------+
+| 2026-04-10         |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select makedate(2026,292);
++--------------------+
+| makedate(2026,292) |
++--------------------+
+| 2026-10-19         |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 10 day);
++----------------------------------+
+| date_sub(now(), interval 10 day) |
++----------------------------------+
+| 2026-10-09 13:01:04              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 2 month);
++-----------------------------------+
+| date_sub(now(), interval 2 month) |
++-----------------------------------+
+| 2026-08-19 13:01:20               |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select date_sub(now(), interval 2 month);
++-----------------------------------+
+| date_sub(now(), interval 2 month) |
++-----------------------------------+
+| 2026-08-19 13:01:52               |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(), interval 10 month);
++------------------------------------+
+| date_sub(now(), interval 10 month) |
++------------------------------------+
+| 2025-12-19 13:02:01                |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select subdate(now(),60);
++---------------------+
+| subdate(now(),60)   |
++---------------------+
+| 2026-08-20 13:02:49 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select subdate(now(),60);
++---------------------+
+| subdate(now(),60)   |
++---------------------+
+| 2026-08-20 13:03:41 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff("2026-01-01",now());
++------------------------------+
+| datediff("2026-01-01",now()) |
++------------------------------+
+|                         -291 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff("2005-12-4",now());
++-----------------------------+
+| datediff("2005-12-4",now()) |
++-----------------------------+
+|                       -7624 |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff("1869-10-02",now());
++------------------------------+
+| datediff("1869-10-02",now()) |
++------------------------------+
+|                       -57360 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select to_days("2025-10-25");
++-----------------------+
+| to_days("2025-10-25") |
++-----------------------+
+|                739914 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select to_days(now());
++----------------+
+| to_days(now()) |
++----------------+
+|         740273 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select to_days("2027-10-19");
++-----------------------+
+| to_days("2027-10-19") |
++-----------------------+
+|                740638 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_days(739914)
+    -> ;
++-------------------+
+| from_days(739914) |
++-------------------+
+| 2025-10-25        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_days(740638);
++-------------------+
+| from_days(740638) |
++-------------------+
+| 2027-10-19        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_days(740273);
++-------------------+
+| from_days(740273) |
++-------------------+
+| 2026-10-19        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(now());
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'period_add'
+mysql> select period_add(202619);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'period_add'
+mysql> select period_add(201910);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'period_add'
+mysql> select period_add(201910,10);
++-----------------------+
+| period_add(201910,10) |
++-----------------------+
+|                202008 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(now(),10);
+ERROR 1210 (HY000): Incorrect arguments to period_add
+mysql> select period_add(201902,10);
++-----------------------+
+| period_add(201902,10) |
++-----------------------+
+|                201912 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(202610,10);
++-----------------------+
+| period_add(202610,10) |
++-----------------------+
+|                202708 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(202610,10);
++-----------------------+
+| period_add(202610,10) |
++-----------------------+
+|                202708 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 13:21:45 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2026-10-19 13:28:02 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d,%M,%Y");
++------------------------------------+
+| date_format(sysdate(), "%d,%M,%Y") |
++------------------------------------+
+| 19,October,2026                    |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d-%M-%Y");
++------------------------------------+
+| date_format(sysdate(), "%d-%M-%Y") |
++------------------------------------+
+| 19-October-2026                    |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d-%M-%Y %H:%i:%s");
++---------------------------------------------+
+| date_format(sysdate(), "%d-%M-%Y %H:%i:%s") |
++---------------------------------------------+
+| 19-October-2026 13:29:20                    |
++---------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(sysdate(), "%d-%M-%Y %H:%i:%s %p");
++------------------------------------------------+
+| date_format(sysdate(), "%d-%M-%Y %H:%i:%s %p") |
++------------------------------------------------+
+| 19-October-2026 13:29:26 PM                    |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format("2026-10-10 10:10:25", "%d-%M-%Y %H:%i:%s %p");
++------------------------------------------------------------+
+| date_format("2026-10-10 10:10:25", "%d-%M-%Y %H:%i:%s %p") |
++------------------------------------------------------------+
+| 10-October-2026 10:10:25 AM                                |
++------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select str_to_date("2029-10-26","%d-%m-%y");
++--------------------------------------+
+| str_to_date("2029-10-26","%d-%m-%y") |
++--------------------------------------+
+| NULL                                 |
++--------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026","%d-%m-%y");
++--------------------------------------+
+| str_to_date("26-10-2026","%d-%m-%y") |
++--------------------------------------+
+| 2020-10-26                           |
++--------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026","%d-%m-%y %H:%i:%s");
++-----------------------------------------------+
+| str_to_date("26-10-2026","%d-%m-%y %H:%i:%s") |
++-----------------------------------------------+
+| NULL                                          |
++-----------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 10:10:10","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 09:34:21","%d-%m-%Y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 09:34:21","%d-%m-%Y %H:%i:%s") |
++--------------------------------------------------------+
+| 2026-10-26 09:34:21                                    |
++--------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s");
++--------------------------------------------------------+
+| str_to_date("26-10-2026 09:34:21","%d-%m-%y %H:%i:%s") |
++--------------------------------------------------------+
+| NULL                                                   |
++--------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select str_to_date("26-10-26 09:34:21","%d-%m-%y %H:%i:%s");
++------------------------------------------------------+
+| str_to_date("26-10-26 09:34:21","%d-%m-%y %H:%i:%s") |
++------------------------------------------------------+
+| 2026-10-26 09:34:21                                  |
++------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+-------------------------------------------------------------------------------------------
+
+
+>> MYSQL ALTER Command
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
