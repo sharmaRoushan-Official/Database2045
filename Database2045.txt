@@ -5613,6 +5613,432 @@ mysql>
 
 >> MYSQL ALTER Command
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
+The Alter Table command is a DDL[Data Definition language] command use to modify the structure of an existing table without create a complete new table.
+
+We use Alter Table when we want to add a column, change their data type, rename a column, change column position, add constraints, delete column, or rename table
+---------------------------------------------------------------------------------------------------------
+mysql> create table studentsAlter(
+    -> name varchar(50),
+    -> age int,
+    -> dob DATE
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_newdb |
++-----------------+
+| article         |
+| citydata        |
+| department      |
+| employee        |
+| locations       |
+| studentdata     |
+| studentdata2    |
+| students        |
+| studentsalter   |
+| studentview     |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> describe studentsalter;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| dob   | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into studentsalter(name,age, dob)
+    -> values
+    -> ("Ram Kumar",19,"1998-02-10"),
+    -> ("Salman Khan",17,"1999-07-22"),
+    -> ("Meera Khan",19,"1978-05-11"),
+    -> ("Sarita",21,"1996-10-15"),
+    -> ("Anmit",20,"1997-03-12")
+    -> ;
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentsalter;
++-------------+------+------------+
+| name        | age  | dob        |
++-------------+------+------------+
+| Ram Kumar   |   19 | 1998-02-10 |
+| Salman Khan |   17 | 1999-07-22 |
+| Meera Khan  |   19 | 1978-05-11 |
+| Sarita      |   21 | 1996-10-15 |
+| Anmit       |   20 | 1997-03-12 |
++-------------+------+------------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+
+2. Add a new column - ADD
+-----------------------------------------------------------------
+
+syntax:
+----------
+ALTER TABLE table_name
+ADD COLUMN column_name datatype;
+----------------------------------------------------------------------
+
+mysql> update studentsalter
+    -> set gender = CASE
+    -> WHEN name IN ("Ram Kumar","Salman Khan","Anmit") Then "Male"
+    -> else "Female"
+    -> end;
+Query OK, 5 rows affected (0.00 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from studentsalter;
++-------------+------+------------+--------+
+| name        | age  | dob        | gender |
++-------------+------+------------+--------+
+| Ram Kumar   |   19 | 1998-02-10 | Male   |
+| Salman Khan |   17 | 1999-07-22 | Male   |
+| Meera Khan  |   19 | 1978-05-11 | Female |
+| Sarita      |   21 | 1996-10-15 | Female |
+| Anmit       |   20 | 1997-03-12 | Male   |
++-------------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------
+
+3. Change an existing column's datatype ---> MODIFY
+---------------------------------------------------------------
+
+ALTER TABLE TABLE_NAME
+MODIFY COLUMN COLUMN_NAME NEW_DATATYPE;
+---------------------------------------------------------------------------------
+
+mysql> DESCRIBE STUDENTSALTER;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(50) | YES  |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| dob    | date        | YES  |     | NULL    |       |
+| gender | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE STUDENTSALTER
+    -> MODIFY COLUMN AGE SMALLINT;
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE STUDENTSALTER;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(50) | YES  |     | NULL    |       |
+| AGE    | smallint    | YES  |     | NULL    |       |
+| dob    | date        | YES  |     | NULL    |       |
+| gender | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STUDENTSALTER;
++-------------+------+------------+--------+
+| name        | AGE  | dob        | gender |
++-------------+------+------------+--------+
+| Ram Kumar   |   19 | 1998-02-10 | Male   |
+| Salman Khan |   17 | 1999-07-22 | Male   |
+| Meera Khan  |   19 | 1978-05-11 | Female |
+| Sarita      |   21 | 1996-10-15 | Female |
+| Anmit       |   20 | 1997-03-12 | Male   |
++-------------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+
+NOTE:
+
+MODIFY CHANGES A COLUMN'S DEFINTIION BUT DOES NOT RENAME THE COLUMN.
+-------------------------------------------------------------------------------------------------------------------------------
+
+4. CHANGE A COLUM'S NAME --> RENAME
+
+SYNTAX:
+
+ALTER TABLE TABLE_NAME
+RENAME COLUMN COLUMN_NAME TO NEW_DATE;
+------------------------------------------------------------------------------------------------------------------
+
+mysql> ALTER TABLE STUDENTSALTER
+    -> RENAME COLUMN NAME TO STUDENT_NAME;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENTSALTER;
++--------------+------+------------+--------+
+| STUDENT_NAME | AGE  | dob        | gender |
++--------------+------+------------+--------+
+| Ram Kumar    |   19 | 1998-02-10 | Male   |
+| Salman Khan  |   17 | 1999-07-22 | Male   |
+| Meera Khan   |   19 | 1978-05-11 | Female |
+| Sarita       |   21 | 1996-10-15 | Female |
+| Anmit        |   20 | 1997-03-12 | Male   |
++--------------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+NOTE:
+
+MSYQL ALSO SUPPORTS RENAMING A COLUMN WITH CHANGE.
+
+SYNTAX
+
+ALTER TABLE TABLE_NAME
+CHANGE COLUMN OLD_NAME NEW_NAME DATATYPE;
+
+
+mysql> ALTER TABLE STUDENTSALTER
+    -> CHANGE COLUMN AGE STUDENT_AGE INT;
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENTSALTER;
++--------------+-------------+------------+--------+
+| STUDENT_NAME | STUDENT_AGE | dob        | gender |
++--------------+-------------+------------+--------+
+| Ram Kumar    |          19 | 1998-02-10 | Male   |
+| Salman Khan  |          17 | 1999-07-22 | Male   |
+| Meera Khan   |          19 | 1978-05-11 | Female |
+| Sarita       |          21 | 1996-10-15 | Female |
+| Anmit        |          20 | 1997-03-12 | Male   |
++--------------+-------------+------------+--------+
+5 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------
+
+IMPORTANT POINTS:
+-----------------------------------
+ADD ➺ ADD COLUMN IN TABLE
+MODIFY ➺ CHANGE COLUMN DEFINITION
+RENAME ➺ CHANGE ONLY COLUMN NAME
+CHANGE ➺ REANAME AND OPTIONALLY CHANGE THE DEFINITION
+--------------------------------------------------------------------------------------------------------------
+
+5. CHANTGE COLUMN POSITITION ➺ FIRST AND AFTER
+---------------------------------------------------------------------------------
+
+|NAME|AGE|DOB|GENDER  -> OLD
+---------------------------------
+|NAME|DOB|AGE|GENDER -> NEW 
+----------------------------------------------------
+
+
+SYNTAX:
+
+ALTER TABLE TABLE_NAME
+MODIFY COLUMN DOB DATE AFTER NAME;
+----------------------------------------------------------------------------
+
+
+mysql> ALTER TABLE STUDENTSALTER
+    -> MODIFY COLUMN DOB DATE AFTER STUDENT_NAME;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENTSALTER;
++--------------+------------+-------------+--------+
+| STUDENT_NAME | DOB        | STUDENT_AGE | gender |
++--------------+------------+-------------+--------+
+| Ram Kumar    | 1998-02-10 |          19 | Male   |
+| Salman Khan  | 1999-07-22 |          17 | Male   |
+| Meera Khan   | 1978-05-11 |          19 | Female |
+| Sarita       | 1996-10-15 |          21 | Female |
+| Anmit        | 1997-03-12 |          20 | Male   |
++--------------+------------+-------------+--------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> alter table studentsalter
+    -> modify column student_id int first;
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentsalter;
++------------+--------------+------------+-------------+--------+
+| student_id | STUDENT_NAME | DOB        | STUDENT_AGE | GENDER |
++------------+--------------+------------+-------------+--------+
+|          1 | Ram Kumar    | 1998-02-10 |          19 | Male   |
+|          2 | Salman Khan  | 1999-07-22 |          17 | Male   |
+|          3 | Meera Khan   | 1978-05-11 |          19 | Female |
+|          4 | Sarita       | 1996-10-15 |          21 | Female |
+|          5 | Anmit        | 1997-03-12 |          20 | Male   |
++------------+--------------+------------+-------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> describe studentsalter;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| student_id   | int         | NO   | PRI | NULL    |       |
+| STUDENT_NAME | varchar(50) | YES  |     | NULL    |       |
+| DOB          | date        | YES  |     | NULL    |       |
+| STUDENT_AGE  | int         | YES  |     | NULL    |       |
+| GENDER       | varchar(10) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------------------------------
+
+>> 6. ADD A CONSTRAINT
+------------------------------------------------
+
+MAKE GENDER COLUMN MANDATORY. [NOT NULL]
+----------------------------------------------------
+SYNTAX
+
+ALTER TABLE TABLENAME
+MODIFY COLUMN GENDER VARCHAR(10) NOT NULL;
+---------------------------------------------------------------------------------
+
+mysql> ALTER TABLE STUDENTSALTER
+    -> MODIFY COLUMN GENDER VARCHAR(10) NOT NULL;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE STUDENTSALTER;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| STUDENT_NAME | varchar(50) | YES  |     | NULL    |       |
+| DOB          | date        | YES  |     | NULL    |       |
+| STUDENT_AGE  | int         | YES  |     | NULL    |       |
+| GENDER       | varchar(10) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
+>> 7. Delete a column ➺ DROP COLUMN
+--------------------------------------------------------------------------------------
+syntax:
+-----------
+alter table table_name
+drop column column_name;
+--------------------------------------------------
+mysql> alter table studentsalter
+    -> drop column dob;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentsalter;
++------------+--------------+-------------+--------+
+| student_id | STUDENT_NAME | STUDENT_AGE | GENDER |
++------------+--------------+-------------+--------+
+|          1 | Ram Kumar    |          19 | Male   |
+|          2 | Salman Khan  |          17 | Male   |
+|          3 | Meera Khan   |          19 | Female |
+|          4 | Sarita       |          21 | Female |
+|          5 | Anmit        |          20 | Male   |
++------------+--------------+-------------+--------+
+5 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------------
+
+>> 8. Rename a table ➺ RENAME TABLE
+------------------------------------------------------------------
+Syntax:
+
+change the name of existing table name.
+------------------------------------------------------
+
+RENAME TABLE old_table_name to new_table_name;
+----------------------------------------------------------------------------------
+
+
+mysql> show tables;
++-----------------+
+| Tables_in_newdb |
++-----------------+
+| article         |
+| citydata        |
+| department      |
+| employee        |
+| locations       |
+| studentdata     |
+| studentdata2    |
+| students        |
+| studentsalter   |
+| studentview     |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> rename table studentsalter to student_info;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_newdb |
++-----------------+
+| article         |
+| citydata        |
+| department      |
+| employee        |
+| locations       |
+| student_info    |
+| studentdata     |
+| studentdata2    |
+| students        |
+| studentview     |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student_info;
++------------+--------------+-------------+--------+
+| student_id | STUDENT_NAME | STUDENT_AGE | GENDER |
++------------+--------------+-------------+--------+
+|          1 | Ram Kumar    |          19 | Male   |
+|          2 | Salman Khan  |          17 | Male   |
+|          3 | Meera Khan   |          19 | Female |
+|          4 | Sarita       |          21 | Female |
+|          5 | Anmit        |          20 | Male   |
++------------+--------------+-------------+--------+
+5 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------
+
+>> 9. ADD MULTIPLE COLUMNS
+-----------------------------------------------
+
+mysql> ALTER TABLE STUDENT_INFO
+    -> ADD COLUMN EMAIL VARCHAR(50),
+    -> ADD COLUMN CITY VARCHAR(50);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENT_INFO;
++------------+--------------+-------------+--------+-------+------+
+| student_id | STUDENT_NAME | STUDENT_AGE | GENDER | EMAIL | CITY |
++------------+--------------+-------------+--------+-------+------+
+|          1 | Ram Kumar    |          19 | Male   | NULL  | NULL |
+|          2 | Salman Khan  |          17 | Male   | NULL  | NULL |
+|          3 | Meera Khan   |          19 | Female | NULL  | NULL |
+|          4 | Sarita       |          21 | Female | NULL  | NULL |
+|          5 | Anmit        |          20 | Male   | NULL  | NULL |
++------------+--------------+-------------+--------+-------+------+
+5 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+10. REVISION
+-------------------
+
+
+
+MYSQL CREATE VIEW
+-------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 
