@@ -1,0 +1,1917 @@
+-----------------------------------------------------------------------------------
+### REGEXP:
+------------------------------------------------------------------------------------
+1. Find employees whose name starts with 'A'.
+----> mysql> select * from students
+    -> where name  regexp "^A";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+2. Find employees whose name starts with 'R'.-
+----> mysql> select * from students
+    -> where name  regexp "^R";
++----+-------+-----+--------+--------+
+| id | name  | age | gender | city   |
++----+-------+-----+--------+--------+
+|  5 | Rahul |  20 | Male   | Delhi  |
+|  9 | Rohit |  23 | Male   | Pune   |
+| 18 | Riya  |  22 | Female | Mumbai |
++----+-------+-----+--------+--------+
+3 rows in set (0.00 sec)
+
+3. Find employees whose name ends with 'n'.
+----> mysql> select * from students
+    -> where name  regexp "n$";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+2 rows in set (0.00 sec)
+
+4. Find employees whose name ends with 'a'.
+---> mysql> select * from students
+    -> where name  regexp "a$";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+5. Find employees whose name contains 'ra'.
+----> mysql> select * from students
+    -> where name  regexp "[ra]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+
+6. Find employees whose name contains 'an'.
+----> mysql> select * from students
+    -> where name  regexp "[an]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+
+7. Find employees whose name starts with either 'A' or 'R'.
+----> mysql> select * from students
+    -> where name  regexp "^[AR]"
+    -> ;
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+|  7 | Amit   |  22 | Male   | Patna     |
+|  9 | Rohit  |  23 | Male   | Pune      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 18 | Riya   |  22 | Female | Mumbai    |
++----+--------+-----+--------+-----------+
+6 rows in set (0.00 sec)
+
+8. Find employees whose name starts with either 'S' or 'M'.
+----> mysql> select * from students
+    -> where name  regexp "^[SM]";
++----+---------+-----+--------+--------+
+| id | name    | age | gender | city   |
++----+---------+-----+--------+--------+
+| 13 | Sandeep |  22 | Male   | Ranchi |
+| 14 | Sneha   |  19 | Female | Agra   |
+| 15 | Manish  |  25 | Male   | Delhi  |
+| 22 | Swati   |  20 | Female | Jaipur |
++----+---------+-----+--------+--------+
+4 rows in set (0.00 sec)
+
+9. Find employees whose name ends with either 'a' or 'i'.
+---> mysql> select * from students
+    -> where name  regexp "[ai]$";
++----+--------------+-----+--------+---------+
+| id | name         | age | gender | city    |
++----+--------------+-----+--------+---------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur |
+|  6 | Priya        |  21 | Female | Mumbai  |
+|  8 | Neha         |  19 | Female | Gaya    |
+| 10 | Anjali       |  20 | Female | Jaipur  |
+| 12 | Pooja        |  21 | Female | Kolkata |
+| 14 | Sneha        |  19 | Female | Agra    |
+| 16 | Kavita       |  23 | Female | Patna   |
+| 18 | Riya         |  22 | Female | Mumbai  |
+| 20 | Nisha        |  24 | Female | Pune    |
+| 22 | Swati        |  20 | Female | Jaipur  |
++----+--------------+-----+--------+---------+
+10 rows in set (0.00 sec)
+
+10. Find employees whose name starts with a vowel.
+---> mysql> select * from students
+    -> where name  regexp "^[AEIOU]";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+11. Find employees whose name ends with a vowel.
+---> mysql> select * from students
+    -> where name  regexp "[aeiou]$";
++----+--------------+-----+--------+----------+
+| id | name         | age | gender | city     |
++----+--------------+-----+--------+----------+
+|  2 | Gauri Gonte  |  99 | Female | Karntaka |
+|  3 | Vikas Sonadi |  10 | male   | Manipur  |
+|  6 | Priya        |  21 | Female | Mumbai   |
+|  8 | Neha         |  19 | Female | Gaya     |
+| 10 | Anjali       |  20 | Female | Jaipur   |
+| 12 | Pooja        |  21 | Female | Kolkata  |
+| 14 | Sneha        |  19 | Female | Agra     |
+| 16 | Kavita       |  23 | Female | Patna    |
+| 18 | Riya         |  22 | Female | Mumbai   |
+| 20 | Nisha        |  24 | Female | Pune     |
+| 22 | Swati        |  20 | Female | Jaipur   |
++----+--------------+-----+--------+----------+
+11 rows in set (0.00 sec)
+
+12. Find employees whose name contains any vowel.
+----> mysql> select * from students
+    -> where name  regexp "[aeiou]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+13. Find employees whose name starts with a letter from A to M.
+---> mysql> select * from students
+    -> where name  regexp "^[A-M]";
++----+-------------+-----+--------+-----------+
+| id | name        | age | gender | city      |
++----+-------------+-----+--------+-----------+
+|  2 | Gauri Gonte |  99 | Female | Karntaka  |
+|  7 | Amit        |  22 | Male   | Patna     |
+| 10 | Anjali      |  20 | Female | Jaipur    |
+| 15 | Manish      |  25 | Male   | Delhi     |
+| 16 | Kavita      |  23 | Female | Patna     |
+| 17 | Arjun       |  20 | Male   | Bengaluru |
+| 19 | Karan       |  21 | Male   | Chennai   |
+| 21 | Deepak      |  26 | Male   | Gaya      |
+| 24 | Komal       |  21 | Female | Agra      |
++----+-------------+-----+--------+-----------+
+9 rows in set (0.00 sec)
+
+
+14. Find employees whose name starts with a letter from N to Z.
+---> mysql> select * from students
+    -> where name regexp "^[N-Z]";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  4 | Punam Shirsath |   2 | Female | AGRA    |
+|  5 | Rahul          |  20 | Male   | Delhi   |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  8 | Neha           |  19 | Female | Gaya    |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 11 | Vikas          |  24 | Male   | Lucknow |
+| 12 | Pooja          |  21 | Female | Kolkata |
+| 13 | Sandeep        |  22 | Male   | Ranchi  |
+| 14 | Sneha          |  19 | Female | Agra    |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
+| 22 | Swati          |  20 | Female | Jaipur  |
+| 23 | Vivek          |  23 | Male   | Noida   |
++----+----------------+-----+--------+---------+
+15 rows in set (0.00 sec)
+
+15. Find employees whose name contains the letter 'a' or 'e'.
+----> mysql> select * from students
+    -> where name regexp "[ae]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+
+16. Find employees whose name contains either 'ra' or 'ri'.
+----> mysql> select * from students
+    -> where name regexp "[|ra|ri|]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+17. Find employees whose name starts with 'A' and ends with 'a'.
+----> mysql> select * from students
+    -> where name regexp "^A|a$";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  6 | Priya  |  21 | Female | Mumbai    |
+|  7 | Amit   |  22 | Male   | Patna     |
+|  8 | Neha   |  19 | Female | Gaya      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 12 | Pooja  |  21 | Female | Kolkata   |
+| 14 | Sneha  |  19 | Female | Agra      |
+| 16 | Kavita |  23 | Female | Patna     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 18 | Riya   |  22 | Female | Mumbai    |
+| 20 | Nisha  |  24 | Female | Pune      |
++----+--------+-----+--------+-----------+
+10 rows in set (0.00 sec)
+
+
+18. Find employees whose name starts with 'R' and ends with 'n'.
+----> mysql> select * from students
+    -> where name regexp "^R|n$";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+|  5 | Rahul |  20 | Male   | Delhi     |
+|  9 | Rohit |  23 | Male   | Pune      |
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 18 | Riya  |  22 | Female | Mumbai    |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+
+19. Find employees whose name starts with 'S' or ends with 'n'.
+----> mysql> select * from students
+    -> where name regexp "^S|n$";
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 14 | Sneha   |  19 | Female | Agra      |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
++----+---------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+20. Find employees whose name contains 'a' and ends with 'n'.
+-----> mysql> select * from students
+    -> where name regexp "[a]n$";
++----+-------+-----+--------+---------+
+| id | name  | age | gender | city    |
++----+-------+-----+--------+---------+
+| 19 | Karan |  21 | Male   | Chennai |
++----+-------+-----+--------+---------+
+1 row in set (0.00 sec)s
+
+21. Find employees whose city starts with 'P'.
+----> mysql> select * from students
+    -> where city regexp "^p";
++----+--------+-----+--------+-------+
+| id | name   | age | gender | city  |
++----+--------+-----+--------+-------+
+|  7 | Amit   |  22 | Male   | Patna |
+|  9 | Rohit  |  23 | Male   | Pune  |
+| 16 | Kavita |  23 | Female | Patna |
+| 20 | Nisha  |  24 | Female | Pune  |
++----+--------+-----+--------+-------+
+4 rows in set (0.01 sec)
+
+23. Find employees whose city ends with 'a'.
+----> mysql> select * from students
+    -> where city regexp "a$";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  4 | Punam Shirsath |   2 | Female | AGRA     |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+10 rows in set (0.00 sec)
+
+22. Find employees whose city starts with 'M'.
+-----> mysql> select * from students
+    -> where city regexp "^M";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+| 18 | Riya           |  22 | Female | Mumbai  |
++----+----------------+-----+--------+---------+
+4 rows in set (0.00 sec)
+
+24. Find employees whose city ends with 'i'.
+-----> mysql> select * from students
+    -> where city regexp "i$";
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+|  5 | Rahul   |  20 | Male   | Delhi   |
+|  6 | Priya   |  21 | Female | Mumbai  |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 15 | Manish  |  25 | Male   | Delhi   |
+| 18 | Riya    |  22 | Female | Mumbai  |
+| 19 | Karan   |  21 | Male   | Chennai |
++----+---------+-----+--------+---------+
+6 rows in set (0.00 sec)
+
+25. Find employees whose city contains the letter 'a'.
+-----> mysql> select * from students
+    -> where city regexp "a";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+18 rows in set (0.00 sec)
+
+26. Find employees whose city contains 'pu'.
+----> mysql> select * from students
+    -> where city regexp "pu";
++----+--------------+-----+--------+---------+
+| id | name         | age | gender | city    |
++----+--------------+-----+--------+---------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur |
+|  9 | Rohit        |  23 | Male   | Pune    |
+| 10 | Anjali       |  20 | Female | Jaipur  |
+| 20 | Nisha        |  24 | Female | Pune    |
+| 22 | Swati        |  20 | Female | Jaipur  |
++----+--------------+-----+--------+---------+
+5 rows in set (0.00 sec)
+
+27. Find employees whose city starts with either 'P' or 'M'.
+----> mysql> select * from students
+    -> where city regexp "^[PM]";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  7 | Amit           |  22 | Male   | Patna   |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 16 | Kavita         |  23 | Female | Patna   |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
++----+----------------+-----+--------+---------+
+8 rows in set (0.00 sec)
+
+28. Find employees whose city starts with either 'D' or 'B'.
+-----> mysql> select * from students
+    -> where city regexp "^[DB]";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+| 15 | Manish |  25 | Male   | Delhi     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+29. Find employees whose city ends with either 'a' or 'i'.
+----> mysql> select * from students
+    -> where city regexp "[ai]$";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  4 | Punam Shirsath |   2 | Female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 13 | Sandeep        |  22 | Male   | Ranchi   |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+16 rows in set (0.00 sec)
+
+30. Find employees whose city contains either 'a' or 'e'.
+----> mysql> select * from students
+    -> where city regexp "[ae]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+
+31. Find employees whose gender starts with 'M'.
+----> mysql> select * from students
+    -> where gender regexp "^M";
++----+--------------+-----+--------+-----------+
+| id | name         | age | gender | city      |
++----+--------------+-----+--------+-----------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur   |
+|  5 | Rahul        |  20 | Male   | Delhi     |
+|  7 | Amit         |  22 | Male   | Patna     |
+|  9 | Rohit        |  23 | Male   | Pune      |
+| 11 | Vikas        |  24 | Male   | Lucknow   |
+| 13 | Sandeep      |  22 | Male   | Ranchi    |
+| 15 | Manish       |  25 | Male   | Delhi     |
+| 17 | Arjun        |  20 | Male   | Bengaluru |
+| 19 | Karan        |  21 | Male   | Chennai   |
+| 21 | Deepak       |  26 | Male   | Gaya      |
+| 23 | Vivek        |  23 | Male   | Noida     |
++----+--------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+32. Find employees whose gender starts with 'F'.
+-----> mysql> select * from students
+    -> where gender regexp "^F";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore   |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  4 | Punam Shirsath |   2 | Female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+13 rows in set (0.00 sec)
+
+33. Find employees whose gender is either 'Male' or 'Female' using REGEXP.
+----> mysql> select * from students
+    -> where gender regexp "^(Male|Female)$";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+34. Find employees whose gender starts with either 'M' or 'F'.
+----> mysql> select * from students
+    -> where gender regexp "^[MF]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+35. Find employees whose gender ends with 'e'.
+----> mysql> select * from students
+    -> where gender regexp "e$";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+36. Find employees whose age starts with '2'.
+-----> mysql> select * from students
+    -> where age regexp "^2";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.00 sec)
+
+37. Find employees whose age starts with '3'.
+-----> mysql> select * from students
+    -> where age regexp "^3";
+Empty set (0.00 sec)
+
+38. Find employees whose age starts with either '2' or '3'.
+----> mysql> select * from students
+    -> where age regexp "^[23]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.00 sec)
+
+39. Find employees whose age ends with '0'.
+----> mysql> select * from students
+    -> where age regexp "0$";
++----+--------------+-----+--------+-----------+
+| id | name         | age | gender | city      |
++----+--------------+-----+--------+-----------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur   |
+|  5 | Rahul        |  20 | Male   | Delhi     |
+| 10 | Anjali       |  20 | Female | Jaipur    |
+| 17 | Arjun        |  20 | Male   | Bengaluru |
+| 22 | Swati        |  20 | Female | Jaipur    |
++----+--------------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+40. Find employees whose age contains the digit '5'.
+----> mysql> select * from students
+    -> where age regexp "5";
++----+----------------+-----+--------+--------+
+| id | name           | age | gender | city   |
++----+----------------+-----+--------+--------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore |
+| 15 | Manish         |  25 | Male   | Delhi  |
++----+----------------+-----+--------+--------+
+2 rows in set (0.00 sec)
+
+41. Find employees whose age contains any digit from 0 to 4.
+----> mysql> select * from students
+    -> where age regexp "[0-4]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+
+42. Find employees whose age contains any digit from 5 to 9.
+----> mysql> select * from students
+    -> where age regexp "[5-9]";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore   |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
++----+----------------+-----+--------+----------+
+6 rows in set (0.00 sec)
+
+43. Find employees whose name starts with 'A' OR city starts with 'P'.
+----> mysql> select * from students
+    -> where name regexp "^A" or city regexp "^P";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+|  9 | Rohit  |  23 | Male   | Pune      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 16 | Kavita |  23 | Female | Patna     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 20 | Nisha  |  24 | Female | Pune      |
++----+--------+-----+--------+-----------+
+6 rows in set (0.00 sec)
+
+44. Find employees whose name ends with 'n' OR city ends with 'a'.
+-----> mysql> select * from students
+    -> where name regexp "n$" or city regexp "a$";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+12 rows in set (0.00 sec)
+
+45. Find employees whose name starts with a vowel OR city starts with 'M'.
+-----> mysql> select * from students
+    -> where name regexp "^[AEIOUaeiou]" or city regexp "^M";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
++----+----------------+-----+--------+-----------+
+7 rows in set (0.00 sec)
+
+46. Find employees whose name contains 'ra' OR city contains 'pu'.
+----> mysql> select * from students
+    -> where name regexp "ra" or city regexp "pu";
++----+--------------+-----+--------+---------+
+| id | name         | age | gender | city    |
++----+--------------+-----+--------+---------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur |
+|  5 | Rahul        |  20 | Male   | Delhi   |
+|  9 | Rohit        |  23 | Male   | Pune    |
+| 10 | Anjali       |  20 | Female | Jaipur  |
+| 19 | Karan        |  21 | Male   | Chennai |
+| 20 | Nisha        |  24 | Female | Pune    |
+| 22 | Swati        |  20 | Female | Jaipur  |
++----+--------------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+47. Find employees whose name starts with 'R' AND city starts with 'P'.
+----> mysql> select * from students
+    -> where name regexp "^R" or city regexp "^p";
++----+--------+-----+--------+--------+
+| id | name   | age | gender | city   |
++----+--------+-----+--------+--------+
+|  5 | Rahul  |  20 | Male   | Delhi  |
+|  7 | Amit   |  22 | Male   | Patna  |
+|  9 | Rohit  |  23 | Male   | Pune   |
+| 16 | Kavita |  23 | Female | Patna  |
+| 18 | Riya   |  22 | Female | Mumbai |
+| 20 | Nisha  |  24 | Female | Pune   |
++----+--------+-----+--------+--------+
+6 rows in set (0.00 sec)
+
+48. Find employees whose name ends with 'a' AND gender starts with 'F'.
+----> mysql> select * from students
+    -> where name regexp "a$" and gender regexp "^F";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+49. Find employees whose name starts with 'A' AND city starts with either 'P' or 'M'.
+-----> mysql> select * from students
+    -> where name regexp "^A" and city regexp "^[PM]";
++----+------+-----+--------+-------+
+| id | name | age | gender | city  |
++----+------+-----+--------+-------+
+|  7 | Amit |  22 | Male   | Patna |
++----+------+-----+--------+-------+
+1 row in set (0.00 sec)
+
+50. Find employees whose name starts with 'R', contains the letter 'a', and ends with 'n'.
+----> mysql> select * from students
+    -> where name regexp "^R.*a.*n$";
+Empty set (0.00 sec)
+------------------------------------------------------------------------------------
+
+### LIKE Fraction 
+
+## WILD Card:
+------------------------------------------------------------------------------------
+
+1. Find employees whose name starts with 'A'.
+----> mysql> select * from students
+    -> where name like "A%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+2. Find employees whose name starts with 'R'.
+----> mysql> select * from students
+    -> where name like "R%";
++----+-------+-----+--------+--------+
+| id | name  | age | gender | city   |
++----+-------+-----+--------+--------+
+|  5 | Rahul |  20 | Male   | Delhi  |
+|  9 | Rohit |  23 | Male   | Pune   |
+| 18 | Riya  |  22 | Female | Mumbai |
++----+-------+-----+--------+--------+
+3 rows in set (0.00 sec)
+
+3. Find employees whose name ends with 'n'.
+-----> mysql> select * from students
+    -> where name like "%n";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+2 rows in set (0.00 sec)
+
+4. Find employees whose name ends with 'a'.
+-----> mysql> select * from students
+    -> where name like "%a";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+
+5. Find employees whose name contains 'ra'.
+-----> mysql> select * from students
+    -> where name like "%ra%";
++----+-------+-----+--------+---------+
+| id | name  | age | gender | city    |
++----+-------+-----+--------+---------+
+|  5 | Rahul |  20 | Male   | Delhi   |
+| 19 | Karan |  21 | Male   | Chennai |
++----+-------+-----+--------+---------+
+2 rows in set (0.00 sec)
+
+6. Find employees whose name contains 'an'.
+------> mysql> select * from students
+    -> where name like "%an%";
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+| 10 | Anjali  |  20 | Female | Jaipur  |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 15 | Manish  |  25 | Male   | Delhi   |
+| 19 | Karan   |  21 | Male   | Chennai |
++----+---------+-----+--------+---------+
+4 rows in set (0.00 sec)
+
+7. Find employees whose name starts with either 'A' or 'R'.
+------> mysql> select * from students
+    -> where name like "%A" or name like "R%";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  5 | Rahul  |  20 | Male   | Delhi   |
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+|  9 | Rohit  |  23 | Male   | Pune    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+9 rows in set (0.00 sec)
+
+8. Find employees whose name starts with either 'S' or 'M'.
+-----> mysql> select * from students
+    -> where name like "s%" or name like "M%";
++----+---------+-----+--------+--------+
+| id | name    | age | gender | city   |
++----+---------+-----+--------+--------+
+| 13 | Sandeep |  22 | Male   | Ranchi |
+| 14 | Sneha   |  19 | Female | Agra   |
+| 15 | Manish  |  25 | Male   | Delhi  |
+| 22 | Swati   |  20 | Female | Jaipur |
++----+---------+-----+--------+--------+
+4 rows in set (0.00 sec)
+
+
+9. Find employees whose name ends with either 'a' or 'i'.
+----> mysql> select * from students
+    -> where name like "%a" or name like "%i";
++----+--------------+-----+--------+---------+
+| id | name         | age | gender | city    |
++----+--------------+-----+--------+---------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur |
+|  6 | Priya        |  21 | Female | Mumbai  |
+|  8 | Neha         |  19 | Female | Gaya    |
+| 10 | Anjali       |  20 | Female | Jaipur  |
+| 12 | Pooja        |  21 | Female | Kolkata |
+| 14 | Sneha        |  19 | Female | Agra    |
+| 16 | Kavita       |  23 | Female | Patna   |
+| 18 | Riya         |  22 | Female | Mumbai  |
+| 20 | Nisha        |  24 | Female | Pune    |
+| 22 | Swati        |  20 | Female | Jaipur  |
++----+--------------+-----+--------+---------+
+10 rows in set (0.00 sec)
+
+
+10. Find employees whose name starts with a vowel.
+-----> mysql> select * from students
+    -> where name like "A%" or name like "E%" or name like "i%" or name like "o%" or name like "u%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+11. Find employees whose name ends with a vowel.
+------> mysql> select * from students
+    -> where name like "%a" or name like "%i";
++----+--------------+-----+--------+---------+
+| id | name         | age | gender | city    |
++----+--------------+-----+--------+---------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur |
+|  6 | Priya        |  21 | Female | Mumbai  |
+|  8 | Neha         |  19 | Female | Gaya    |
+| 10 | Anjali       |  20 | Female | Jaipur  |
+| 12 | Pooja        |  21 | Female | Kolkata |
+| 14 | Sneha        |  19 | Female | Agra    |
+| 16 | Kavita       |  23 | Female | Patna   |
+| 18 | Riya         |  22 | Female | Mumbai  |
+| 20 | Nisha        |  24 | Female | Pune    |
+| 22 | Swati        |  20 | Female | Jaipur  |
++----+--------------+-----+--------+---------+
+10 rows in set (0.00 sec)
+
+12. Find employees whose name contains any vowel.
+-----> mysql> select * from students
+    -> where name like "%A%" or name like "%E%" or name like "%i%" or name like "%o%" or name like "%u%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+
+13. Find employees whose name starts with a letter from A to M.
+------> mysql> select * from students
+    -> where name like "A%"
+    -> or name like "B%"
+    -> or name like "C%"
+    -> or name like "D%"
+    -> or name like "E%"
+    -> or name like "F%"
+    -> or name like "G%"
+    -> or name like "H%"
+    -> or name like "I%"
+    -> or name like "J%"
+    -> or name like "K%"
+    -> or name like "L%"
+    -> or name like "M%";
++----+-------------+-----+--------+-----------+
+| id | name        | age | gender | city      |
++----+-------------+-----+--------+-----------+
+|  2 | Gauri Gonte |  99 | Female | Karntaka  |
+|  7 | Amit        |  22 | Male   | Patna     |
+| 10 | Anjali      |  20 | Female | Jaipur    |
+| 15 | Manish      |  25 | Male   | Delhi     |
+| 16 | Kavita      |  23 | Female | Patna     |
+| 17 | Arjun       |  20 | Male   | Bengaluru |
+| 19 | Karan       |  21 | Male   | Chennai   |
+| 21 | Deepak      |  26 | Male   | Gaya      |
+| 24 | Komal       |  21 | Female | Agra      |
++----+-------------+-----+--------+-----------+
+9 rows in set (0.00 sec)
+
+14. Find employees whose name starts with a letter from N to Z.
+-----> mysql> select * from students
+    -> where name like "N%"
+    -> or name like "O%"
+    -> or name like "P%"
+    -> or name like "Q%"
+    -> or name like "R%"
+    -> or name like "S%"
+    -> or name like "T%"
+    -> or name like "U%"
+    -> or name like "V%"
+    -> or name like "W%"
+    -> or name like "X%"
+    -> or name like "Y%"
+    -> or name  like "Z%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  4 | Punam Shirsath |   2 | Female | AGRA    |
+|  5 | Rahul          |  20 | Male   | Delhi   |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  8 | Neha           |  19 | Female | Gaya    |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 11 | Vikas          |  24 | Male   | Lucknow |
+| 12 | Pooja          |  21 | Female | Kolkata |
+| 13 | Sandeep        |  22 | Male   | Ranchi  |
+| 14 | Sneha          |  19 | Female | Agra    |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
+| 22 | Swati          |  20 | Female | Jaipur  |
+| 23 | Vivek          |  23 | Male   | Noida   |
++----+----------------+-----+--------+---------+
+15 rows in set (0.00 sec)
+
+15. Find employees whose name contains the letter 'a' or 'e'.
+------> mysql> select * from students
+    -> where name like "N%"
+    -> or name like "O%"
+    -> or name like "P%"
+    -> or name like "Q%"
+    -> or name like "R%"
+    -> or name like "S%"
+    -> or name like "T%"
+    -> or name like "U%"
+    -> or name like "V%"
+    -> or name like "W%"
+    -> or name like "X%"
+    -> or name like "Y%"
+    -> or name  like "Z%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  4 | Punam Shirsath |   2 | Female | AGRA    |
+|  5 | Rahul          |  20 | Male   | Delhi   |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  8 | Neha           |  19 | Female | Gaya    |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 11 | Vikas          |  24 | Male   | Lucknow |
+| 12 | Pooja          |  21 | Female | Kolkata |
+| 13 | Sandeep        |  22 | Male   | Ranchi  |
+| 14 | Sneha          |  19 | Female | Agra    |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
+| 22 | Swati          |  20 | Female | Jaipur  |
+| 23 | Vivek          |  23 | Male   | Noida   |
++----+----------------+-----+--------+---------+
+15 rows in set (0.00 sec)
+
+16. Find employees whose name contains either 'ra' or 'ri'.
+-------> mysql> select * from students
+    -> where name  like "%ra%" or name like  "%ri%";
++----+-------------+-----+--------+----------+
+| id | name        | age | gender | city     |
++----+-------------+-----+--------+----------+
+|  2 | Gauri Gonte |  99 | Female | Karntaka |
+|  5 | Rahul       |  20 | Male   | Delhi    |
+|  6 | Priya       |  21 | Female | Mumbai   |
+| 18 | Riya        |  22 | Female | Mumbai   |
+| 19 | Karan       |  21 | Male   | Chennai  |
++----+-------------+-----+--------+----------+
+5 rows in set (0.00 sec)
+
+17. Find employees whose name starts with 'A' and ends with 'a'.
+------> mysql> select * from students
+    -> where name  like "A%a";
+Empty set (0.00 sec) 
+
+18. Find employees whose name starts with 'R' and ends with 'n'.
+-------> mysql> select * from students
+    -> where name  like "R%n";
+Empty set (0.00 sec)
+
+19. Find employees whose name starts with 'S' or ends with 'n'.
+------> mysql> select * from students
+    -> where name  like "S%" or name like "%n";
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 14 | Sneha   |  19 | Female | Agra      |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
++----+---------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+20. Find employees whose name contains 'a' and ends with 'n'.
+------> mysql> select * from students
+    -> where name  like "%a%n";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+2 rows in set (0.00 sec)
+
+
+21. Find employees whose city starts with 'P'.
+------> mysql> select * from students
+    -> where city like "p%";
++----+--------+-----+--------+-------+
+| id | name   | age | gender | city  |
++----+--------+-----+--------+-------+
+|  7 | Amit   |  22 | Male   | Patna |
+|  9 | Rohit  |  23 | Male   | Pune  |
+| 16 | Kavita |  23 | Female | Patna |
+| 20 | Nisha  |  24 | Female | Pune  |
++----+--------+-----+--------+-------+
+4 rows in set (0.00 sec)
+
+22. Find employees whose city starts with 'M'.
+------> mysql> select * from students
+    -> where city like "M%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+| 18 | Riya           |  22 | Female | Mumbai  |
++----+----------------+-----+--------+---------+
+4 rows in set (0.00 sec)
+
+23. Find employees whose city ends with 'a'.
+-----> mysql> select * from students
+    -> where city like "%a";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  4 | Punam Shirsath |   2 | Female | AGRA     |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+10 rows in set (0.00 sec)
+
+24. Find employees whose city ends with 'i'.
+------> mysql> select * from students
+    -> where city like "%i";
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+|  5 | Rahul   |  20 | Male   | Delhi   |
+|  6 | Priya   |  21 | Female | Mumbai  |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 15 | Manish  |  25 | Male   | Delhi   |
+| 18 | Riya    |  22 | Female | Mumbai  |
+| 19 | Karan   |  21 | Male   | Chennai |
++----+---------+-----+--------+---------+
+6 rows in set (0.00 sec)
+
+25. Find employees whose city contains the letter 'a'.
+------> mysql> select * from students
+    -> where city like "%a%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+18 rows in set (0.00 sec)
+
+
+26. Find employees whose city contains 'pu'.
+-------> mysql> select * from students
+    -> where city like "%pu%";
++----+--------------+-----+--------+---------+
+| id | name         | age | gender | city    |
++----+--------------+-----+--------+---------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur |
+|  9 | Rohit        |  23 | Male   | Pune    |
+| 10 | Anjali       |  20 | Female | Jaipur  |
+| 20 | Nisha        |  24 | Female | Pune    |
+| 22 | Swati        |  20 | Female | Jaipur  |
++----+--------------+-----+--------+---------+
+5 rows in set (0.00 sec) 
+
+27. Find employees whose city starts with either 'P' or 'M'.
+-------> mysql> select * from students
+    -> where city like "p%"or city like "M%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  7 | Amit           |  22 | Male   | Patna   |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 16 | Kavita         |  23 | Female | Patna   |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
++----+----------------+-----+--------+---------+
+8 rows in set (0.00 sec)
+
+28. Find employees whose city starts with either 'D' or 'B'.
+------> mysql> select * from students
+    -> where city like "D%"or city like "B%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+| 15 | Manish |  25 | Male   | Delhi     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec) 
+
+29. Find employees whose city ends with either 'a' or 'i'.
+-------> mysql> select * from students
+    -> where city like "%a"or city like "%i";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  4 | Punam Shirsath |   2 | Female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 13 | Sandeep        |  22 | Male   | Ranchi   |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+16 rows in set (0.00 sec)
+
+30. Find employees whose city contains either 'a' or 'e'.
+------> mysql> select * from students
+    -> where city like "%a%"or city like "%e%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+
+
+31. Find employees whose gender starts with 'M'.
+-----> mysql> select * from students
+    -> where gender like "M%";
++----+--------------+-----+--------+-----------+
+| id | name         | age | gender | city      |
++----+--------------+-----+--------+-----------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur   |
+|  5 | Rahul        |  20 | Male   | Delhi     |
+|  7 | Amit         |  22 | Male   | Patna     |
+|  9 | Rohit        |  23 | Male   | Pune      |
+| 11 | Vikas        |  24 | Male   | Lucknow   |
+| 13 | Sandeep      |  22 | Male   | Ranchi    |
+| 15 | Manish       |  25 | Male   | Delhi     |
+| 17 | Arjun        |  20 | Male   | Bengaluru |
+| 19 | Karan        |  21 | Male   | Chennai   |
+| 21 | Deepak       |  26 | Male   | Gaya      |
+| 23 | Vivek        |  23 | Male   | Noida     |
++----+--------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+32. Find employees whose gender starts with 'F'.
+-----> mysql> select * from students
+    -> where gender like "F%";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore   |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  4 | Punam Shirsath |   2 | Female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+13 rows in set (0.00 sec)
+
+33. Find employees whose gender is either 'Male' or 'Female' using REGEXP.
+-----> mysql> select * from students
+    -> where gender like "Male" or gender like "Female";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+34. Find employees whose gender starts with either 'M' or 'F'.
+-----> mysql> select * from students
+    -> where gender like "M%" or gender like "F%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+35. Find employees whose gender ends with 'e'.
+------> mysql> select * from students
+    -> where gender like "%e";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+
+36. Find employees whose age starts with '2'.
+-----> mysql> select * from students
+    -> where age like "2%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.00 sec)
+
+37. Find employees whose age starts with '3'.
+------> mysql> select * from students
+    -> where age like "3%";
+Empty set (0.00 sec)
+
+38. Find employees whose age starts with either '2' or '3'.
+------> mysql> select * from students
+    -> where age like "2%"or age like "3%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.00 sec)
+
+39. Find employees whose age ends with '0'.
+------> mysql> select * from students
+    -> where age like "%0";
++----+--------------+-----+--------+-----------+
+| id | name         | age | gender | city      |
++----+--------------+-----+--------+-----------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur   |
+|  5 | Rahul        |  20 | Male   | Delhi     |
+| 10 | Anjali       |  20 | Female | Jaipur    |
+| 17 | Arjun        |  20 | Male   | Bengaluru |
+| 22 | Swati        |  20 | Female | Jaipur    |
++----+--------------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+40. Find employees whose age contains the digit '5'.
+------> mysql> select * from students
+    -> where age like "%5%";
++----+----------------+-----+--------+--------+
+| id | name           | age | gender | city   |
++----+----------------+-----+--------+--------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore |
+| 15 | Manish         |  25 | Male   | Delhi  |
++----+----------------+-----+--------+--------+
+2 rows in set (0.00 sec)
+
+41. Find employees whose age contains any digit from 0 to 4.
+------> mysql> select * from students
+    -> where age like "%0%"
+    -> or age like "%1%"
+    -> or age like "%2%"
+    -> or age like "%3%"
+    -> or age like "%4%"
+    -> ;
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+
+42. Find employees whose age contains any digit from 5 to 9.
+------> mysql> select * from students
+    -> where age like "%5%"
+    -> or age like "%6%"
+    -> or age like "%7%"
+    -> or age like "%8%"
+    -> or age like "%9%";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore   |
+|  2 | Gauri Gonte    |  99 | Female | Karntaka |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
++----+----------------+-----+--------+----------+
+6 rows in set (0.00 sec)
+
+
+43. Find employees whose name starts with 'A' OR city starts with 'P'.
+-----> mysql> select * from students
+    -> where name like "A%" or city like "P%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+|  9 | Rohit  |  23 | Male   | Pune      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 16 | Kavita |  23 | Female | Patna     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 20 | Nisha  |  24 | Female | Pune      |
++----+--------+-----+--------+-----------+
+6 rows in set (0.00 sec)
+
+44. Find employees whose name ends with 'n' OR city ends with 'a'.
+------> mysql> select * from students
+    -> where name like "%n" or city like "%a";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | Female | Karntaka  |
+|  4 | Punam Shirsath |   2 | Female | AGRA      |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+12 rows in set (0.00 sec)
+
+45. Find employees whose name starts with a vowel OR city starts with 'M'.
+-----> mysql> select * from students
+    -> where name like "A%"
+    -> or name like "E%"
+    -> or name like "I%"
+    -> or name like "O%"
+    -> or name like "U%"
+    -> or  city like"M%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore    |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur   |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
++----+----------------+-----+--------+-----------+
+7 rows in set (0.00 sec)
+
+46. Find employees whose name contains 'ra' OR city contains 'pu'.
+------> mysql> select * from students
+    -> where name like "%ra%" or city like "%pu%";
++----+--------------+-----+--------+---------+
+| id | name         | age | gender | city    |
++----+--------------+-----+--------+---------+
+|  3 | Vikas Sonadi |  10 | male   | Manipur |
+|  5 | Rahul        |  20 | Male   | Delhi   |
+|  9 | Rohit        |  23 | Male   | Pune    |
+| 10 | Anjali       |  20 | Female | Jaipur  |
+| 19 | Karan        |  21 | Male   | Chennai |
+| 20 | Nisha        |  24 | Female | Pune    |
+| 22 | Swati        |  20 | Female | Jaipur  |
++----+--------------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+47. Find employees whose name starts with 'R' AND city starts with 'P'.
+------> mysql> select * from students
+    -> where name like "R%" or city like "p%";
++----+--------+-----+--------+--------+
+| id | name   | age | gender | city   |
++----+--------+-----+--------+--------+
+|  5 | Rahul  |  20 | Male   | Delhi  |
+|  7 | Amit   |  22 | Male   | Patna  |
+|  9 | Rohit  |  23 | Male   | Pune   |
+| 16 | Kavita |  23 | Female | Patna  |
+| 18 | Riya   |  22 | Female | Mumbai |
+| 20 | Nisha  |  24 | Female | Pune   |
++----+--------+-----+--------+--------+
+6 rows in set (0.00 sec)
+
+48. Find employees whose name ends with 'a' AND gender starts with 'F'.
+-------> mysql> select * from students
+    -> where name like  "%a" and gender like "F%";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+49. Find employees whose name starts with 'A' AND city starts with either 'P' or 'M'.
+------> mysql> select * from students
+    -> where name like  "a%" and  city like "P%" or city like "M%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | Female | Mysore  |
+|  3 | Vikas Sonadi   |  10 | male   | Manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  7 | Amit           |  22 | Male   | Patna   |
+| 18 | Riya           |  22 | Female | Mumbai  |
++----+----------------+-----+--------+---------+
+5 rows in set (0.00 sec)
+
+50. Find employees whose name starts with 'R', contains the letter 'a', and ends with 'n'.
+------> mysql> select * from students
+    -> where name like "R%a%n";
+Empty set (0.00 sec)
