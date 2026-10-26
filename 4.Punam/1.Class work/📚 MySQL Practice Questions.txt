@@ -1,0 +1,989 @@
+📚 MySQL Practice Questions – 50
+
+Table: students
+Columns: id, name, age, gender, city
+
+Topics:
+WHERE Clause + Operators
+BETWEEN
+IN
+LIKE
+Wildcards (%, _)
+
+━━━━━━━━━━━━━━━━━━
+
+🟢 WHERE CLAUSE + OPERATORS
+
+1️⃣ Display all students whose age is 20.
+
+mysql> select * from student
+    -> where age=20;
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 22 | Swati  |  20 | Female | Jaipur    |
++----+--------+-----+--------+-----------+
+4 rows in set (0.04 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2️⃣ Display students whose age is greater than 20.
+
+mysql> select * from student
+    -> where age>20;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  9 | Rohit          |  23 | Male   | Pune     |
+| 11 | Vikas          |  24 | Male   | Lucknow  |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 13 | Sandeep        |  22 | Male   | Ranchi   |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+16 rows in set (0.04 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3️⃣ Display students whose age is less than 20.
+
+mysql> select * from student
+    -> where age<20;
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  4 | Punam Shrisath |   2 | female | AGRA    |
+|  8 | Neha           |  19 | Female | Gaya    |
+| 14 | Sneha          |  19 | Female | Agra    |
++----+----------------+-----+--------+---------+
+4 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4️⃣ Display students whose age is greater than or equal to 21.
+
+mysql> select * from student
+    -> where age>=21;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  9 | Rohit          |  23 | Male   | Pune     |
+| 11 | Vikas          |  24 | Male   | Lucknow  |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 13 | Sandeep        |  22 | Male   | Ranchi   |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+16 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5️⃣ Display students whose age is less than or equal to 21.
+
+mysql> select * from student
+    -> where age<=21;
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+12 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6️⃣ Display students whose gender is Female.
+mysql> select * from student
+    -> where gender="female";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+13 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7️⃣ Display students whose gender is Male.
+
+mysql> select * from student
+    -> where gender="male";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 15 | Manish        |  25 | Male   | Delhi     |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
+| 21 | Deepak        |  26 | Male   | Gaya      |
+| 23 | Vivek         |  23 | Male   | Noida     |
++----+---------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8️⃣ Display students who are not from Delhi.
+
+mysql> select * from student
+    -> where city <> "delhi";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9️⃣ Display students whose city is Pune.
+
+mysql> select * from student
+    -> where city = "pune";
++----+-------+-----+--------+------+
+| id | name  | age | gender | city |
++----+-------+-----+--------+------+
+|  9 | Rohit |  23 | Male   | Pune |
+| 20 | Nisha |  24 | Female | Pune |
++----+-------+-----+--------+------+
+2 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔟 Display students whose age is not equal to 20.
+
+mysql> select * from student
+    -> where age != 20;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+|  9 | Rohit          |  23 | Male   | Pune     |
+| 11 | Vikas          |  24 | Male   | Lucknow  |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 13 | Sandeep        |  22 | Male   | Ranchi   |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+20 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1️⃣1️⃣ Display students whose age is greater than 20 AND gender is Female.
+
+mysql> select * from student
+    -> where age > 20 and gender = "female";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  6 | Priya          |  21 | Female | Mumbai   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+8 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣2️⃣ Display students whose age is less than 25 AND gender is Male.
+
+mysql> select * from student
+    -> where age < 25 and gender = "male";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
+| 23 | Vivek         |  23 | Male   | Noida     |
++----+---------------+-----+--------+-----------+
+9 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣3️⃣ Display students who are from Delhi AND age is greater than 20.
+
+mysql> select * from student
+    -> where city = "delhi" and age > 20;
++----+--------+-----+--------+-------+
+| id | name   | age | gender | city  |
++----+--------+-----+--------+-------+
+| 15 | Manish |  25 | Male   | Delhi |
++----+--------+-----+--------+-------+
+1 row in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣4️⃣ Display students who are from Mumbai AND gender is Female.
+
+mysql> select * from student
+    -> where city = "mumbai" and gender = "female";
++----+-------+-----+--------+--------+
+| id | name  | age | gender | city   |
++----+-------+-----+--------+--------+
+|  6 | Priya |  21 | Female | Mumbai |
+| 18 | Riya  |  22 | Female | Mumbai |
++----+-------+-----+--------+--------+
+2 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣5️⃣ Display students whose age is greater than or equal to 20 AND less than or equal to 25.
+
+mysql> select * from student
+    -> where age >= 20 and age <= 25;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+|  9 | Rohit   |  23 | Male   | Pune      |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 11 | Vikas   |  24 | Male   | Lucknow   |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 15 | Manish  |  25 | Male   | Delhi     |
+| 16 | Kavita  |  23 | Female | Patna     |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 20 | Nisha   |  24 | Female | Pune      |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 23 | Vivek   |  23 | Male   | Noida     |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+17 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣6️⃣ Display students whose age is greater than 21 AND city is Pune.
+
+mysql> select * from student
+    -> where age > 21 and city = "pune";
++----+-------+-----+--------+------+
+| id | name  | age | gender | city |
++----+-------+-----+--------+------+
+|  9 | Rohit |  23 | Male   | Pune |
+| 20 | Nisha |  24 | Female | Pune |
++----+-------+-----+--------+------+
+2 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣7️⃣ Display students whose age is less than 23 AND gender is Male.
+
+mysql> select * from student
+    -> where age < 23 and gender = "male";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
++----+---------------+-----+--------+-----------+
+6 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣8️⃣ Display students whose city is Agra AND gender is Female.
+
+mysql> select * from student
+    -> where city = "agra" and gender = "female";
++----+----------------+-----+--------+------+
+| id | name           | age | gender | city |
++----+----------------+-----+--------+------+
+|  4 | Punam Shrisath |   2 | female | AGRA |
+| 14 | Sneha          |  19 | Female | Agra |
+| 24 | Komal          |  21 | Female | Agra |
++----+----------------+-----+--------+------+
+3 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+━━━━━━━━━━━━━━━━━━
+
+🟡 OR OPERATOR
+
+1️⃣9️⃣ Display students who are from Pune OR Mumbai.
+
+mysql> select * from student
+    -> where city = "pune" or city = "mumbai";
++----+-------+-----+--------+--------+
+| id | name  | age | gender | city   |
++----+-------+-----+--------+--------+
+|  6 | Priya |  21 | Female | Mumbai |
+|  9 | Rohit |  23 | Male   | Pune   |
+| 18 | Riya  |  22 | Female | Mumbai |
+| 20 | Nisha |  24 | Female | Pune   |
++----+-------+-----+--------+--------+
+4 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2️⃣0️⃣ Display students whose gender is Male OR age is greater than 25.
+
+mysql> select * from student
+    -> where gender = "male" or age > 25;
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 23 | Vivek          |  23 | Male   | Noida     |
++----+----------------+-----+--------+-----------+
+13 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2️⃣1️⃣ Display students who are from Delhi OR Patna.
+
+mysql> select * from student
+    -> where city = "delhi" or city = "patna";
++----+--------+-----+--------+-------+
+| id | name   | age | gender | city  |
++----+--------+-----+--------+-------+
+|  5 | Rahul  |  20 | Male   | Delhi |
+|  7 | Amit   |  22 | Male   | Patna |
+| 15 | Manish |  25 | Male   | Delhi |
+| 16 | Kavita |  23 | Female | Patna |
++----+--------+-----+--------+-------+
+4 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2️⃣2️⃣ Display students whose age is 20 OR 21.
+
+mysql> select * from student
+    -> where age=20 or age=21;
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+|  6 | Priya  |  21 | Female | Mumbai    |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 12 | Pooja  |  21 | Female | Kolkata   |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 19 | Karan  |  21 | Male   | Chennai   |
+| 22 | Swati  |  20 | Female | Jaipur    |
+| 24 | Komal  |  21 | Female | Agra      |
++----+--------+-----+--------+-----------+
+8 rows in set (0.00 sec)
+
+2️⃣3️⃣ Display students whose city is Gaya OR Ranchi OR Jaipur.
+
+mysql> select * from student
+    -> where city = "Gaya" or city = "Ranchi" or city = "jaipur";
++----+---------+-----+--------+--------+
+| id | name    | age | gender | city   |
++----+---------+-----+--------+--------+
+|  8 | Neha    |  19 | Female | Gaya   |
+| 10 | Anjali  |  20 | Female | Jaipur |
+| 13 | Sandeep |  22 | Male   | Ranchi |
+| 21 | Deepak  |  26 | Male   | Gaya   |
+| 22 | Swati   |  20 | Female | Jaipur |
++----+---------+-----+--------+--------+
+5 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2️⃣4️⃣ Display students whose gender is Female OR city is Delhi.
+
+mysql> select * from student
+    -> where gender = "female" or city = "Delhi";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+15 rows in set (0.00 sec)
+
+2️⃣5️⃣ Display students whose age is less than 20 OR greater than 24.
+
+mysql> select * from student
+    -> where age < 20 or age > 24;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
++----+----------------+-----+--------+----------+
+8 rows in set (0.00 sec)
+
+━━━━━━━━━━━━━━━━━━
+
+🟠 BETWEEN OPERATOR
+
+2️⃣6️⃣ Display students whose age is between 20 and 25.
+
+mysql> select * from student
+    -> where age BETWEEN 20 and 25;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+|  9 | Rohit   |  23 | Male   | Pune      |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 11 | Vikas   |  24 | Male   | Lucknow   |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 15 | Manish  |  25 | Male   | Delhi     |
+| 16 | Kavita  |  23 | Female | Patna     |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 20 | Nisha   |  24 | Female | Pune      |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 23 | Vivek   |  23 | Male   | Noida     |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+17 rows in set (0.01 sec)
+
+2️⃣7️⃣ Display students whose age is between 18 and 22.
+
+mysql> select * from student
+    -> where age BETWEEN 18 and 22;
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+|  8 | Neha    |  19 | Female | Gaya      |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 14 | Sneha   |  19 | Female | Agra      |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+13 rows in set (0.00 sec)
+
+2️⃣8️⃣ Display students whose age is between 21 and 24.
+
+mysql> select * from student
+    -> where age BETWEEN 21 and 24;
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+|  6 | Priya   |  21 | Female | Mumbai  |
+|  7 | Amit    |  22 | Male   | Patna   |
+|  9 | Rohit   |  23 | Male   | Pune    |
+| 11 | Vikas   |  24 | Male   | Lucknow |
+| 12 | Pooja   |  21 | Female | Kolkata |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 16 | Kavita  |  23 | Female | Patna   |
+| 18 | Riya    |  22 | Female | Mumbai  |
+| 19 | Karan   |  21 | Male   | Chennai |
+| 20 | Nisha   |  24 | Female | Pune    |
+| 23 | Vivek   |  23 | Male   | Noida   |
+| 24 | Komal   |  21 | Female | Agra    |
++----+---------+-----+--------+---------+
+12 rows in set (0.00 sec)
+
+2️⃣9️⃣ Display students whose age is between 20 and 23 AND gender is Female.
+
+mysql> select * from student
+    -> where age BETWEEN 20 and 23 and gender = "female";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+| 10 | Anjali |  20 | Female | Jaipur  |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 22 | Swati  |  20 | Female | Jaipur  |
+| 24 | Komal  |  21 | Female | Agra    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+3️⃣0️⃣ Display students whose age is between 20 and 25 AND gender is Male.
+
+mysql> select * from student
+    -> where age BETWEEN 20 and 25 and gender = "male";
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  7 | Amit    |  22 | Male   | Patna     |
+|  9 | Rohit   |  23 | Male   | Pune      |
+| 11 | Vikas   |  24 | Male   | Lucknow   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 15 | Manish  |  25 | Male   | Delhi     |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 23 | Vivek   |  23 | Male   | Noida     |
++----+---------+-----+--------+-----------+
+9 rows in set (0.00 sec)
+
+3️⃣1️⃣ Display students whose age is NOT BETWEEN 20 and 25.
+
+mysql> select * from student
+    -> where age not between 20 and 25;
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 21 | Deepak         |  26 | Male   | Gaya     |
++----+----------------+-----+--------+----------+
+7 rows in set (0.00 sec)
+
+3️⃣2️⃣ Display students whose id is between 5 and 15.
+mysql> select * from student
+    -> where id BETWEEN 5 and 15;
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+|  5 | Rahul   |  20 | Male   | Delhi   |
+|  6 | Priya   |  21 | Female | Mumbai  |
+|  7 | Amit    |  22 | Male   | Patna   |
+|  8 | Neha    |  19 | Female | Gaya    |
+|  9 | Rohit   |  23 | Male   | Pune    |
+| 10 | Anjali  |  20 | Female | Jaipur  |
+| 11 | Vikas   |  24 | Male   | Lucknow |
+| 12 | Pooja   |  21 | Female | Kolkata |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 14 | Sneha   |  19 | Female | Agra    |
+| 15 | Manish  |  25 | Male   | Delhi   |
++----+---------+-----+--------+---------+
+11 rows in set (0.04 sec)
+
+3️⃣3️⃣ Display students whose id is between 10 and 20 AND city is Pune.
+
+mysql> select * from student
+    -> where id BETWEEN 10 and 20 and city = "pune";
++----+-------+-----+--------+------+
+| id | name  | age | gender | city |
++----+-------+-----+--------+------+
+| 20 | Nisha |  24 | Female | Pune |
++----+-------+-----+--------+------+
+1 row in set (0.00 sec)
+
+━━━━━━━━━━━━━━━━━━
+
+🔵 IN OPERATOR
+
+3️⃣4️⃣ Display students who are from Pune, Mumbai, or Delhi using IN.
+
+mysql> select * from student
+    -> where city IN("Pune","Mumbai","Delhi");
++----+--------+-----+--------+--------+
+| id | name   | age | gender | city   |
++----+--------+-----+--------+--------+
+|  5 | Rahul  |  20 | Male   | Delhi  |
+|  6 | Priya  |  21 | Female | Mumbai |
+|  9 | Rohit  |  23 | Male   | Pune   |
+| 15 | Manish |  25 | Male   | Delhi  |
+| 18 | Riya   |  22 | Female | Mumbai |
+| 20 | Nisha  |  24 | Female | Pune   |
++----+--------+-----+--------+--------+
+6 rows in set (0.00 sec)
+
+3️⃣5️⃣ Display students who are from Patna, Gaya, or Ranchi.
+
+mysql> select * from student
+    -> where city IN("Patna","Gaya","Ranchi");
++----+---------+-----+--------+--------+
+| id | name    | age | gender | city   |
++----+---------+-----+--------+--------+
+|  7 | Amit    |  22 | Male   | Patna  |
+|  8 | Neha    |  19 | Female | Gaya   |
+| 13 | Sandeep |  22 | Male   | Ranchi |
+| 16 | Kavita  |  23 | Female | Patna  |
+| 21 | Deepak  |  26 | Male   | Gaya   |
++----+---------+-----+--------+--------+
+5 rows in set (0.00 sec)
+
+3️⃣6️⃣ Display students who are from Agra, Jaipur, or Lucknow.
+
+mysql> select * from student
+    -> where city IN("Agra","Jaipur","Lucknow");
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  4 | Punam Shrisath |   2 | female | AGRA    |
+| 10 | Anjali         |  20 | Female | Jaipur  |
+| 11 | Vikas          |  24 | Male   | Lucknow |
+| 14 | Sneha          |  19 | Female | Agra    |
+| 22 | Swati          |  20 | Female | Jaipur  |
+| 24 | Komal          |  21 | Female | Agra    |
++----+----------------+-----+--------+---------+
+6 rows in set (0.00 sec)
+
+3️⃣7️⃣ Display students whose age is 20, 21, or 22 using IN.
+
+mysql> select * from student
+    -> where age IN(20,21,22);
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+|  5 | Rahul   |  20 | Male   | Delhi     |
+|  6 | Priya   |  21 | Female | Mumbai    |
+|  7 | Amit    |  22 | Male   | Patna     |
+| 10 | Anjali  |  20 | Female | Jaipur    |
+| 12 | Pooja   |  21 | Female | Kolkata   |
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 18 | Riya    |  22 | Female | Mumbai    |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
+| 24 | Komal   |  21 | Female | Agra      |
++----+---------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+
+3️⃣8️⃣ Display students whose age is 23, 24, or 25.
+
+mysql> select * from student
+    -> where age IN(23,24,25);
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  9 | Rohit  |  23 | Male   | Pune    |
+| 11 | Vikas  |  24 | Male   | Lucknow |
+| 15 | Manish |  25 | Male   | Delhi   |
+| 16 | Kavita |  23 | Female | Patna   |
+| 20 | Nisha  |  24 | Female | Pune    |
+| 23 | Vivek  |  23 | Male   | Noida   |
++----+--------+-----+--------+---------+
+6 rows in set (0.00 sec)
+
+3️⃣9️⃣ Display students whose gender is either Male or Female using IN.
+
+mysql> select * from student
+    -> where gender IN("Male","Female");
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+4️⃣0️⃣ Display students whose city is NOT IN Pune, Mumbai, and Delhi.
+
+mysql> select * from student
+    -> where city NOT IN("Pune","Mumbai","Delhi");
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+18 rows in set (0.00 sec)
+
+━━━━━━━━━━━━━━━━━━
+
+🔴 LIKE + WILDCARDS
+
+% = Any number of characters
+_ = Exactly one character
+
+4️⃣1️⃣ Display students whose name starts with P.
+
+mysql> select * from student
+    -> where name LIKE "p%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  4 | Punam Shrisath |   2 | female | AGRA    |
+|  6 | Priya          |  21 | Female | Mumbai  |
+| 12 | Pooja          |  21 | Female | Kolkata |
++----+----------------+-----+--------+---------+
+3 rows in set (0.00 sec)
+
+4️⃣2️⃣ Display students whose name starts with R.
+
+mysql> select * from student
+    -> where name LIKE "R%";
++----+-------+-----+--------+--------+
+| id | name  | age | gender | city   |
++----+-------+-----+--------+--------+
+|  5 | Rahul |  20 | Male   | Delhi  |
+|  9 | Rohit |  23 | Male   | Pune   |
+| 18 | Riya  |  22 | Female | Mumbai |
++----+-------+-----+--------+--------+
+3 rows in set (0.00 sec)
+
+4️⃣3️⃣ Display students whose name ends with a.
+
+mysql> select * from student
+    -> where name LIKE "%a";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+4️⃣4️⃣ Display students whose name ends with n.
+
+mysql> select * from student
+    -> where name LIKE "%n";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+2 rows in set (0.00 sec)
+
+4️⃣5️⃣ Display students whose name contains i anywhere.
+
+mysql> select * from student
+    -> where name LIKE "%i%";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  3 | Vikash Sonadi  |  10 | male   | manipur  |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  9 | Rohit          |  23 | Male   | Pune     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 11 | Vikas          |  24 | Male   | Lucknow  |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 23 | Vivek          |  23 | Male   | Noida    |
++----+----------------+-----+--------+----------+
+15 rows in set (0.00 sec)
+
+4️⃣6️⃣ Display students whose name contains a anywhere.
+
+mysql> select * from student
+    -> where name LIKE "%a%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+
+4️⃣7️⃣ Display students whose city starts with M.
+
+
+mysql> select * from student
+    -> where city LIKE "m%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+| 18 | Riya           |  22 | Female | Mumbai  |
++----+----------------+-----+--------+---------+
+4 rows in set (0.00 sec)
+4️⃣8️⃣ Display students whose city ends with a.
+
+
+mysql> select * from student
+    -> where city LIKE "%a";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+10 rows in set (0.00 sec)
+
+4️⃣9️⃣ Display students whose name has exactly 4 characters using _.
+
+mysql> select * from student
+    -> where name LIKE "____";
++----+------+-----+--------+--------+
+| id | name | age | gender | city   |
++----+------+-----+--------+--------+
+|  7 | Amit |  22 | Male   | Patna  |
+|  8 | Neha |  19 | Female | Gaya   |
+| 18 | Riya |  22 | Female | Mumbai |
++----+------+-----+--------+--------+
+3 rows in set (0.00 sec)
+
+5️⃣0️⃣ Display students whose name starts with R and has exactly 5 characters.
+
+mysql> select * from student
+    -> where name LIKE "R%____";
++----+-------+-----+--------+-------+
+| id | name  | age | gender | city  |
++----+-------+-----+--------+-------+
+|  5 | Rahul |  20 | Male   | Delhi |
+|  9 | Rohit |  23 | Male   | Pune  |
++----+-------+-----+--------+-------+
+2 rows in set (0.00 sec)
+
