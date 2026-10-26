@@ -1,0 +1,2044 @@
+1. Find student whose name starts with 'A'.
+
+mysql> select * from student
+    -> where name Regexp "^a";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+----------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "A%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+2. Find student whose name starts with 'R'.
+
+mysql> select * from student
+    -> where name Regexp "^R";
++----+-------+-----+--------+--------+
+| id | name  | age | gender | city   |
++----+-------+-----+--------+--------+
+|  5 | Rahul |  20 | Male   | Delhi  |
+|  9 | Rohit |  23 | Male   | Pune   |
+| 18 | Riya  |  22 | Female | Mumbai |
++----+-------+-----+--------+--------+
+3 rows in set (0.00 sec)
+--------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "R%";
++----+-------+-----+--------+--------+
+| id | name  | age | gender | city   |
++----+-------+-----+--------+--------+
+|  5 | Rahul |  20 | Male   | Delhi  |
+|  9 | Rohit |  23 | Male   | Pune   |
+| 18 | Riya  |  22 | Female | Mumbai |
++----+-------+-----+--------+--------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------
+--------------------------------------------------------------------------
+3. Find student whose name ends with 'n'.
+
+mysql> select * from student
+    -> where name Regexp "n$";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+2 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "%n";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+2 rows in set (0.00 sec)
+
+------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+4. Find student whose name ends with 'a'.
+
+mysql> select * from student
+    -> where name Regexp "a$";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.02 sec)
+------------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "%a";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+-----------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
+5. Find student whose name contains 'ra'.
+
+-mysql> select * from student
+    -> where name Regexp "[ra]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+-----------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "%ra%";
++----+-------+-----+--------+---------+
+| id | name  | age | gender | city    |
++----+-------+-----+--------+---------+
+|  5 | Rahul |  20 | Male   | Delhi   |
+| 19 | Karan |  21 | Male   | Chennai |
++----+-------+-----+--------+---------+
+2 rows in set (0.00 sec)
+------------------------------------------------------------------------
+---------------------------------------------------------------------
+
+6. Find student whose name contains 'an'.
+
+mysql> select * from student
+    -> where name Regexp "[an]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+--------------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "%an%";
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+| 10 | Anjali  |  20 | Female | Jaipur  |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 15 | Manish  |  25 | Male   | Delhi   |
+| 19 | Karan   |  21 | Male   | Chennai |
++----+---------+-----+--------+---------+
+4 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
+7. Find student whose name starts with either 'A' or 'R'.
+
+mysql> select * from student
+    -> where name Regexp "^[AR]";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+|  7 | Amit   |  22 | Male   | Patna     |
+|  9 | Rohit  |  23 | Male   | Pune      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 18 | Riya   |  22 | Female | Mumbai    |
++----+--------+-----+--------+-----------+
+6 rows in set (0.00 sec)
+-------------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "A%" or name LIKE "R%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+|  7 | Amit   |  22 | Male   | Patna     |
+|  9 | Rohit  |  23 | Male   | Pune      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 18 | Riya   |  22 | Female | Mumbai    |
++----+--------+-----+--------+-----------+
+6 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------
+-----------------------------------------------------------------------
+8. Find student whose name starts with either 'S' or 'M'.
+
+mysql> select * from student
+    -> where name Regexp "^[SM]";
++----+---------+-----+--------+--------+
+| id | name    | age | gender | city   |
++----+---------+-----+--------+--------+
+| 13 | Sandeep |  22 | Male   | Ranchi |
+| 14 | Sneha   |  19 | Female | Agra   |
+| 15 | Manish  |  25 | Male   | Delhi  |
+| 22 | Swati   |  20 | Female | Jaipur |
++----+---------+-----+--------+--------+
+4 rows in set (0.00 sec)
+---------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "S%" or name LIKE "M%";
++----+---------+-----+--------+--------+
+| id | name    | age | gender | city   |
++----+---------+-----+--------+--------+
+| 13 | Sandeep |  22 | Male   | Ranchi |
+| 14 | Sneha   |  19 | Female | Agra   |
+| 15 | Manish  |  25 | Male   | Delhi  |
+| 22 | Swati   |  20 | Female | Jaipur |
++----+---------+-----+--------+--------+
+4 rows in set (0.00 sec)
+
+------------------------------------------------------------------
+-----------------------------------------------------------------
+9. Find students whose name ends with either 'a' or 'i'.
+
+mysql> select * from student
+    -> where name Regexp "[ai]$";
++----+---------------+-----+--------+---------+
+| id | name          | age | gender | city    |
++----+---------------+-----+--------+---------+
+|  3 | Vikash Sonadi |  10 | male   | manipur |
+|  6 | Priya         |  21 | Female | Mumbai  |
+|  8 | Neha          |  19 | Female | Gaya    |
+| 10 | Anjali        |  20 | Female | Jaipur  |
+| 12 | Pooja         |  21 | Female | Kolkata |
+| 14 | Sneha         |  19 | Female | Agra    |
+| 16 | Kavita        |  23 | Female | Patna   |
+| 18 | Riya          |  22 | Female | Mumbai  |
+| 20 | Nisha         |  24 | Female | Pune    |
+| 22 | Swati         |  20 | Female | Jaipur  |
++----+---------------+-----+--------+---------+
+10 rows in set (0.00 sec)
+----------------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "%a" or name LIKE "%i";
++----+---------------+-----+--------+---------+
+| id | name          | age | gender | city    |
++----+---------------+-----+--------+---------+
+|  3 | Vikash Sonadi |  10 | male   | manipur |
+|  6 | Priya         |  21 | Female | Mumbai  |
+|  8 | Neha          |  19 | Female | Gaya    |
+| 10 | Anjali        |  20 | Female | Jaipur  |
+| 12 | Pooja         |  21 | Female | Kolkata |
+| 14 | Sneha         |  19 | Female | Agra    |
+| 16 | Kavita        |  23 | Female | Patna   |
+| 18 | Riya          |  22 | Female | Mumbai  |
+| 20 | Nisha         |  24 | Female | Pune    |
+| 22 | Swati         |  20 | Female | Jaipur  |
++----+---------------+-----+--------+---------+
+10 rows in set (0.00 sec)
+
+-----------------------------------------------------------------
+--------------------------------------------------------------
+
+10. Find employees whose name starts with a vowel.
+
+mysql> select * from student
+    -> where name Regexp "^[a,e,i,o,u]";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+--------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "A%"
+    -> or name LIKE "E%"
+    -> or name LIKE "I%"
+    -> or name LIKE "O%"
+    -> or name LIKE "U%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+----------------------------------------------------------------------
+--------------------------------------------------------------------
+
+11. Find employees whose name ends with a vowel.
+
+mysql> select * from student
+    -> where name Regexp "[a,e,i,o,u]$";
++----+---------------+-----+--------+----------+
+| id | name          | age | gender | city     |
++----+---------------+-----+--------+----------+
+|  2 | Gauri Gonte   |  99 | female | Karntaka |
+|  3 | Vikash Sonadi |  10 | male   | manipur  |
+|  6 | Priya         |  21 | Female | Mumbai   |
+|  8 | Neha          |  19 | Female | Gaya     |
+| 10 | Anjali        |  20 | Female | Jaipur   |
+| 12 | Pooja         |  21 | Female | Kolkata  |
+| 14 | Sneha         |  19 | Female | Agra     |
+| 16 | Kavita        |  23 | Female | Patna    |
+| 18 | Riya          |  22 | Female | Mumbai   |
+| 20 | Nisha         |  24 | Female | Pune     |
+| 22 | Swati         |  20 | Female | Jaipur   |
++----+---------------+-----+--------+----------+
+11 rows in set (0.00 sec)
+-----------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "%A"
+    -> or name LIKE "%E"
+    -> or name LIKE "%I"
+    -> or name LIKE "%O"
+    -> or name LIKE "%U";
++----+---------------+-----+--------+----------+
+| id | name          | age | gender | city     |
++----+---------------+-----+--------+----------+
+|  2 | Gauri Gonte   |  99 | female | Karntaka |
+|  3 | Vikash Sonadi |  10 | male   | manipur  |
+|  6 | Priya         |  21 | Female | Mumbai   |
+|  8 | Neha          |  19 | Female | Gaya     |
+| 10 | Anjali        |  20 | Female | Jaipur   |
+| 12 | Pooja         |  21 | Female | Kolkata  |
+| 14 | Sneha         |  19 | Female | Agra     |
+| 16 | Kavita        |  23 | Female | Patna    |
+| 18 | Riya          |  22 | Female | Mumbai   |
+| 20 | Nisha         |  24 | Female | Pune     |
+| 22 | Swati         |  20 | Female | Jaipur   |
++----+---------------+-----+--------+----------+
+11 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+------------------------------------------------------------------
+
+12. Find employees whose name contains any vowel.
+
+mysql> select * from student
+    -> where name Regexp "[a,e,i,o,u]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.12 sec)
+-------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "%A%"
+    -> or name LIKE "%E%"
+    -> or name LIKE "%I%"
+    -> or name LIKE "%O%"
+    -> or name LIKE "%U%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+13. Find employees whose name starts with a letter from A to M
+
+mysql> select * from student
+    -> where name Regexp "^[A-M]";
++----+-------------+-----+--------+-----------+
+| id | name        | age | gender | city      |
++----+-------------+-----+--------+-----------+
+|  2 | Gauri Gonte |  99 | female | Karntaka  |
+|  7 | Amit        |  22 | Male   | Patna     |
+| 10 | Anjali      |  20 | Female | Jaipur    |
+| 15 | Manish      |  25 | Male   | Delhi     |
+| 16 | Kavita      |  23 | Female | Patna     |
+| 17 | Arjun       |  20 | Male   | Bengaluru |
+| 19 | Karan       |  21 | Male   | Chennai   |
+| 21 | Deepak      |  26 | Male   | Gaya      |
+| 24 | Komal       |  21 | Female | Agra      |
++----+-------------+-----+--------+-----------+
+9 rows in set (0.09 sec)
+
+--------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "A%"
+    -> or name LIKE "B%"
+    -> or  name LIKE "C%"
+    -> or name LIKE "D%"
+    -> or name LIKE "E%"
+    -> or name LIKE "F%"
+    -> or name LIKE "G%"
+    -> or name LIKE "H%"
+    -> or name LIKE "I%"
+    -> or name LIKE "J%"
+    -> or name LIKE "K%"
+    -> or name LIKE "L%"
+    -> or name LIKE "M%";
++----+-------------+-----+--------+-----------+
+| id | name        | age | gender | city      |
++----+-------------+-----+--------+-----------+
+|  2 | Gauri Gonte |  99 | female | Karntaka  |
+|  7 | Amit        |  22 | Male   | Patna     |
+| 10 | Anjali      |  20 | Female | Jaipur    |
+| 15 | Manish      |  25 | Male   | Delhi     |
+| 16 | Kavita      |  23 | Female | Patna     |
+| 17 | Arjun       |  20 | Male   | Bengaluru |
+| 19 | Karan       |  21 | Male   | Chennai   |
+| 21 | Deepak      |  26 | Male   | Gaya      |
+| 24 | Komal       |  21 | Female | Agra      |
++----+-------------+-----+--------+-----------+
+9 rows in set (0.00 sec)
+
+---------------------------------------------------------------------
+-----------------------------------------------------------------------
+14. Find employees whose name starts with a letter from N to Z.
+
+mysql> select * from student
+    -> where name Regexp "^[N-Z]";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  4 | Punam Shrisath |   2 | female | AGRA    |
+|  5 | Rahul          |  20 | Male   | Delhi   |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  8 | Neha           |  19 | Female | Gaya    |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 11 | Vikas          |  24 | Male   | Lucknow |
+| 12 | Pooja          |  21 | Female | Kolkata |
+| 13 | Sandeep        |  22 | Male   | Ranchi  |
+| 14 | Sneha          |  19 | Female | Agra    |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
+| 22 | Swati          |  20 | Female | Jaipur  |
+| 23 | Vivek          |  23 | Male   | Noida   |
++----+----------------+-----+--------+---------+
+15 rows in set (0.00 sec)
+----------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "N%"
+    -> or name LIKE "O%"
+    -> or name LIKE "P%"
+    -> or name LIKE "Q%"
+    -> or name LIKE "R%"
+    -> or name LIKE "S%"
+    -> or name LIKE "T%"
+    -> or name LIKE "U%"
+    -> or name LIKE "V%"
+    -> or name LIKE "W%"
+    -> or name LIKE "X%"
+    -> or name LIKE "Y%"
+    -> or name LIKE "Z%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  4 | Punam Shrisath |   2 | female | AGRA    |
+|  5 | Rahul          |  20 | Male   | Delhi   |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  8 | Neha           |  19 | Female | Gaya    |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 11 | Vikas          |  24 | Male   | Lucknow |
+| 12 | Pooja          |  21 | Female | Kolkata |
+| 13 | Sandeep        |  22 | Male   | Ranchi  |
+| 14 | Sneha          |  19 | Female | Agra    |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
+| 22 | Swati          |  20 | Female | Jaipur  |
+| 23 | Vivek          |  23 | Male   | Noida   |
++----+----------------+-----+--------+---------+
+15 rows in set (0.00 sec)
+
+-----------------------------------------------------------------
+--------------------------------------------------------------
+
+15. Find employees whose name contains the letter 'a' or 'e'.
+mysql> select * from student
+    -> where name Regexp "[ae]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "%a%" or name LIKE "%e%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+16. Find employees whose name contains either 'ra' or 'ri'.
+
+mysql> select * from student
+    -> where name Regexp "ra|ri";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
++----+----------------+-----+--------+----------+
+6 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "%ra%" or name LIKE "%ri%";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
++----+----------------+-----+--------+----------+
+6 rows in set (0.00 sec)
+-----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+17. Find employees whose name starts with 'A' and ends with 'a'.
+mysql> select * from student
+    -> where name Regexp "^A|a$";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  6 | Priya  |  21 | Female | Mumbai    |
+|  7 | Amit   |  22 | Male   | Patna     |
+|  8 | Neha   |  19 | Female | Gaya      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 12 | Pooja  |  21 | Female | Kolkata   |
+| 14 | Sneha  |  19 | Female | Agra      |
+| 16 | Kavita |  23 | Female | Patna     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 18 | Riya   |  22 | Female | Mumbai    |
+| 20 | Nisha  |  24 | Female | Pune      |
++----+--------+-----+--------+-----------+
+10 rows in set (0.00 sec)
+
+---------------------------------------------------------
+---> mysql> select * from students
+    -> where name  like "A%a";
+Empty set (0.00 sec) 
+
+
+----------------------------------------------------------------
+----------------------------------------------------------------------
+
+
+18. Find employees whose name starts with 'R' and ends with 'n'.
+mysql> select * from student
+    -> where name Regexp "^R|n$";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+|  5 | Rahul |  20 | Male   | Delhi     |
+|  9 | Rohit |  23 | Male   | Pune      |
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 18 | Riya  |  22 | Female | Mumbai    |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+----------------------------------------------------------------------
+----> mysql> select * from students
+    -> where name  like "R%n";
+Empty set (0.00 sec)
+
+-----------------------------------------------------------------------
+------------------------------------------------------------------------
+
+19. Find employees whose name starts with 'S' or ends with 'n'.
+
+mysql> select * from student
+    -> where name Regexp "^S|n$";
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 14 | Sneha   |  19 | Female | Agra      |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
++----+---------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+---------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "S%" or name LIKE "%n";
++----+---------+-----+--------+-----------+
+| id | name    | age | gender | city      |
++----+---------+-----+--------+-----------+
+| 13 | Sandeep |  22 | Male   | Ranchi    |
+| 14 | Sneha   |  19 | Female | Agra      |
+| 17 | Arjun   |  20 | Male   | Bengaluru |
+| 19 | Karan   |  21 | Male   | Chennai   |
+| 22 | Swati   |  20 | Female | Jaipur    |
++----+---------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+----------------------------------------------------------------------
+
+20. Find employees whose name contains 'a' and ends with 'n'.
+
+----> mysql> select * from students
+    -> where name regexp "[a]n$";
++----+-------+-----+--------+---------+
+| id | name  | age | gender | city    |
++----+-------+-----+--------+---------+
+| 19 | Karan |  21 | Male   | Chennai |
++----+-------+-----+--------+---------+
+1 row in set (0.00 sec)
+------------------------------------------------------------------------
+
+----> mysql> select * from students
+    -> where name  like "%a%n";
++----+-------+-----+--------+-----------+
+| id | name  | age | gender | city      |
++----+-------+-----+--------+-----------+
+| 17 | Arjun |  20 | Male   | Bengaluru |
+| 19 | Karan |  21 | Male   | Chennai   |
++----+-------+-----+--------+-----------+
+2 rows in set (0.00 sec)
+
+-----------------------------------------------------
+-----------------------------------------------------
+
+21. Find student whose city starts with 'P'.
+
+mysql> select * from student
+    -> where city Regexp "^P";
++----+--------+-----+--------+-------+
+| id | name   | age | gender | city  |
++----+--------+-----+--------+-------+
+|  7 | Amit   |  22 | Male   | Patna |
+|  9 | Rohit  |  23 | Male   | Pune  |
+| 16 | Kavita |  23 | Female | Patna |
+| 20 | Nisha  |  24 | Female | Pune  |
++----+--------+-----+--------+-------+
+4 rows in set (0.01 sec)
+-----------------------------------------------------------------------
+
+mysql> select * from student
+    -> where city LIKE "P%";
++----+--------+-----+--------+-------+
+| id | name   | age | gender | city  |
++----+--------+-----+--------+-------+
+|  7 | Amit   |  22 | Male   | Patna |
+|  9 | Rohit  |  23 | Male   | Pune  |
+| 16 | Kavita |  23 | Female | Patna |
+| 20 | Nisha  |  24 | Female | Pune  |
++----+--------+-----+--------+-------+
+4 rows in set (0.00 sec)
+
+-----------------------------------------------------------------
+----------------------------------------------------------------
+22. Find student whose city starts with 'M'.
+
+mysql> select * from student
+    -> where city Regexp "^M";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+| 18 | Riya           |  22 | Female | Mumbai  |
++----+----------------+-----+--------+---------+
+4 rows in set (0.00 sec)
+----------------------------------------------------------------------
+
+mysql> select * from student
+    -> where city LIKE "M%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+| 18 | Riya           |  22 | Female | Mumbai  |
++----+----------------+-----+--------+---------+
+4 rows in set (0.00 sec)
+
+----------------------------------------------------------
+-------------------------------------------------------
+
+23. Find student whose city ends with 'a'.
+mysql> select * from student
+    -> where city Regexp "a$";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+10 rows in set (0.09 sec)
+----------------------------------------------------------------------
+mysql> select * from student
+    -> where city LIKE "%a";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+10 rows in set (0.00 sec)
+
+--------------------------------------------------------------
+---------------------------------------------------------------
+
+24. Find student whose city ends with 'i'.
+mysql> select * from student
+    -> where city Regexp "i$";
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+|  5 | Rahul   |  20 | Male   | Delhi   |
+|  6 | Priya   |  21 | Female | Mumbai  |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 15 | Manish  |  25 | Male   | Delhi   |
+| 18 | Riya    |  22 | Female | Mumbai  |
+| 19 | Karan   |  21 | Male   | Chennai |
++----+---------+-----+--------+---------+
+6 rows in set (0.07 sec)
+-------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where city LIKE "%i";
++----+---------+-----+--------+---------+
+| id | name    | age | gender | city    |
++----+---------+-----+--------+---------+
+|  5 | Rahul   |  20 | Male   | Delhi   |
+|  6 | Priya   |  21 | Female | Mumbai  |
+| 13 | Sandeep |  22 | Male   | Ranchi  |
+| 15 | Manish  |  25 | Male   | Delhi   |
+| 18 | Riya    |  22 | Female | Mumbai  |
+| 19 | Karan   |  21 | Male   | Chennai |
++----+---------+-----+--------+---------+
+6 rows in set (0.00 sec)
+
+--------------------------------------------------------------
+-----------------------------------------------------------------
+
+25. Find student whose city contains the letter 'a'.
+
+mysql> select * from student
+    -> where city Regexp "[a]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+18 rows in set (0.03 sec)
+--------------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where city LIKE "%a%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+18 rows in set (0.00 sec)
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+26. Find student whose city contains 'pu'.
+
+mysql> select * from student
+    -> where city Regexp "[pu]";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  6 | Priya         |  21 | Female | Mumbai    |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 10 | Anjali        |  20 | Female | Jaipur    |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 16 | Kavita        |  23 | Female | Patna     |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 18 | Riya          |  22 | Female | Mumbai    |
+| 20 | Nisha         |  24 | Female | Pune      |
+| 22 | Swati         |  20 | Female | Jaipur    |
++----+---------------+-----+--------+-----------+
+11 rows in set (0.02 sec)
+------------------------------------------------------------
+
+mysql> select * from student
+    -> where city LIKE "%pu%";
++----+---------------+-----+--------+---------+
+| id | name          | age | gender | city    |
++----+---------------+-----+--------+---------+
+|  3 | Vikash Sonadi |  10 | male   | manipur |
+|  9 | Rohit         |  23 | Male   | Pune    |
+| 10 | Anjali        |  20 | Female | Jaipur  |
+| 20 | Nisha         |  24 | Female | Pune    |
+| 22 | Swati         |  20 | Female | Jaipur  |
++----+---------------+-----+--------+---------+
+5 rows in set (0.00 sec)
+
+------------------------------------------------------------------
+-----------------------------------------------------------------
+
+27. Find student whose city starts with either 'P' or 'M'.
+
+mysql> select * from student
+    -> where city Regexp "^[PM]";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  7 | Amit           |  22 | Male   | Patna   |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 16 | Kavita         |  23 | Female | Patna   |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
++----+----------------+-----+--------+---------+
+8 rows in set (0.00 sec)
+------------------------------------------------------------------
+mysql> select * from student
+    -> where city LIKE "P%" or city LIKE "M%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  7 | Amit           |  22 | Male   | Patna   |
+|  9 | Rohit          |  23 | Male   | Pune    |
+| 16 | Kavita         |  23 | Female | Patna   |
+| 18 | Riya           |  22 | Female | Mumbai  |
+| 20 | Nisha          |  24 | Female | Pune    |
++----+----------------+-----+--------+---------+
+8 rows in set (0.00 sec)
+
+------------------------------------------------------------
+------------------------------------------------------------
+
+28. Find student whose city starts with either 'D' or 'B'.
+mysql> select * from student
+    -> where city Regexp "^[DB]";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+| 15 | Manish |  25 | Male   | Delhi     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.03 sec)
+-------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where city LIKE "D%" or city LIKE "B%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  5 | Rahul  |  20 | Male   | Delhi     |
+| 15 | Manish |  25 | Male   | Delhi     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
++----+--------+-----+--------+-----------+
+3 rows in set (0.00 sec)
+
+----------------------------------------------------------------
+---------------------------------------------------------------
+
+29. Find student whose city ends with either 'a' or 'i'.
+mysql> select * from student
+    -> where city Regexp "[ai]$";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 13 | Sandeep        |  22 | Male   | Ranchi   |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+16 rows in set (0.00 sec)
+---------------------------------------------------------------
+mysql> select * from student
+    -> where city LIKE "%a" or city LIKE "%i";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  5 | Rahul          |  20 | Male   | Delhi    |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  7 | Amit           |  22 | Male   | Patna    |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 13 | Sandeep        |  22 | Male   | Ranchi   |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 19 | Karan          |  21 | Male   | Chennai  |
+| 21 | Deepak         |  26 | Male   | Gaya     |
+| 23 | Vivek          |  23 | Male   | Noida    |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+16 rows in set (0.00 sec)
+
+-----------------------------------------------------------------
+------------------------------------------------------------
+
+30. Find student whose city contains either 'a' or 'e'.
+
+mysql> select * from student
+    -> where city Regexp "[ae]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+--------------------------------------------------------
+mysql> select * from student
+    -> where city LIKE "%a%" or city LIKE "%E%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+23 rows in set (0.00 sec)
+--------------------------------------------------------------
+-------------------------------------------------------------
+
+31. Find student whose gender starts with 'M'.
+mysql> select * from student
+    -> where gender Regexp "^M";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 15 | Manish        |  25 | Male   | Delhi     |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
+| 21 | Deepak        |  26 | Male   | Gaya      |
+| 23 | Vivek         |  23 | Male   | Noida     |
++----+---------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+------------------------------------------------------------
+
+mysql> select * from student
+    -> where gender LIKE "M%";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+|  7 | Amit          |  22 | Male   | Patna     |
+|  9 | Rohit         |  23 | Male   | Pune      |
+| 11 | Vikas         |  24 | Male   | Lucknow   |
+| 13 | Sandeep       |  22 | Male   | Ranchi    |
+| 15 | Manish        |  25 | Male   | Delhi     |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 19 | Karan         |  21 | Male   | Chennai   |
+| 21 | Deepak        |  26 | Male   | Gaya      |
+| 23 | Vivek         |  23 | Male   | Noida     |
++----+---------------+-----+--------+-----------+
+11 rows in set (0.00 sec)
+-----------------------------------------------------------
+-------------------------------------------------------------
+
+32. Find student whose gender starts with 'F'.
+mysql> select * from student
+    -> where gender Regexp "^F";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+13 rows in set (0.00 sec)
+----------------------------------------------------------------------
+mysql> select * from student
+    -> where gender LIKE "F%";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  4 | Punam Shrisath |   2 | female | AGRA     |
+|  6 | Priya          |  21 | Female | Mumbai   |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 10 | Anjali         |  20 | Female | Jaipur   |
+| 12 | Pooja          |  21 | Female | Kolkata  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 16 | Kavita         |  23 | Female | Patna    |
+| 18 | Riya           |  22 | Female | Mumbai   |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 22 | Swati          |  20 | Female | Jaipur   |
+| 24 | Komal          |  21 | Female | Agra     |
++----+----------------+-----+--------+----------+
+13 rows in set (0.00 sec)
+
+------------------------------------------------------------
+------------------------------------------------------------
+
+33. Find student whose gender is either 'Male' or 'Female' using REGEXP.
+mysql> select * from student
+    -> where gender Regexp "Male|Female";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+---------------------------------------------------------------
+
+mysql> select * from student
+    -> where gender LIKE "Male" or gender LIKE "Female";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+---------------------------------------------------------------------
+-------------------------------------------------------------------
+
+34. Find student whose gender starts with either 'M' or 'F'.
+mysql> select * from student
+    -> where gender Regexp "^[MF]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+---------------------------------------------------------------------
+
+mysql> select * from student
+    -> where gender LIKE "M%" or gender LIKE "F%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.03 sec)
+
+--------------------------------------------------------------
+------------------------------------------------------------
+
+35. Find student whose gender ends with 'e'.
+mysql> select * from student
+    -> where gender Regexp "e$";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.02 sec)
+-------------------------------------------------------------------
+
+mysql> select * from student
+    -> where gender LIKE "%e";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+24 rows in set (0.00 sec)
+
+------------------------------------------------------------
+--------------------------------------------------------
+
+36. Find student whose age starts with '2'.
+mysql> select * from student
+    -> where age Regexp "^2";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.09 sec)
+----------------------------------------------------------
+mysql> select * from student
+    -> where age LIKE "2%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.00 sec)
+
+-------------------------------------------------------
+-------------------------------------------------------
+
+37. Find student whose age starts with '3'.
+mysql> select * from student
+    -> where age Regexp "^3";
+Empty set (0.00 sec)
+-------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where age LIKE "3%";
+Empty set (0.00 sec)
+
+-----------------------------------------------------------
+---------------------------------------------------------
+
+38. Find student whose age starts with either '2' or '3'
+
+mysql> select * from student
+    -> where age Regexp "^[23]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.00 sec)
+---------------------------------------------------------------------
+
+mysql> select * from student
+    -> where age LIKE "2%" or age LIKE "3%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+19 rows in set (0.00 sec)
+
+--------------------------------------------------------------
+----------------------------------------------------------
+
+39. Find student whose age ends with '0'.
+mysql> select * from student
+    -> where age Regexp "0$";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+| 10 | Anjali        |  20 | Female | Jaipur    |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 22 | Swati         |  20 | Female | Jaipur    |
++----+---------------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+-----------------------------------------------------------------------
+mysql> select * from student
+    -> where age LIKE "%0";
++----+---------------+-----+--------+-----------+
+| id | name          | age | gender | city      |
++----+---------------+-----+--------+-----------+
+|  3 | Vikash Sonadi |  10 | male   | manipur   |
+|  5 | Rahul         |  20 | Male   | Delhi     |
+| 10 | Anjali        |  20 | Female | Jaipur    |
+| 17 | Arjun         |  20 | Male   | Bengaluru |
+| 22 | Swati         |  20 | Female | Jaipur    |
++----+---------------+-----+--------+-----------+
+5 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+---------------------------------------------------------------------
+
+40. Find student whose age contains the digit '5'.
+mysql> select * from student
+    -> where age REgexp "[5]";
++----+----------------+-----+--------+--------+
+| id | name           | age | gender | city   |
++----+----------------+-----+--------+--------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore |
+| 15 | Manish         |  25 | Male   | Delhi  |
++----+----------------+-----+--------+--------+
+2 rows in set (0.00 sec)
+-------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where age LIKE "%5%";
++----+----------------+-----+--------+--------+
+| id | name           | age | gender | city   |
++----+----------------+-----+--------+--------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore |
+| 15 | Manish         |  25 | Male   | Delhi  |
++----+----------------+-----+--------+--------+
+2 rows in set (0.00 sec)
+
+--------------------------------------------------------------
+------------------------------------------------------------
+
+41. Find student whose age contains any digit from 0 to 4.
+mysql> select * from student
+    -> where age REgexp "[0-4]";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+--------------------------------------------------------------
+
+mysql> select * from student
+    -> where age LIKE "%0%"
+    -> or age LIKE "%1%"
+    -> or age LIKE "%2%"
+    -> or age LIKE "%3%"
+    -> or age LIKE "%4%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  5 | Rahul          |  20 | Male   | Delhi     |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+|  9 | Rohit          |  23 | Male   | Pune      |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 11 | Vikas          |  24 | Male   | Lucknow   |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 13 | Sandeep        |  22 | Male   | Ranchi    |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 15 | Manish         |  25 | Male   | Delhi     |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 20 | Nisha          |  24 | Female | Pune      |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 22 | Swati          |  20 | Female | Jaipur    |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+22 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+------------------------------------------------------------------
+
+42. Find student whose age contains any digit from 5 to 9.
+mysql> select * from student
+    -> where age Regexp "[5-9]";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 21 | Deepak         |  26 | Male   | Gaya     |
++----+----------------+-----+--------+----------+
+6 rows in set (0.00 sec)
+----------------------------------------------------------------------
+
+mysql> select * from student
+    -> where age LIKE "%5%"
+    -> or age LIKE "%4%"
+    -> or age LIKE "%5%"
+    -> or age LIKE "%6%"
+    -> or age LIKE "%7%"
+    -> or age LIKE "%8%"
+    -> or age LIKE "%9%";
++----+----------------+-----+--------+----------+
+| id | name           | age | gender | city     |
++----+----------------+-----+--------+----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore   |
+|  2 | Gauri Gonte    |  99 | female | Karntaka |
+|  8 | Neha           |  19 | Female | Gaya     |
+| 11 | Vikas          |  24 | Male   | Lucknow  |
+| 14 | Sneha          |  19 | Female | Agra     |
+| 15 | Manish         |  25 | Male   | Delhi    |
+| 20 | Nisha          |  24 | Female | Pune     |
+| 21 | Deepak         |  26 | Male   | Gaya     |
++----+----------------+-----+--------+----------+
+8 rows in set (0.00 sec)
+
+------------------------------------------------------------------
+--------------------------------------------------------------
+
+43. Find student whose name starts with 'A' OR city starts with 'P'.
+
+mysql> select * from student
+    -> where name REgexp "^A" or city Regexp "^P";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+|  9 | Rohit  |  23 | Male   | Pune      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 16 | Kavita |  23 | Female | Patna     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 20 | Nisha  |  24 | Female | Pune      |
++----+--------+-----+--------+-----------+
+6 rows in set (0.03 sec)
+------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "A%" or city LIKE "P%";
++----+--------+-----+--------+-----------+
+| id | name   | age | gender | city      |
++----+--------+-----+--------+-----------+
+|  7 | Amit   |  22 | Male   | Patna     |
+|  9 | Rohit  |  23 | Male   | Pune      |
+| 10 | Anjali |  20 | Female | Jaipur    |
+| 16 | Kavita |  23 | Female | Patna     |
+| 17 | Arjun  |  20 | Male   | Bengaluru |
+| 20 | Nisha  |  24 | Female | Pune      |
++----+--------+-----+--------+-----------+
+6 rows in set (0.00 sec)
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+
+44. Find student whose name ends with 'n' OR city ends with 'a'.
+
+
+mysql> select * from student
+    -> where name Regexp "n$" or city Regexp "a$";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+12 rows in set (0.00 sec)
+-------------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "%n" or city LIKE "%a";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  2 | Gauri Gonte    |  99 | female | Karntaka  |
+|  4 | Punam Shrisath |   2 | female | AGRA      |
+|  7 | Amit           |  22 | Male   | Patna     |
+|  8 | Neha           |  19 | Female | Gaya      |
+| 12 | Pooja          |  21 | Female | Kolkata   |
+| 14 | Sneha          |  19 | Female | Agra      |
+| 16 | Kavita         |  23 | Female | Patna     |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 19 | Karan          |  21 | Male   | Chennai   |
+| 21 | Deepak         |  26 | Male   | Gaya      |
+| 23 | Vivek          |  23 | Male   | Noida     |
+| 24 | Komal          |  21 | Female | Agra      |
++----+----------------+-----+--------+-----------+
+12 rows in set (0.00 sec)
+
+---------------------------------------------------------------------
+-----------------------------------------------------------------
+
+45. Find student whose name starts with a vowel OR city starts with 'M'.
+mysql> select * from student
+    -> where name Regexp "^[a,e,i,o,u]" or city Regexp "^M";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
++----+----------------+-----+--------+-----------+
+7 rows in set (0.00 sec)
+----------------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "a%"
+    -> or name LIKE "e%"
+    -> or name LIKE "i%"
+    -> or name LIKE "o%"
+    -> or name LIKE "u%"
+    -> or city LIKE "M%";
++----+----------------+-----+--------+-----------+
+| id | name           | age | gender | city      |
++----+----------------+-----+--------+-----------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore    |
+|  3 | Vikash Sonadi  |  10 | male   | manipur   |
+|  6 | Priya          |  21 | Female | Mumbai    |
+|  7 | Amit           |  22 | Male   | Patna     |
+| 10 | Anjali         |  20 | Female | Jaipur    |
+| 17 | Arjun          |  20 | Male   | Bengaluru |
+| 18 | Riya           |  22 | Female | Mumbai    |
++----+----------------+-----+--------+-----------+
+7 rows in set (0.00 sec)
+-----------------------------------------------------------------
+---------------------------------------------------------------
+
+46. Find student whose name contains 'ra' OR city contains 'pu'.
+
+mysql> select * from student
+    -> where name Regexp "ra" or city Regexp "pu";
++----+---------------+-----+--------+---------+
+| id | name          | age | gender | city    |
++----+---------------+-----+--------+---------+
+|  3 | Vikash Sonadi |  10 | male   | manipur |
+|  5 | Rahul         |  20 | Male   | Delhi   |
+|  9 | Rohit         |  23 | Male   | Pune    |
+| 10 | Anjali        |  20 | Female | Jaipur  |
+| 19 | Karan         |  21 | Male   | Chennai |
+| 20 | Nisha         |  24 | Female | Pune    |
+| 22 | Swati         |  20 | Female | Jaipur  |
++----+---------------+-----+--------+---------+
+7 rows in set (0.00 sec)
+-------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "%ra%" or city LIKE "%pu%";
++----+---------------+-----+--------+---------+
+| id | name          | age | gender | city    |
++----+---------------+-----+--------+---------+
+|  3 | Vikash Sonadi |  10 | male   | manipur |
+|  5 | Rahul         |  20 | Male   | Delhi   |
+|  9 | Rohit         |  23 | Male   | Pune    |
+| 10 | Anjali        |  20 | Female | Jaipur  |
+| 19 | Karan         |  21 | Male   | Chennai |
+| 20 | Nisha         |  24 | Female | Pune    |
+| 22 | Swati         |  20 | Female | Jaipur  |
++----+---------------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+------------------------------------------------------------
+----------------------------------------------------------
+
+47. Find student whose name starts with 'R' AND city starts with 'P'.
+mysql> select * from student
+    -> where name Regexp "^R" and city Regexp "^P";
++----+-------+-----+--------+------+
+| id | name  | age | gender | city |
++----+-------+-----+--------+------+
+|  9 | Rohit |  23 | Male   | Pune |
++----+-------+-----+--------+------+
+1 row in set (0.09 sec)
+-------------------------------------------------------------------------
+
+--> mysql> select * from students
+    -> where name like "R%" or city like "p%";
++----+--------+-----+--------+--------+
+| id | name   | age | gender | city   |
++----+--------+-----+--------+--------+
+|  5 | Rahul  |  20 | Male   | Delhi  |
+|  7 | Amit   |  22 | Male   | Patna  |
+|  9 | Rohit  |  23 | Male   | Pune   |
+| 16 | Kavita |  23 | Female | Patna  |
+| 18 | Riya   |  22 | Female | Mumbai |
+| 20 | Nisha  |  24 | Female | Pune   |
++----+--------+-----+--------+--------+
+6 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+------------------------------------------------------------------
+
+48. Find student whose name ends with 'a' AND gender starts with 'F'.
+mysql> select * from student
+    -> where name Regexp "a$" and gender Regexp "^F";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------
+mysql> select * from student
+    -> where name LIKE "%a" and gender LIKE "F%";
++----+--------+-----+--------+---------+
+| id | name   | age | gender | city    |
++----+--------+-----+--------+---------+
+|  6 | Priya  |  21 | Female | Mumbai  |
+|  8 | Neha   |  19 | Female | Gaya    |
+| 12 | Pooja  |  21 | Female | Kolkata |
+| 14 | Sneha  |  19 | Female | Agra    |
+| 16 | Kavita |  23 | Female | Patna   |
+| 18 | Riya   |  22 | Female | Mumbai  |
+| 20 | Nisha  |  24 | Female | Pune    |
++----+--------+-----+--------+---------+
+7 rows in set (0.00 sec)
+
+---------------------------------------------------------------
+-------------------------------------------------------------------
+
+49. Find student whose name starts with 'A' AND city starts with either 'P' or 'M'.
+mysql> select * from student
+    -> where name Regexp "^A" and city Regexp "^[PM]";
++----+------+-----+--------+-------+
+| id | name | age | gender | city  |
++----+------+-----+--------+-------+
+|  7 | Amit |  22 | Male   | Patna |
++----+------+-----+--------+-------+
+1 row in set (0.00 sec)
+----------------------------------------------------------------------------------------------
+
+mysql> select * from student
+    -> where name LIKE "A%" and city LIKE "P%" or city LIKE "M%";
++----+----------------+-----+--------+---------+
+| id | name           | age | gender | city    |
++----+----------------+-----+--------+---------+
+|  1 | Trupti Gaikwad |  85 | female | Mysore  |
+|  3 | Vikash Sonadi  |  10 | male   | manipur |
+|  6 | Priya          |  21 | Female | Mumbai  |
+|  7 | Amit           |  22 | Male   | Patna   |
+| 18 | Riya           |  22 | Female | Mumbai  |
++----+----------------+-----+--------+---------+
+5 rows in set (0.00 sec)
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+50. Find employees whose name starts with 'R', contains the letter 'a', and ends with 'n'.
+---> mysql> select * from students
+    -> where name regexp "^R.*a.*n$";
+Empty set (0.00 sec)
+
+-------------------------------------------------------------------
+
+----> mysql> select * from students
+    -> where name like "R%a%n";
+Empty set (0.00 sec)
+
+
