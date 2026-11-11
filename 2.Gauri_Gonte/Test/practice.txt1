@@ -1,0 +1,125 @@
+﻿-- Tables: worker(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+--         title(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM)
+
+-- 1. Print Employee Count in "Admin" Department.
+mysql> SELECT COUNT(*) AS admin_count FROM worker WHERE DEPARTMENT = 'Admin';
++-------------+
+| admin_count |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.00 sec)
+
+-- 2. Fetch Worker Names with Salaries >=50000 and <=100000.
+mysql> SELECT FIRST_NAME, LAST_NAME, SALARY FROM worker WHERE SALARY BETWEEN 50000 AND 100000;
++------------+-----------+--------+
+| FIRST_NAME | LAST_NAME | SALARY |
++------------+-----------+--------+
+| Monika     | Arora     | 100000 |
+| Niharika   | Verma     |  80000 |
+| Satish     | Kumar     |  75000 |
+| Geetika    | Chauhan   |  90000 |
++------------+-----------+--------+
+4 rows in set (0.00 sec)
+
+-- 3. List Worker Count Per Department in Descending Order.
+mysql> SELECT DEPARTMENT, COUNT(WORKER_ID) AS worker_count FROM worker GROUP BY DEPARTMENT ORDER BY worker_count DESC;
++------------+--------------+
+| DEPARTMENT | worker_count |
++------------+--------------+
+| Admin      |            4 |
+| HR         |            2 |
+| Account    |            2 |
++------------+--------------+
+3 rows in set (0.00 sec)
+
+-- 4. Print Worker Details Who are also Managers.
+mysql> SELECT w.* FROM worker w INNER JOIN title t ON w.WORKER_ID = t.WORKER_REF_ID WHERE t.WORKER_TITLE = 'Manager';
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+2 rows in set (0.00 sec)
+
+-- 5. Fetch Duplicate Records with Matching Data in Specific Fields of a Table.
+mysql> SELECT WORKER_TITLE, AFFECTED_FROM, COUNT(*) AS duplicate_count FROM title GROUP BY WORKER_TITLE, AFFECTED_FROM HAVING COUNT(*) > 1;
++--------------+---------------------+-----------------+
+| WORKER_TITLE | AFFECTED_FROM       | duplicate_count |
++--------------+---------------------+-----------------+
+| Executive    | 2023-06-11 00:00:00 |               3 |
+| Lead         | 2023-06-11 00:00:00 |               2 |
++--------------+---------------------+-----------------+
+2 rows in set (0.00 sec)
+
+-- 6. Show Only Odd Rows from a Table.
+mysql> SELECT * FROM worker WHERE MOD(WORKER_ID, 2) <> 0;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         7 | Satish     | Kumar     |  75000 | 2021-01-20 09:00:00 | Account    |
++-----------+------------+-----------+--------+---------------------+------------+
+4 rows in set (0.00 sec)
+
+-- 7. Show Only Even Rows from a Table.
+mysql> SELECT * FROM worker WHERE MOD(WORKER_ID, 2) = 0;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2021-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+4 rows in set (0.00 sec)
+
+-- 8. Clone a New Table from Another Table.
+mysql> CREATE TABLE worker_clone LIKE worker;
+INSERT INTO worker_clone SELECT * FROM worker;
+SELECT * FROM worker_clone;
+Query OK, 0 rows affected (0.03 sec)
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2021-01-20 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2021-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+-- 9. Intersecting Records of Two Tables.
+mysql> SELECT w.* FROM worker w INNER JOIN worker_clone c ON w.WORKER_ID = c.WORKER_ID;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2021-01-20 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2021-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+-- 10. Show Records from One Table That are not present in another table.
+mysql> SELECT w.* FROM worker w LEFT JOIN title t ON w.WORKER_ID = t.WORKER_REF_ID WHERE t.WORKER_REF_ID IS NULL;
++-----------+------------+-----------+--------+--------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE | DEPARTMENT |
++-----------+------------+-----------+--------+--------------+------------+
++-----------+------------+-----------+--------+--------------+------------+
+Empty set (0.00 sec)
+
